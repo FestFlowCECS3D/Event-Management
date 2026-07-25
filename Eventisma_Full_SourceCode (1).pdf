@@ -1,0 +1,6001 @@
+%PDF-1.3
+%ºß¬à
+3 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 4 0 R
+>>
+endobj
+4 0 obj
+<<
+/Length 3584
+>>
+stream
+0.5670000000000001 w
+0 G
+0.04 0.04 0.05 rg
+0. 841.8899999999999864 595.2799999999999727 -841.8899999999999864 re
+f
+BT
+/F2 26 Tf
+29.8999999999999986 TL
+0. 0.953 1. rg
+39.6850393700787407 742.6774015748030706 Td
+(EVENTISMA CODEBASE PDF) Tj
+ET
+BT
+/F2 14 Tf
+16.0999999999999979 TL
+1. g
+39.6850393700787407 711.4962992125983874 Td
+(Complete Source Code Documentation) Tj
+ET
+BT
+/F2 10 Tf
+11.5 TL
+0.706 0.706 0.745 rg
+39.6850393700787407 688.819133858267719 Td
+(Categorized by Programming Languages & File Headings) Tj
+ET
+BT
+/F2 10 Tf
+11.5 TL
+0.706 0.706 0.745 rg
+39.6850393700787407 671.8112598425196893 Td
+(Generated on: 25/07/2026, 01:26:07) Tj
+ET
+0. 0.95 1. RG
+1.4173228346456694 w
+39.6850393700787407 654.8033858267716596 m
+555.5949606299211609 654.8033858267716596 l
+S
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0. 0.953 1. rg
+39.6850393700787407 620.7876377952754865 Td
+(MODULE INDEX & SECTIONS:) Tj
+ET
+BT
+/F2 11 Tf
+12.6499999999999986 TL
+1. 0. 1. rg
+51.0236220472441033 592.4411811023621794 Td
+(> TypeScript / React) Tj
+ET
+BT
+/F5 9 Tf
+10.3499999999999996 TL
+0.863 0.863 0.902 rg
+56.6929133858267775 572.5986614173227736 Td
+(   - App.tsx \(161 lines\)) Tj
+ET
+BT
+/F5 9 Tf
+10.3499999999999996 TL
+0.863 0.863 0.902 rg
+56.6929133858267775 558.42543307086612 Td
+(   - types.ts \(64 lines\)) Tj
+ET
+BT
+/F5 9 Tf
+10.3499999999999996 TL
+0.863 0.863 0.902 rg
+56.6929133858267775 544.2522047244094665 Td
+(   - initialEvents.ts \(69 lines\)) Tj
+ET
+BT
+/F5 9 Tf
+10.3499999999999996 TL
+0.863 0.863 0.902 rg
+56.6929133858267775 530.0789763779526993 Td
+(   - Navbar.tsx \(61 lines\)) Tj
+ET
+BT
+/F2 11 Tf
+12.6499999999999986 TL
+1. 0. 1. rg
+51.0236220472441033 507.4018110236219741 Td
+(> Java \(Spring Boot / Backend\)) Tj
+ET
+BT
+/F5 9 Tf
+10.3499999999999996 TL
+0.863 0.863 0.902 rg
+56.6929133858267775 487.559291338582625 Td
+(   - EventismaApplication.java \(16 lines\)) Tj
+ET
+BT
+/F5 9 Tf
+10.3499999999999996 TL
+0.863 0.863 0.902 rg
+56.6929133858267775 473.3860629921259147 Td
+(   - Event.java \(73 lines\)) Tj
+ET
+BT
+/F5 9 Tf
+10.3499999999999996 TL
+0.863 0.863 0.902 rg
+56.6929133858267775 459.2128346456692611 Td
+(   - Ticket.java \(64 lines\)) Tj
+ET
+BT
+/F5 9 Tf
+10.3499999999999996 TL
+0.863 0.863 0.902 rg
+56.6929133858267775 445.0396062992125508 Td
+(   - EventController.java \(47 lines\)) Tj
+ET
+BT
+/F5 9 Tf
+10.3499999999999996 TL
+0.863 0.863 0.902 rg
+56.6929133858267775 430.8663779527558404 Td
+(   - TicketController.java \(36 lines\)) Tj
+ET
+BT
+/F5 9 Tf
+10.3499999999999996 TL
+0.863 0.863 0.902 rg
+56.6929133858267775 416.69314960629913 Td
+(   - TicketPdfService.java \(44 lines\)) Tj
+ET
+BT
+/F5 9 Tf
+10.3499999999999996 TL
+0.863 0.863 0.902 rg
+56.6929133858267775 402.5199212598424765 Td
+(   - pom.xml \(52 lines\)) Tj
+ET
+BT
+/F2 11 Tf
+12.6499999999999986 TL
+1. 0. 1. rg
+51.0236220472441033 379.8427559055117513 Td
+(> CSS / Styling) Tj
+ET
+BT
+/F5 9 Tf
+10.3499999999999996 TL
+0.863 0.863 0.902 rg
+56.6929133858267775 360.0002362204724022 Td
+(   - index.css \(45 lines\)) Tj
+ET
+BT
+/F2 11 Tf
+12.6499999999999986 TL
+1. 0. 1. rg
+51.0236220472441033 337.323070866141677 Td
+(> JSON Config) Tj
+ET
+BT
+/F5 9 Tf
+10.3499999999999996 TL
+0.863 0.863 0.902 rg
+56.6929133858267775 317.480551181102328 Td
+(   - package.json \(28 lines\)) Tj
+ET
+BT
+/F5 9 Tf
+10.3499999999999996 TL
+0.863 0.863 0.902 rg
+56.6929133858267775 303.3073228346455608 Td
+(   - metadata.json \(6 lines\)) Tj
+ET
+BT
+/F2 11 Tf
+12.6499999999999986 TL
+1. 0. 1. rg
+51.0236220472441033 280.6301574803148924 Td
+(> HTML) Tj
+ET
+BT
+/F5 9 Tf
+10.3499999999999996 TL
+0.863 0.863 0.902 rg
+56.6929133858267775 260.7876377952754865 Td
+(   - index.html \(12 lines\)) Tj
+ET
+endstream
+endobj
+5 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 6 0 R
+>>
+endobj
+6 0 obj
+<<
+/Length 8556
+>>
+stream
+1.4173228346456694 w
+0. 0.95 1. RG
+0.06 0.06 0.08 rg
+0. 841.8899999999999864 595.2799999999999727 -841.8899999999999864 re
+f
+0.1 0.1 0.14 rg
+39.6850393700787407 802.2049606299211746 515.9099212598424629 -62.3622047244094517 re
+f
+0. 0.95 1. RG
+39.6850393700787407 802.2049606299211746 515.9099212598424629 -62.3622047244094517 re
+S
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0. 0.953 1. rg
+51.0236220472441033 779.5277952755905062 Td
+(Language: TypeScript / React \(Main Application Controller\)) Tj
+ET
+BT
+/F6 10 Tf
+11.5 TL
+1. g
+51.0236220472441033 756.8506299212598378 Td
+(File Path: /src/App.tsx | Lines: 161) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 722.8348818897637784 Td
+(import React, { useState } from 'react';) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 712.0632283464566399 Td
+(import { Navbar } from './components/Navbar';) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 701.291574803149615 Td
+(import { HeroBanner } from './components/HeroBanner';) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 690.5199212598424765 Td
+(import { EventCard } from './components/EventCard';) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 679.7482677165354517 Td
+(import { EventDetailModal } from './components/EventDetailModal';) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 668.9766141732283131 Td
+(import { TicketCheckoutModal } from './components/TicketCheckoutModal';) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 658.2049606299212883 Td
+(import { ScheduleTracker } from './components/ScheduleTracker';) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 647.4333070866141497 Td
+(import { MyTicketsVault } from './components/MyTicketsVault';) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 636.6616535433071249 Td
+(import { AddEventModal } from './components/AddEventModal';) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 625.8900000000001 Td
+(import { initialEvents } from './data/initialEvents';) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 615.1183464566929615 Td
+(import { EventItem, Ticket } from './types';) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 604.346692913385823 Td
+(import { Filter, Sparkles, CheckCircle2, AlertCircle, Zap } from 'lucide-react';) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 582.8033858267717733 Td
+(export function App\(\) {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 572.0317322834646347 Td
+(  const [activeTab, setActiveTab] = useState<'explore' | 'workshops' | 'schedule' | 'tickets'>\('explore'\)) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 561.2600787401574962 Td
+(  const [events, setEvents] = useState<EventItem[]>\(initialEvents\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 550.4884251968504714 Td
+(  const [userTickets, setUserTickets] = useState<Ticket[]>\([]\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 539.7167716535434465 Td
+(  const [searchQuery, setSearchQuery] = useState<string>\(''\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 528.945118110236308 Td
+(  const [selectedCategory, setSelectedCategory] = useState<string>\('all'\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 518.1734645669291695 Td
+(  const [selectedDay, setSelectedDay] = useState<number | 'all'>\('all'\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 507.4018110236221446 Td
+(  const [priceType, setPriceType] = useState<'all' | 'free' | 'paid'>\('all'\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 496.6301574803150629 Td
+(  const [workshopsOnly, setWorkshopsOnly] = useState<boolean>\(false\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 475.0868503937008995 Td
+(  const [selectedEventModal, setSelectedEventModal] = useState<EventItem | null>\(null\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 464.315196850393761 Td
+(  const [checkoutEventModal, setCheckoutEventModal] = useState<EventItem | null>\(null\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 453.5435433070866225 Td
+(  const [isAddEventOpen, setIsAddEventOpen] = useState<boolean>\(false\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 442.7718897637795408 Td
+(  const [toastMessage, setToastMessage] = useState<string | null>\(null\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 421.2285826771652637 Td
+(  const showToast = \(msg: string\) => {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 410.456929133858182 Td
+(    setToastMessage\(msg\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 399.6852755905510435 Td
+(    setTimeout\(\(\) => setToastMessage\(null\), 3000\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 388.9136220472439049 Td
+(  };) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 367.3703149606296847 Td
+(  const handleTicketSuccess = \(ticket: Ticket\) => {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 356.5986614173225462 Td
+(    setUserTickets\(\(prev\) => [ticket, ...prev]\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 345.8270078740154645 Td
+(    setEvents\(\(prev\) =>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 335.055354330708326 Td
+(      prev.map\(\(ev\) =>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 324.2837007874012443 Td
+(        ev.id === ticket.eventId) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 313.5120472440941057 Td
+(          ? { ...ev, registeredSlots: ev.registeredSlots + 1 }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 302.7403937007869672 Td
+(          : ev) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 291.9687401574798287 Td
+(      \)) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 281.1970866141726901 Td
+(    \);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 270.4254330708655516 Td
+(    showToast\(`Pass confirmed for ${ticket.eventTitle}!`\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 259.6537795275585268 Td
+(  };) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 238.1104724409442497 Td
+(  const handleCancelTicket = \(ticketId: string\) => {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 227.3388188976371111 Td
+(    const tkt = userTickets.find\(\(t\) => t.id === ticketId\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 216.5671653543299726 Td
+(    if \(tkt\) {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 205.7955118110228341 Td
+(      setUserTickets\(\(prev\) => prev.filter\(\(t\) => t.id !== ticketId\)\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 195.0238582677158092 Td
+(      setEvents\(\(prev\) =>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 184.2522047244086707 Td
+(        prev.map\(\(ev\) =>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 173.4805511811015322 Td
+(          ev.id === tkt.eventId) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 162.7088976377943936 Td
+(            ? { ...ev, registeredSlots: Math.max\(0, ev.registeredSlots - 1\) }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 151.9372440944872551 Td
+(            : ev) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 141.1655905511801166 Td
+(        \)) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 130.3939370078730917 Td
+(      \);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 119.6222834645659532 Td
+(      showToast\('Ticket pass cancelled.'\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 108.8506299212589283 Td
+(    }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 98.0789763779517898 Td
+(  };) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 76.5356692913375127 Td
+(  const filteredEvents = events.filter\(\(e\) => {) Tj
+ET
+endstream
+endobj
+7 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 8 0 R
+>>
+endobj
+8 0 obj
+<<
+/Length 8521
+>>
+stream
+1.4173228346456694 w
+0. 0.95 1. RG
+0.06 0.06 0.08 rg
+0. 841.8899999999999864 595.2799999999999727 -841.8899999999999864 re
+f
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 788.0317322834645211 Td
+(    if \(activeTab === 'workshops' && !e.isWorkshop\) return false;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 777.2600787401574962 Td
+(    if \(workshopsOnly && !e.isWorkshop\) return false;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 766.4884251968503577 Td
+(    if \(selectedCategory !== 'all' && e.category !== selectedCategory\) return false;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 755.7167716535432191 Td
+(    if \(selectedDay !== 'all' && e.dayNumber !== selectedDay\) return false;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 744.9451181102361943 Td
+(    if \(priceType === 'free' && e.price > 0\) return false;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 734.1734645669291695 Td
+(    if \(priceType === 'paid' && e.price === 0\) return false;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 712.6301574803148924 Td
+(    if \(searchQuery.trim\(\)\) {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 701.8585039370078675 Td
+(      const q = searchQuery.toLowerCase\(\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 691.0868503937008427 Td
+(      const matchTitle = e.title.toLowerCase\(\).includes\(q\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 680.3151968503937042 Td
+(      const matchVenue = e.venue.toLowerCase\(\).includes\(q\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 669.5435433070865656 Td
+(      const matchSpeaker = e.speaker.name.toLowerCase\(\).includes\(q\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 658.7718897637795408 Td
+(      const matchCat = e.category.toLowerCase\(\).includes\(q\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 648.0002362204725159 Td
+(      return matchTitle || matchVenue || matchSpeaker || matchCat;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 637.2285826771653774 Td
+(    }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 615.685275590551214 Td
+(    return true;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 604.9136220472441892 Td
+(  }\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 583.3703149606299121 Td
+(  return \() Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 572.5986614173228872 Td
+(    <div className="min-h-screen bg-[#050505] text-[#e0e0e0] font-sans">) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 561.8270078740158624 Td
+(      <Navbar) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 551.0553543307087239 Td
+(        activeTab={activeTab}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 540.283700787401699 Td
+(        setActiveTab={setActiveTab}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 529.5120472440946742 Td
+(        ticketCount={userTickets.length}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 518.7403937007875356 Td
+(        searchQuery={searchQuery}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 507.9687401574804539 Td
+(        setSearchQuery={setSearchQuery}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 497.1970866141733723 Td
+(        onOpenAddEvent={\(\) => setIsAddEventOpen\(true\)}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 486.4254330708662906 Td
+(      />) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 464.8821259842520703 Td
+(      {activeTab === 'explore' && \() Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 454.1104724409449318 Td
+(        <HeroBanner) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 443.3388188976378501 Td
+(          onExplore={\(\) => setActiveTab\('workshops'\)}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 432.5671653543307116 Td
+(          onOpenAddEvent={\(\) => setIsAddEventOpen\(true\)}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 421.795511811023573 Td
+(        />) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 411.0238582677164914 Td
+(      \)}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 389.4805511811022143 Td
+(      {/* Main Event Catalog & Views */}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 378.7088976377951326 Td
+(      <main className="max-w-7xl mx-auto px-4 py-8">) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 367.9372440944879941 Td
+(        {activeTab === 'schedule' ? \() Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 357.1655905511808555 Td
+(          <ScheduleTracker) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 346.3939370078737738 Td
+(            events={events}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 335.6222834645666353 Td
+(            registeredEventIds={userTickets.map\(\(t\) => t.eventId\)}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 324.8506299212594968 Td
+(            onSelectEvent={\(ev\) => setSelectedEventModal\(ev\)}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 314.0789763779523582 Td
+(            onRegisterEvent={\(ev\) => setCheckoutEventModal\(ev\)}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 303.3073228346453334 Td
+(          />) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 292.5356692913381949 Td
+(        \) : activeTab === 'tickets' ? \() Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 281.7640157480310563 Td
+(          <MyTicketsVault) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 270.9923622047239178 Td
+(            tickets={userTickets}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 260.2207086614167793 Td
+(            onCancelTicket={handleCancelTicket}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 249.4490551181096407 Td
+(            onExploreEvents={\(\) => setActiveTab\('explore'\)}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 238.6774015748025022 Td
+(          />) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 227.9057480314954773 Td
+(        \) : \() Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 217.1340944881883388 Td
+(          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 206.3624409448812003 Td
+(            {filteredEvents.map\(\(ev\) => \() Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 195.5907874015740617 Td
+(              <EventCard) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 184.8191338582669232 Td
+(                key={ev.id}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 174.0474803149597847 Td
+(                event={ev}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 163.2758267716527598 Td
+(                onSelect={\(e\) => setSelectedEventModal\(e\)}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 152.5041732283456213 Td
+(                onRegister={\(e\) => setCheckoutEventModal\(e\)}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 141.7325196850384827 Td
+(                isUserRegistered={userTickets.some\(\(t\) => t.eventId === ev.id\)}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 130.9608661417313442 Td
+(              />) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 120.1892125984242057 Td
+(            \)\)}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 109.4175590551170671 Td
+(          </div>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 98.6459055118100423 Td
+(        \)}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 87.8742519685029038 Td
+(      </main>) Tj
+ET
+endstream
+endobj
+9 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 10 0 R
+>>
+endobj
+10 0 obj
+<<
+/Length 4049
+>>
+stream
+1.4173228346456694 w
+0. 0.95 1. RG
+0.06 0.06 0.08 rg
+0. 841.8899999999999864 595.2799999999999727 -841.8899999999999864 re
+f
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 788.0317322834645211 Td
+(      {/* Modals */}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 777.2600787401574962 Td
+(      {selectedEventModal && \() Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 766.4884251968503577 Td
+(        <EventDetailModal) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 755.7167716535432191 Td
+(          event={selectedEventModal}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 744.9451181102361943 Td
+(          onClose={\(\) => setSelectedEventModal\(null\)}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 734.1734645669291695 Td
+(          onBookPass={\(ev\) => {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 723.4018110236220309 Td
+(            setSelectedEventModal\(null\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 712.6301574803148924 Td
+(            setCheckoutEventModal\(ev\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 701.8585039370078675 Td
+(          }}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 691.0868503937008427 Td
+(          isRegistered={userTickets.some\(\(t\) => t.eventId === selectedEventModal.id\)}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 680.3151968503937042 Td
+(        />) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 669.5435433070865656 Td
+(      \)}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 648.0002362204725159 Td
+(      {checkoutEventModal && \() Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 637.2285826771653774 Td
+(        <TicketCheckoutModal) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 626.4569291338583525 Td
+(          event={checkoutEventModal}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 615.685275590551214 Td
+(          onClose={\(\) => setCheckoutEventModal\(null\)}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 604.9136220472441892 Td
+(          onSuccess={handleTicketSuccess}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 594.1419685039370506 Td
+(        />) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 583.3703149606299121 Td
+(      \)}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 561.8270078740158624 Td
+(      {isAddEventOpen && \() Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 551.0553543307087239 Td
+(        <AddEventModal) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 540.283700787401699 Td
+(          onClose={\(\) => setIsAddEventOpen\(null\)}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 529.5120472440946742 Td
+(          onAddEvent={\(newEvent\) => {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 518.7403937007875356 Td
+(            setEvents\(\(prev\) => [newEvent, ...prev]\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 507.9687401574804539 Td
+(            showToast\('New event created successfully!'\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 497.1970866141733723 Td
+(          }}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 486.4254330708662906 Td
+(        />) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 475.6537795275592089 Td
+(      \)}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 464.8821259842520703 Td
+(    </div>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 454.1104724409449318 Td
+(  \);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 443.3388188976378501 Td
+(}) Tj
+ET
+endstream
+endobj
+11 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 12 0 R
+>>
+endobj
+12 0 obj
+<<
+/Length 7345
+>>
+stream
+1.4173228346456694 w
+0. 0.95 1. RG
+0.06 0.06 0.08 rg
+0. 841.8899999999999864 595.2799999999999727 -841.8899999999999864 re
+f
+0.1 0.1 0.14 rg
+39.6850393700787407 802.2049606299211746 515.9099212598424629 -62.3622047244094517 re
+f
+0. 0.95 1. RG
+39.6850393700787407 802.2049606299211746 515.9099212598424629 -62.3622047244094517 re
+S
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0. 0.953 1. rg
+51.0236220472441033 779.5277952755905062 Td
+(Language: TypeScript / React \(Data Models & Interface Contracts\)) Tj
+ET
+BT
+/F6 10 Tf
+11.5 TL
+1. g
+51.0236220472441033 756.8506299212598378 Td
+(File Path: /src/types.ts | Lines: 64) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 722.8348818897637784 Td
+(export type EventType = 'workshop' | 'hackathon' | 'keynote' | 'cultural' | 'competition' | 'esports';) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 712.0632283464566399 Td
+(export type PassTier = 'General Pass' | 'VIP Front-Row' | 'Workshop Bundle';) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 690.5199212598424765 Td
+(export interface AgendaItem {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 679.7482677165354517 Td
+(  time: string;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 668.9766141732283131 Td
+(  activity: string;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 658.2049606299212883 Td
+(  speaker?: string;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 647.4333070866141497 Td
+(}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 625.8900000000001 Td
+(export interface Speaker {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 615.1183464566929615 Td
+(  name: string;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 604.346692913385823 Td
+(  role: string;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 593.5750393700787981 Td
+(  avatar: string;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 582.8033858267717733 Td
+(  org?: string;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 572.0317322834646347 Td
+(}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 550.4884251968504714 Td
+(export interface EventItem {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 539.7167716535434465 Td
+(  id: string;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 528.945118110236308 Td
+(  title: string;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 518.1734645669291695 Td
+(  subtitle: string;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 507.4018110236221446 Td
+(  type: EventType;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 496.6301574803150629 Td
+(  category: string;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 485.8585039370079812 Td
+(  description: string;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 475.0868503937008995 Td
+(  fullAgenda: AgendaItem[];) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 464.315196850393761 Td
+(  date: string;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 453.5435433070866225 Td
+(  startTime: string;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 442.7718897637795408 Td
+(  endTime: string;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 432.0002362204724022 Td
+(  dayNumber: number;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 421.2285826771652637 Td
+(  venue: string;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 410.456929133858182 Td
+(  speaker: Speaker;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 399.6852755905510435 Td
+(  price: number;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 388.9136220472439049 Td
+(  totalSlots: number;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 378.1419685039368233 Td
+(  registeredSlots: number;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 367.3703149606296847 Td
+(  bannerGradient: string;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 356.5986614173225462 Td
+(  bannerImage: string;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 345.8270078740154645 Td
+(  tags: string[];) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 335.055354330708326 Td
+(  prerequisites: string[];) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 324.2837007874012443 Td
+(  perks: string[];) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 313.5120472440941057 Td
+(  featured?: boolean;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 302.7403937007869672 Td
+(  isWorkshop?: boolean;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 291.9687401574798287 Td
+(  organizer?: string;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 281.1970866141726901 Td
+(}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 259.6537795275585268 Td
+(export interface Ticket {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 248.8821259842513882 Td
+(  id: string;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 238.1104724409442497 Td
+(  ticketHash: string;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 227.3388188976371111 Td
+(  eventId: string;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 216.5671653543299726 Td
+(  eventTitle: string;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 205.7955118110228341 Td
+(  eventDate: string;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 195.0238582677158092 Td
+(  eventTime: string;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 184.2522047244086707 Td
+(  venue: string;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 173.4805511811015322 Td
+(  passType: PassTier;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 162.7088976377943936 Td
+(  studentName: string;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 151.9372440944872551 Td
+(  studentId: string;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 141.1655905511801166 Td
+(  department: string;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 130.3939370078730917 Td
+(  email: string;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 119.6222834645659532 Td
+(  phone: string;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 108.8506299212589283 Td
+(  pricePaid: number;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 98.0789763779517898 Td
+(  paymentMethod: string;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 87.3073228346446513 Td
+(  purchasedAt: string;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 76.5356692913375127 Td
+(  seatZone: string;) Tj
+ET
+endstream
+endobj
+13 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 14 0 R
+>>
+endobj
+14 0 obj
+<<
+/Length 456
+>>
+stream
+1.4173228346456694 w
+0. 0.95 1. RG
+0.06 0.06 0.08 rg
+0. 841.8899999999999864 595.2799999999999727 -841.8899999999999864 re
+f
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 788.0317322834645211 Td
+(  qrData: string;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 777.2600787401574962 Td
+(  isWorkshop?: boolean;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 766.4884251968503577 Td
+(}) Tj
+ET
+endstream
+endobj
+15 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 16 0 R
+>>
+endobj
+16 0 obj
+<<
+/Length 8953
+>>
+stream
+1.4173228346456694 w
+0. 0.95 1. RG
+0.06 0.06 0.08 rg
+0. 841.8899999999999864 595.2799999999999727 -841.8899999999999864 re
+f
+0.1 0.1 0.14 rg
+39.6850393700787407 802.2049606299211746 515.9099212598424629 -62.3622047244094517 re
+f
+0. 0.95 1. RG
+39.6850393700787407 802.2049606299211746 515.9099212598424629 -62.3622047244094517 re
+S
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0. 0.953 1. rg
+51.0236220472441033 779.5277952755905062 Td
+(Language: TypeScript / React \(Initial Festival Event Catalog\)) Tj
+ET
+BT
+/F6 10 Tf
+11.5 TL
+1. g
+51.0236220472441033 756.8506299212598378 Td
+(File Path: /src/data/initialEvents.ts | Lines: 69) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 722.8348818897637784 Td
+(import { EventItem } from '../types';) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 701.291574803149615 Td
+(export const initialEvents: EventItem[] = [) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 690.5199212598424765 Td
+(  {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 679.7482677165354517 Td
+(    id: 'evt-001',) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 668.9766141732283131 Td
+(    title: 'Generative AI & LLM Systems Masterclass',) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 658.2049606299212883 Td
+(    subtitle: 'Hands-on transformer architectures, prompt engineering, and Gemini API integration.',) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 647.4333070866141497 Td
+(    type: 'workshop',) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 636.6616535433071249 Td
+(    category: 'Artificial Intelligence',) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 625.8900000000001 Td
+(    description: 'Deep dive into state-of-the-art Generative AI pipelines and fine-tuning lightweight LLM) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 615.1183464566929615 Td
+(    fullAgenda: [) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 604.346692913385823 Td
+(      { time: '10:00 AM', activity: 'Intro to Transformer Neural Networks', speaker: 'Dr. Elena Rostova' ) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 593.5750393700787981 Td
+(      { time: '11:15 AM', activity: 'Building Multimodal Agents with Gemini SDK', speaker: 'Dr. Elena Ros) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 582.8033858267717733 Td
+(      { time: '12:30 PM', activity: 'Hands-on Hack Lab & Code Deployment', speaker: 'Dev Team' }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 572.0317322834646347 Td
+(    ],) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 561.2600787401574962 Td
+(    date: 'AUG 14, 2026',) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 550.4884251968504714 Td
+(    startTime: '10:00 AM',) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 539.7167716535434465 Td
+(    endTime: '01:00 PM',) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 528.945118110236308 Td
+(    dayNumber: 1,) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 518.1734645669291695 Td
+(    venue: 'Cyber Auditorium - Hall A',) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 507.4018110236221446 Td
+(    speaker: {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 496.6301574803150629 Td
+(      name: 'Dr. Elena Rostova',) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 485.8585039370079812 Td
+(      role: 'Chief AI Scientist, DeepLab',) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 475.0868503937008995 Td
+(      avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 464.315196850393761 Td
+(    },) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 453.5435433070866225 Td
+(    price: 0,) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 442.7718897637795408 Td
+(    totalSlots: 150,) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 432.0002362204724022 Td
+(    registeredSlots: 128,) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 421.2285826771652637 Td
+(    bannerGradient: 'from-cyan-500 via-blue-600 to-indigo-900',) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 410.456929133858182 Td
+(    bannerImage: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&auto=format&fit=crop) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 399.6852755905510435 Td
+(    tags: ['AI', 'Python', 'Gemini', 'LLM'],) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 388.9136220472439049 Td
+(    prerequisites: ['Basic Python or TypeScript knowledge'],) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 378.1419685039368233 Td
+(    perks: ['Verified AI Certificate', 'Gemini API Credits', 'Swag Kit'],) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 367.3703149606296847 Td
+(    featured: true,) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 356.5986614173225462 Td
+(    isWorkshop: true) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 345.8270078740154645 Td
+(  },) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 335.055354330708326 Td
+(  {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 324.2837007874012443 Td
+(    id: 'evt-002',) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 313.5120472440941057 Td
+(    title: 'Autonomous Robotics & Vision Workshop',) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 302.7403937007869672 Td
+(    subtitle: 'Program ROS 2 robots with computer vision and real-time obstacle avoidance.',) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 291.9687401574798287 Td
+(    type: 'workshop',) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 281.1970866141726901 Td
+(    category: 'Robotics',) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 270.4254330708655516 Td
+(    description: 'Construct and program hardware vision systems using LiDAR and OpenCV on embedded Raspbe) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 259.6537795275585268 Td
+(    fullAgenda: [) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 248.8821259842513882 Td
+(      { time: '02:00 PM', activity: 'LiDAR Mapping & Sensor Fusion', speaker: 'Prof. Kenji Sato' },) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 238.1104724409442497 Td
+(      { time: '03:30 PM', activity: 'Autonomous Navigation Circuit Challenge', speaker: 'Robotics Guild' ) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 227.3388188976371111 Td
+(    ],) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 216.5671653543299726 Td
+(    date: 'AUG 15, 2026',) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 205.7955118110228341 Td
+(    startTime: '02:00 PM',) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 195.0238582677158092 Td
+(    endTime: '05:00 PM',) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 184.2522047244086707 Td
+(    dayNumber: 2,) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 173.4805511811015322 Td
+(    venue: 'Mechatronics Innovation Arena',) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 162.7088976377943936 Td
+(    speaker: {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 151.9372440944872551 Td
+(      name: 'Prof. Kenji Sato',) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 141.1655905511801166 Td
+(      role: 'Director, CyberRobotics Lab',) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 130.3939370078730917 Td
+(      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 119.6222834645659532 Td
+(    },) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 108.8506299212589283 Td
+(    price: 15,) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 98.0789763779517898 Td
+(    totalSlots: 80,) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 87.3073228346446513 Td
+(    registeredSlots: 74,) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 76.5356692913375127 Td
+(    bannerGradient: 'from-purple-600 via-pink-600 to-rose-900',) Tj
+ET
+endstream
+endobj
+17 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 18 0 R
+>>
+endobj
+18 0 obj
+<<
+/Length 1208
+>>
+stream
+1.4173228346456694 w
+0. 0.95 1. RG
+0.06 0.06 0.08 rg
+0. 841.8899999999999864 595.2799999999999727 -841.8899999999999864 re
+f
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 788.0317322834645211 Td
+(    bannerImage: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&auto=format&fit=crop) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 777.2600787401574962 Td
+(    tags: ['ROS2', 'Computer Vision', 'Embedded'],) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 766.4884251968503577 Td
+(    prerequisites: ['C++ or Python Basics'],) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 755.7167716535432191 Td
+(    perks: ['Hardware Micro-Controller Kit', 'Printed Workbook'],) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 744.9451181102361943 Td
+(    featured: true,) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 734.1734645669291695 Td
+(    isWorkshop: true) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 723.4018110236220309 Td
+(  }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 712.6301574803148924 Td
+(];) Tj
+ET
+endstream
+endobj
+19 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 20 0 R
+>>
+endobj
+20 0 obj
+<<
+/Length 8481
+>>
+stream
+1.4173228346456694 w
+0. 0.95 1. RG
+0.06 0.06 0.08 rg
+0. 841.8899999999999864 595.2799999999999727 -841.8899999999999864 re
+f
+0.1 0.1 0.14 rg
+39.6850393700787407 802.2049606299211746 515.9099212598424629 -62.3622047244094517 re
+f
+0. 0.95 1. RG
+39.6850393700787407 802.2049606299211746 515.9099212598424629 -62.3622047244094517 re
+S
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0. 0.953 1. rg
+51.0236220472441033 779.5277952755905062 Td
+(Language: TypeScript / React \(Navigation Bar\)) Tj
+ET
+BT
+/F6 10 Tf
+11.5 TL
+1. g
+51.0236220472441033 756.8506299212598378 Td
+(File Path: /src/components/Navbar.tsx | Lines: 61) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 722.8348818897637784 Td
+(import React from 'react';) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 712.0632283464566399 Td
+(import { Sparkles, Calendar, Ticket, PlusCircle, Search, Layers, Zap, Code2 } from 'lucide-react';) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 690.5199212598424765 Td
+(interface NavbarProps {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 679.7482677165354517 Td
+(  activeTab: 'explore' | 'workshops' | 'schedule' | 'tickets';) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 668.9766141732283131 Td
+(  setActiveTab: \(tab: 'explore' | 'workshops' | 'schedule' | 'tickets'\) => void;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 658.2049606299212883 Td
+(  ticketCount: number;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 647.4333070866141497 Td
+(  searchQuery: string;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 636.6616535433071249 Td
+(  setSearchQuery: \(query: string\) => void;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 625.8900000000001 Td
+(  onOpenAddEvent: \(\) => void;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 615.1183464566929615 Td
+(  onOpenCodeExport: \(\) => void;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 604.346692913385823 Td
+(}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 582.8033858267717733 Td
+(export const Navbar: React.FC<NavbarProps> = \({) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 572.0317322834646347 Td
+(  activeTab,) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 561.2600787401574962 Td
+(  setActiveTab,) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 550.4884251968504714 Td
+(  ticketCount,) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 539.7167716535434465 Td
+(  searchQuery,) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 528.945118110236308 Td
+(  setSearchQuery,) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 518.1734645669291695 Td
+(  onOpenAddEvent,) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 507.4018110236221446 Td
+(  onOpenCodeExport,) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 496.6301574803150629 Td
+(}\) => {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 485.8585039370079812 Td
+(  return \() Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 475.0868503937008995 Td
+(    <header className="sticky top-0 z-40 bg-[#0a0a0c]/90 backdrop-blur-md border-b border-[#1e1e24] px-4 ) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 464.315196850393761 Td
+(      <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 453.5435433070866225 Td
+(        <div className="flex items-center gap-3 cursor-pointer" onClick={\(\) => setActiveTab\('explore'\)}>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 442.7718897637795408 Td
+(          <div className="w-8 h-8 bg-[#00f3ff] rounded-sm shadow-[0_0_15px_#00f3ff] flex items-center jus) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 432.0002362204724022 Td
+(            <Zap className="w-5 h-5 fill-black stroke-black" />) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 421.2285826771652637 Td
+(          </div>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 410.456929133858182 Td
+(          <div>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 399.6852755905510435 Td
+(            <span className="font-extrabold text-xl text-white font-mono">) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 388.9136220472439049 Td
+(              EVENT<span className="text-[#00f3ff]">ISMA</span>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 378.1419685039368233 Td
+(            </span>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 367.3703149606296847 Td
+(          </div>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 356.5986614173225462 Td
+(        </div>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 335.055354330708326 Td
+(        <nav className="flex items-center gap-2">) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 324.2837007874012443 Td
+(          <button onClick={\(\) => setActiveTab\('explore'\)} className="px-3 py-1.5 text-xs text-gray-300 fo) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 313.5120472440941057 Td
+(            DASHBOARD) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 302.7403937007869672 Td
+(          </button>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 291.9687401574798287 Td
+(          <button onClick={\(\) => setActiveTab\('workshops'\)} className="px-3 py-1.5 text-xs text-gray-300 ) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 281.1970866141726901 Td
+(            WORKSHOPS) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 270.4254330708655516 Td
+(          </button>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 259.6537795275585268 Td
+(          <button onClick={\(\) => setActiveTab\('schedule'\)} className="px-3 py-1.5 text-xs text-gray-300 f) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 248.8821259842513882 Td
+(            MY SCHEDULE) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 238.1104724409442497 Td
+(          </button>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 227.3388188976371111 Td
+(          <button onClick={\(\) => setActiveTab\('tickets'\)} className="px-3 py-1.5 text-xs text-gray-300 fo) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 216.5671653543299726 Td
+(            WALLET \({ticketCount}\)) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 205.7955118110228341 Td
+(          </button>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 195.0238582677158092 Td
+(          <button) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 184.2522047244086707 Td
+(            onClick={onOpenCodeExport}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 173.4805511811015322 Td
+(            className="flex items-center gap-1.5 px-3 py-1.5 bg-[#111116] border border-[#00f3ff] text-[#) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 162.7088976377943936 Td
+(          >) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 151.9372440944872551 Td
+(            <Code2 className="w-4 h-4" />) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 141.1655905511801166 Td
+(            PDF CODE) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 130.3939370078730917 Td
+(          </button>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 119.6222834645659532 Td
+(        </nav>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 108.8506299212589283 Td
+(      </div>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 98.0789763779517898 Td
+(    </header>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 87.3073228346446513 Td
+(  \);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 76.5356692913375127 Td
+(};) Tj
+ET
+endstream
+endobj
+21 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 22 0 R
+>>
+endobj
+22 0 obj
+<<
+/Length 2512
+>>
+stream
+1.4173228346456694 w
+0. 0.95 1. RG
+0.06 0.06 0.08 rg
+0. 841.8899999999999864 595.2799999999999727 -841.8899999999999864 re
+f
+0.1 0.1 0.14 rg
+39.6850393700787407 802.2049606299211746 515.9099212598424629 -62.3622047244094517 re
+f
+0. 0.95 1. RG
+39.6850393700787407 802.2049606299211746 515.9099212598424629 -62.3622047244094517 re
+S
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0. 0.953 1. rg
+51.0236220472441033 779.5277952755905062 Td
+(Language: Java \(Spring Boot Application Launcher\)) Tj
+ET
+BT
+/F6 10 Tf
+11.5 TL
+1. g
+51.0236220472441033 756.8506299212598378 Td
+(File Path: /src/main/java/com/eventisma/EventismaApplication.java | Lines: 16) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 722.8348818897637784 Td
+(package com.eventisma;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 701.291574803149615 Td
+(import org.springframework.boot.SpringApplication;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 690.5199212598424765 Td
+(import org.springframework.boot.autoconfigure.SpringBootApplication;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 668.9766141732283131 Td
+(@SpringBootApplication) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 658.2049606299212883 Td
+(public class EventismaApplication {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 636.6616535433071249 Td
+(    public static void main\(String[] args\) {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 625.8900000000001 Td
+(        SpringApplication.run\(EventismaApplication.class, args\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 615.1183464566929615 Td
+(        System.out.println\("=========================================="\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 604.346692913385823 Td
+(        System.out.println\("   EVENTISMA JAVA BACKEND SERVER RUNNING  "\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 593.5750393700787981 Td
+(        System.out.println\("   REST API: http://localhost:8080/api    "\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 582.8033858267717733 Td
+(        System.out.println\("=========================================="\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 572.0317322834646347 Td
+(    }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 561.2600787401574962 Td
+(}) Tj
+ET
+endstream
+endobj
+23 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 24 0 R
+>>
+endobj
+24 0 obj
+<<
+/Length 6675
+>>
+stream
+1.4173228346456694 w
+0. 0.95 1. RG
+0.06 0.06 0.08 rg
+0. 841.8899999999999864 595.2799999999999727 -841.8899999999999864 re
+f
+0.1 0.1 0.14 rg
+39.6850393700787407 802.2049606299211746 515.9099212598424629 -62.3622047244094517 re
+f
+0. 0.95 1. RG
+39.6850393700787407 802.2049606299211746 515.9099212598424629 -62.3622047244094517 re
+S
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0. 0.953 1. rg
+51.0236220472441033 779.5277952755905062 Td
+(Language: Java \(JPA Domain Model for Event & Workshops\)) Tj
+ET
+BT
+/F6 10 Tf
+11.5 TL
+1. g
+51.0236220472441033 756.8506299212598378 Td
+(File Path: /src/main/java/com/eventisma/model/Event.java | Lines: 73) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 722.8348818897637784 Td
+(package com.eventisma.model;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 701.291574803149615 Td
+(import jakarta.persistence.*;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 690.5199212598424765 Td
+(import java.util.List;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 668.9766141732283131 Td
+(@Entity) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 658.2049606299212883 Td
+(@Table\(name = "events"\)) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 647.4333070866141497 Td
+(public class Event {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 625.8900000000001 Td
+(    @Id) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 615.1183464566929615 Td
+(    @GeneratedValue\(strategy = GenerationType.UUID\)) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 604.346692913385823 Td
+(    private String id;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 582.8033858267717733 Td
+(    private String title;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 572.0317322834646347 Td
+(    private String subtitle;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 561.2600787401574962 Td
+(    private String type;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 550.4884251968504714 Td
+(    private String category;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 528.945118110236308 Td
+(    @Column\(length = 2000\)) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 518.1734645669291695 Td
+(    private String description;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 496.6301574803150629 Td
+(    private String date;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 485.8585039370079812 Td
+(    private String startTime;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 475.0868503937008995 Td
+(    private String endTime;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 464.315196850393761 Td
+(    private int dayNumber;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 453.5435433070866225 Td
+(    private String venue;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 442.7718897637795408 Td
+(    private double price;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 432.0002362204724022 Td
+(    private int totalSlots;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 421.2285826771652637 Td
+(    private int registeredSlots;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 410.456929133858182 Td
+(    private boolean isWorkshop;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 399.6852755905510435 Td
+(    private boolean featured;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 378.1419685039368233 Td
+(    @ElementCollection) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 367.3703149606296847 Td
+(    private List<String> tags;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 345.8270078740154645 Td
+(    @ElementCollection) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 335.055354330708326 Td
+(    private List<String> perks;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 313.5120472440941057 Td
+(    // Constructors) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 302.7403937007869672 Td
+(    public Event\(\) {}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 281.1970866141726901 Td
+(    public Event\(String title, String subtitle, String category, double price, int totalSlots, String ven) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 270.4254330708655516 Td
+(        this.title = title;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 259.6537795275585268 Td
+(        this.subtitle = subtitle;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 248.8821259842513882 Td
+(        this.category = category;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 238.1104724409442497 Td
+(        this.price = price;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 227.3388188976371111 Td
+(        this.totalSlots = totalSlots;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 216.5671653543299726 Td
+(        this.venue = venue;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 205.7955118110228341 Td
+(        this.registeredSlots = 0;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 195.0238582677158092 Td
+(    }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 173.4805511811015322 Td
+(    // Getters and Setters) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 162.7088976377943936 Td
+(    public String getId\(\) { return id; }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 151.9372440944872551 Td
+(    public void setId\(String id\) { this.id = id; }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 130.3939370078730917 Td
+(    public String getTitle\(\) { return title; }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 119.6222834645659532 Td
+(    public void setTitle\(String title\) { this.title = title; }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 98.0789763779517898 Td
+(    public String getCategory\(\) { return category; }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 87.3073228346446513 Td
+(    public void setCategory\(String category\) { this.category = category; }) Tj
+ET
+endstream
+endobj
+25 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 26 0 R
+>>
+endobj
+26 0 obj
+<<
+/Length 1551
+>>
+stream
+1.4173228346456694 w
+0. 0.95 1. RG
+0.06 0.06 0.08 rg
+0. 841.8899999999999864 595.2799999999999727 -841.8899999999999864 re
+f
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 788.0317322834645211 Td
+(    public double getPrice\(\) { return price; }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 777.2600787401574962 Td
+(    public void setPrice\(double price\) { this.price = price; }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 755.7167716535432191 Td
+(    public int getTotalSlots\(\) { return totalSlots; }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 744.9451181102361943 Td
+(    public void setTotalSlots\(int totalSlots\) { this.totalSlots = totalSlots; }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 723.4018110236220309 Td
+(    public int getRegisteredSlots\(\) { return registeredSlots; }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 712.6301574803148924 Td
+(    public void setRegisteredSlots\(int registeredSlots\) { this.registeredSlots = registeredSlots; }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 691.0868503937008427 Td
+(    public boolean isWorkshop\(\) { return isWorkshop; }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 680.3151968503937042 Td
+(    public void setWorkshop\(boolean isWorkshop\) { this.isWorkshop = isWorkshop; }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 669.5435433070865656 Td
+(}) Tj
+ET
+endstream
+endobj
+27 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 28 0 R
+>>
+endobj
+28 0 obj
+<<
+/Length 6903
+>>
+stream
+1.4173228346456694 w
+0. 0.95 1. RG
+0.06 0.06 0.08 rg
+0. 841.8899999999999864 595.2799999999999727 -841.8899999999999864 re
+f
+0.1 0.1 0.14 rg
+39.6850393700787407 802.2049606299211746 515.9099212598424629 -62.3622047244094517 re
+f
+0. 0.95 1. RG
+39.6850393700787407 802.2049606299211746 515.9099212598424629 -62.3622047244094517 re
+S
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0. 0.953 1. rg
+51.0236220472441033 779.5277952755905062 Td
+(Language: Java \(JPA Domain Model for Digital Ticket Pass\)) Tj
+ET
+BT
+/F6 10 Tf
+11.5 TL
+1. g
+51.0236220472441033 756.8506299212598378 Td
+(File Path: /src/main/java/com/eventisma/model/Ticket.java | Lines: 64) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 722.8348818897637784 Td
+(package com.eventisma.model;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 701.291574803149615 Td
+(import jakarta.persistence.*;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 690.5199212598424765 Td
+(import java.time.LocalDateTime;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 668.9766141732283131 Td
+(@Entity) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 658.2049606299212883 Td
+(@Table\(name = "tickets"\)) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 647.4333070866141497 Td
+(public class Ticket {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 625.8900000000001 Td
+(    @Id) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 615.1183464566929615 Td
+(    @GeneratedValue\(strategy = GenerationType.UUID\)) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 604.346692913385823 Td
+(    private String id;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 582.8033858267717733 Td
+(    @Column\(unique = true, nullable = false\)) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 572.0317322834646347 Td
+(    private String ticketHash;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 550.4884251968504714 Td
+(    private String eventId;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 539.7167716535434465 Td
+(    private String eventTitle;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 528.945118110236308 Td
+(    private String eventDate;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 518.1734645669291695 Td
+(    private String eventTime;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 507.4018110236221446 Td
+(    private String venue;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 496.6301574803150629 Td
+(    private String passType;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 475.0868503937008995 Td
+(    private String studentName;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 464.315196850393761 Td
+(    private String studentId;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 453.5435433070866225 Td
+(    private String department;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 442.7718897637795408 Td
+(    private String email;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 432.0002362204724022 Td
+(    private String phone;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 410.456929133858182 Td
+(    private double pricePaid;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 399.6852755905510435 Td
+(    private String paymentMethod;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 388.9136220472439049 Td
+(    private LocalDateTime purchasedAt;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 378.1419685039368233 Td
+(    private String seatZone;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 367.3703149606296847 Td
+(    private String qrData;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 345.8270078740154645 Td
+(    public Ticket\(\) {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 335.055354330708326 Td
+(        this.purchasedAt = LocalDateTime.now\(\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 324.2837007874012443 Td
+(    }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 302.7403937007869672 Td
+(    // Business Method to Generate Security Hash) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 291.9687401574798287 Td
+(    public void generateHash\(\) {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 281.1970866141726901 Td
+(        this.ticketHash = "EVT-" + System.currentTimeMillis\(\) + "-" + Math.abs\(studentId.hashCode\(\)\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 270.4254330708655516 Td
+(        this.qrData = "VERIFIED_EVENTISMA_PASS:" + this.ticketHash + ":" + this.studentId;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 259.6537795275585268 Td
+(    }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 238.1104724409442497 Td
+(    // Getters and Setters) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 227.3388188976371111 Td
+(    public String getId\(\) { return id; }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 216.5671653543299726 Td
+(    public void setId\(String id\) { this.id = id; }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 195.0238582677158092 Td
+(    public String getTicketHash\(\) { return ticketHash; }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 184.2522047244086707 Td
+(    public void setTicketHash\(String ticketHash\) { this.ticketHash = ticketHash; }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 162.7088976377943936 Td
+(    public String getEventTitle\(\) { return eventTitle; }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 151.9372440944872551 Td
+(    public void setEventTitle\(String eventTitle\) { this.eventTitle = eventTitle; }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 130.3939370078730917 Td
+(    public String getStudentName\(\) { return studentName; }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 119.6222834645659532 Td
+(    public void setStudentName\(String studentName\) { this.studentName = studentName; }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 98.0789763779517898 Td
+(    public String getStudentId\(\) { return studentId; }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 87.3073228346446513 Td
+(    public void setStudentId\(String studentId\) { this.studentId = studentId; }) Tj
+ET
+endstream
+endobj
+29 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 30 0 R
+>>
+endobj
+30 0 obj
+<<
+/Length 546
+>>
+stream
+1.4173228346456694 w
+0. 0.95 1. RG
+0.06 0.06 0.08 rg
+0. 841.8899999999999864 595.2799999999999727 -841.8899999999999864 re
+f
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 788.0317322834645211 Td
+(    public String getPassType\(\) { return passType; }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 777.2600787401574962 Td
+(    public void setPassType\(String passType\) { this.passType = passType; }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 766.4884251968503577 Td
+(}) Tj
+ET
+endstream
+endobj
+31 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 32 0 R
+>>
+endobj
+32 0 obj
+<<
+/Length 6054
+>>
+stream
+1.4173228346456694 w
+0. 0.95 1. RG
+0.06 0.06 0.08 rg
+0. 841.8899999999999864 595.2799999999999727 -841.8899999999999864 re
+f
+0.1 0.1 0.14 rg
+39.6850393700787407 802.2049606299211746 515.9099212598424629 -62.3622047244094517 re
+f
+0. 0.95 1. RG
+39.6850393700787407 802.2049606299211746 515.9099212598424629 -62.3622047244094517 re
+S
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0. 0.953 1. rg
+51.0236220472441033 779.5277952755905062 Td
+(Language: Java \(Spring REST API Controller - Event Management\)) Tj
+ET
+BT
+/F6 10 Tf
+11.5 TL
+1. g
+51.0236220472441033 756.8506299212598378 Td
+(File Path: /src/main/java/com/eventisma/controller/EventController.java | Lines: 47) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 722.8348818897637784 Td
+(package com.eventisma.controller;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 701.291574803149615 Td
+(import com.eventisma.model.Event;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 690.5199212598424765 Td
+(import com.eventisma.repository.EventRepository;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 679.7482677165354517 Td
+(import org.springframework.beans.factory.annotation.Autowired;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 668.9766141732283131 Td
+(import org.springframework.http.ResponseEntity;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 658.2049606299212883 Td
+(import org.springframework.web.bind.annotation.*;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 636.6616535433071249 Td
+(import java.util.List;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 615.1183464566929615 Td
+(@RestController) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 604.346692913385823 Td
+(@RequestMapping\("/api/events"\)) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 593.5750393700787981 Td
+(@CrossOrigin\(origins = "*"\)) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 582.8033858267717733 Td
+(public class EventController {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 561.2600787401574962 Td
+(    @Autowired) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 550.4884251968504714 Td
+(    private EventRepository eventRepository;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 528.945118110236308 Td
+(    @GetMapping) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 518.1734645669291695 Td
+(    public ResponseEntity<List<Event>> getAllEvents\() Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 507.4018110236221446 Td
+(            @RequestParam\(required = false\) String category,) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 496.6301574803150629 Td
+(            @RequestParam\(required = false\) Boolean workshopOnly\) {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 485.8585039370079812 Td
+(        ) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 475.0868503937008995 Td
+(        List<Event> events;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 464.315196850393761 Td
+(        if \(workshopOnly != null && workshopOnly\) {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 453.5435433070866225 Td
+(            events = eventRepository.findByIsWorkshopTrue\(\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 442.7718897637795408 Td
+(        } else if \(category != null && !category.equals\("all"\)\) {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 432.0002362204724022 Td
+(            events = eventRepository.findByCategoryIgnoreCase\(category\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 421.2285826771652637 Td
+(        } else {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 410.456929133858182 Td
+(            events = eventRepository.findAll\(\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 399.6852755905510435 Td
+(        }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 388.9136220472439049 Td
+(        return ResponseEntity.ok\(events\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 378.1419685039368233 Td
+(    }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 356.5986614173225462 Td
+(    @GetMapping\("/{id}"\)) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 345.8270078740154645 Td
+(    public ResponseEntity<Event> getEventById\(@PathVariable String id\) {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 335.055354330708326 Td
+(        return eventRepository.findById\(id\)) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 324.2837007874012443 Td
+(                .map\(ResponseEntity::ok\)) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 313.5120472440941057 Td
+(                .orElse\(ResponseEntity.notFound\(\).build\(\)\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 302.7403937007869672 Td
+(    }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 281.1970866141726901 Td
+(    @PostMapping) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 270.4254330708655516 Td
+(    public ResponseEntity<Event> createEvent\(@RequestBody Event event\) {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 259.6537795275585268 Td
+(        Event saved = eventRepository.save\(event\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 248.8821259842513882 Td
+(        return ResponseEntity.ok\(saved\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 238.1104724409442497 Td
+(    }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 227.3388188976371111 Td
+(}) Tj
+ET
+endstream
+endobj
+33 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 34 0 R
+>>
+endobj
+34 0 obj
+<<
+/Length 4654
+>>
+stream
+1.4173228346456694 w
+0. 0.95 1. RG
+0.06 0.06 0.08 rg
+0. 841.8899999999999864 595.2799999999999727 -841.8899999999999864 re
+f
+0.1 0.1 0.14 rg
+39.6850393700787407 802.2049606299211746 515.9099212598424629 -62.3622047244094517 re
+f
+0. 0.95 1. RG
+39.6850393700787407 802.2049606299211746 515.9099212598424629 -62.3622047244094517 re
+S
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0. 0.953 1. rg
+51.0236220472441033 779.5277952755905062 Td
+(Language: Java \(Spring REST API Controller - Pass Booking\)) Tj
+ET
+BT
+/F6 10 Tf
+11.5 TL
+1. g
+51.0236220472441033 756.8506299212598378 Td
+(File Path: /src/main/java/com/eventisma/controller/TicketController.java | Lines: 36) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 722.8348818897637784 Td
+(package com.eventisma.controller;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 701.291574803149615 Td
+(import com.eventisma.model.Ticket;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 690.5199212598424765 Td
+(import com.eventisma.service.TicketPdfService;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 679.7482677165354517 Td
+(import org.springframework.beans.factory.annotation.Autowired;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 668.9766141732283131 Td
+(import org.springframework.http.HttpHeaders;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 658.2049606299212883 Td
+(import org.springframework.http.MediaType;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 647.4333070866141497 Td
+(import org.springframework.http.ResponseEntity;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 636.6616535433071249 Td
+(import org.springframework.web.bind.annotation.*;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 615.1183464566929615 Td
+(import java.util.List;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 593.5750393700787981 Td
+(@RestController) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 582.8033858267717733 Td
+(@RequestMapping\("/api/tickets"\)) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 572.0317322834646347 Td
+(@CrossOrigin\(origins = "*"\)) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 561.2600787401574962 Td
+(public class TicketController {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 539.7167716535434465 Td
+(    @Autowired) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 528.945118110236308 Td
+(    private TicketPdfService ticketPdfService;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 507.4018110236221446 Td
+(    @PostMapping\("/checkout"\)) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 496.6301574803150629 Td
+(    public ResponseEntity<Ticket> bookPass\(@RequestBody Ticket ticketRequest\) {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 485.8585039370079812 Td
+(        ticketRequest.generateHash\(\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 475.0868503937008995 Td
+(        return ResponseEntity.ok\(ticketRequest\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 464.315196850393761 Td
+(    }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 442.7718897637795408 Td
+(    @GetMapping\("/{ticketId}/pdf"\)) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 432.0002362204724022 Td
+(    public ResponseEntity<byte[]> downloadTicketPdf\(@PathVariable String ticketId\) {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 421.2285826771652637 Td
+(        byte[] pdfBytes = ticketPdfService.generateTicketPdf\(ticketId\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 399.6852755905510435 Td
+(        return ResponseEntity.ok\(\)) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 388.9136220472439049 Td
+(                .header\(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=Eventisma_Pass_" + ticketI) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 378.1419685039368233 Td
+(                .contentType\(MediaType.APPLICATION_PDF\)) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 367.3703149606296847 Td
+(                .body\(pdfBytes\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 356.5986614173225462 Td
+(    }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 345.8270078740154645 Td
+(}) Tj
+ET
+endstream
+endobj
+35 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 36 0 R
+>>
+endobj
+36 0 obj
+<<
+/Length 5611
+>>
+stream
+1.4173228346456694 w
+0. 0.95 1. RG
+0.06 0.06 0.08 rg
+0. 841.8899999999999864 595.2799999999999727 -841.8899999999999864 re
+f
+0.1 0.1 0.14 rg
+39.6850393700787407 802.2049606299211746 515.9099212598424629 -62.3622047244094517 re
+f
+0. 0.95 1. RG
+39.6850393700787407 802.2049606299211746 515.9099212598424629 -62.3622047244094517 re
+S
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0. 0.953 1. rg
+51.0236220472441033 779.5277952755905062 Td
+(Language: Java \(iText Document Generator for PDF Passes\)) Tj
+ET
+BT
+/F6 10 Tf
+11.5 TL
+1. g
+51.0236220472441033 756.8506299212598378 Td
+(File Path: /src/main/java/com/eventisma/service/TicketPdfService.java | Lines: 44) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 722.8348818897637784 Td
+(package com.eventisma.service;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 701.291574803149615 Td
+(import com.itextpdf.text.*;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 690.5199212598424765 Td
+(import com.itextpdf.text.pdf.*;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 679.7482677165354517 Td
+(import org.springframework.stereotype.Service;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 658.2049606299212883 Td
+(import java.io.ByteArrayOutputStream;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 636.6616535433071249 Td
+(@Service) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 625.8900000000001 Td
+(public class TicketPdfService {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 604.346692913385823 Td
+(    public byte[] generateTicketPdf\(String ticketId\) {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 593.5750393700787981 Td
+(        ByteArrayOutputStream out = new ByteArrayOutputStream\(\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 582.8033858267717733 Td
+(        try {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 572.0317322834646347 Td
+(            Document document = new Document\(PageSize.A4\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 561.2600787401574962 Td
+(            PdfWriter.getInstance\(document, out\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 550.4884251968504714 Td
+(            document.open\(\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 528.945118110236308 Td
+(            // Document Header) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 518.1734645669291695 Td
+(            Font titleFont = FontFactory.getFont\(FontFactory.HELVETICA_BOLD, 22, BaseColor.CYAN\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 507.4018110236221446 Td
+(            Paragraph title = new Paragraph\("EVENTISMA // DIGITAL TICKET PASS", titleFont\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 496.6301574803150629 Td
+(            title.setAlignment\(Element.ALIGN_CENTER\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 485.8585039370079812 Td
+(            document.add\(title\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 464.315196850393761 Td
+(            document.add\(new Paragraph\(" "\)\); // Spacer) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 442.7718897637795408 Td
+(            // Pass Details Table) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 432.0002362204724022 Td
+(            PdfPTable table = new PdfPTable\(2\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 421.2285826771652637 Td
+(            table.setWidthPercentage\(100\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 410.456929133858182 Td
+(            table.addCell\("Ticket Security Hash:"\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 399.6852755905510435 Td
+(            table.addCell\("EVT-" + ticketId.toUpperCase\(\)\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 388.9136220472439049 Td
+(            table.addCell\("Access Tier:"\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 378.1419685039368233 Td
+(            table.addCell\("VIP Front-Row / Workshop Pass"\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 367.3703149606296847 Td
+(            table.addCell\("Status:"\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 356.5986614173225462 Td
+(            table.addCell\("CONFIRMED & VERIFIED"\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 335.055354330708326 Td
+(            document.add\(table\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 324.2837007874012443 Td
+(            document.close\(\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 313.5120472440941057 Td
+(        } catch \(Exception e\) {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 302.7403937007869672 Td
+(            e.printStackTrace\(\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 291.9687401574798287 Td
+(        }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 281.1970866141726901 Td
+(        return out.toByteArray\(\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 270.4254330708655516 Td
+(    }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 259.6537795275585268 Td
+(}) Tj
+ET
+endstream
+endobj
+37 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 38 0 R
+>>
+endobj
+38 0 obj
+<<
+/Length 6847
+>>
+stream
+1.4173228346456694 w
+0. 0.95 1. RG
+0.06 0.06 0.08 rg
+0. 841.8899999999999864 595.2799999999999727 -841.8899999999999864 re
+f
+0.1 0.1 0.14 rg
+39.6850393700787407 802.2049606299211746 515.9099212598424629 -62.3622047244094517 re
+f
+0. 0.95 1. RG
+39.6850393700787407 802.2049606299211746 515.9099212598424629 -62.3622047244094517 re
+S
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0. 0.953 1. rg
+51.0236220472441033 779.5277952755905062 Td
+(Language: Java \(Maven Project Metadata & Dependencies\)) Tj
+ET
+BT
+/F6 10 Tf
+11.5 TL
+1. g
+51.0236220472441033 756.8506299212598378 Td
+(File Path: /pom.xml | Lines: 52) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 722.8348818897637784 Td
+(<?xml version="1.0" encoding="UTF-8"?>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 712.0632283464566399 Td
+(<project xmlns="http://maven.apache.org/POM/4.0.0") Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 701.291574803149615 Td
+(         xmlns:xsi="http://www.w3.org/2000/svg-instance") Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 690.5199212598424765 Td
+(         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xs) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 679.7482677165354517 Td
+(    <modelVersion>4.0.0</modelVersion>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 658.2049606299212883 Td
+(    <groupId>com.eventisma</groupId>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 647.4333070866141497 Td
+(    <artifactId>eventisma-backend</artifactId>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 636.6616535433071249 Td
+(    <version>1.0.0-SNAPSHOT</version>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 625.8900000000001 Td
+(    <name>Eventisma Java Platform</name>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 615.1183464566929615 Td
+(    <description>Enterprise Java Spring Boot REST API for Eventisma Festival Matrix</description>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 593.5750393700787981 Td
+(    <parent>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 582.8033858267717733 Td
+(        <groupId>org.springframework.boot</groupId>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 572.0317322834646347 Td
+(        <artifactId>spring-boot-starter-parent</artifactId>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 561.2600787401574962 Td
+(        <version>3.2.2</version>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 550.4884251968504714 Td
+(    </parent>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 528.945118110236308 Td
+(    <properties>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 518.1734645669291695 Td
+(        <java.version>17</java.version>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 507.4018110236221446 Td
+(    </properties>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 485.8585039370079812 Td
+(    <dependencies>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 475.0868503937008995 Td
+(        <dependency>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 464.315196850393761 Td
+(            <groupId>org.springframework.boot</groupId>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 453.5435433070866225 Td
+(            <artifactId>spring-boot-starter-web</artifactId>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 442.7718897637795408 Td
+(        </dependency>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 432.0002362204724022 Td
+(        <dependency>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 421.2285826771652637 Td
+(            <groupId>org.springframework.boot</groupId>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 410.456929133858182 Td
+(            <artifactId>spring-boot-starter-data-jpa</artifactId>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 399.6852755905510435 Td
+(        </dependency>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 388.9136220472439049 Td
+(        <dependency>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 378.1419685039368233 Td
+(            <groupId>com.h2database</groupId>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 367.3703149606296847 Td
+(            <artifactId>h2</artifactId>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 356.5986614173225462 Td
+(            <scope>runtime</scope>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 345.8270078740154645 Td
+(        </dependency>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 335.055354330708326 Td
+(        <dependency>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 324.2837007874012443 Td
+(            <groupId>com.itextpdf</groupId>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 313.5120472440941057 Td
+(            <artifactId>itextpdf</artifactId>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 302.7403937007869672 Td
+(            <version>5.5.13.3</version>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 291.9687401574798287 Td
+(        </dependency>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 281.1970866141726901 Td
+(    </dependencies>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 259.6537795275585268 Td
+(    <build>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 248.8821259842513882 Td
+(        <plugins>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 238.1104724409442497 Td
+(            <plugin>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 227.3388188976371111 Td
+(                <groupId>org.springframework.boot</groupId>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 216.5671653543299726 Td
+(                <artifactId>spring-boot-maven-plugin</artifactId>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 205.7955118110228341 Td
+(            </plugin>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 195.0238582677158092 Td
+(        </plugins>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 184.2522047244086707 Td
+(    </build>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 173.4805511811015322 Td
+(</project>) Tj
+ET
+endstream
+endobj
+39 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 40 0 R
+>>
+endobj
+40 0 obj
+<<
+/Length 5362
+>>
+stream
+1.4173228346456694 w
+0. 0.95 1. RG
+0.06 0.06 0.08 rg
+0. 841.8899999999999864 595.2799999999999727 -841.8899999999999864 re
+f
+0.1 0.1 0.14 rg
+39.6850393700787407 802.2049606299211746 515.9099212598424629 -62.3622047244094517 re
+f
+0. 0.95 1. RG
+39.6850393700787407 802.2049606299211746 515.9099212598424629 -62.3622047244094517 re
+S
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0. 0.953 1. rg
+51.0236220472441033 779.5277952755905062 Td
+(Language: CSS / Styling \(Tailwind Base & Cyber Utilities\)) Tj
+ET
+BT
+/F6 10 Tf
+11.5 TL
+1. g
+51.0236220472441033 756.8506299212598378 Td
+(File Path: /src/index.css | Lines: 45) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 722.8348818897637784 Td
+(@import "tailwindcss";) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 701.291574803149615 Td
+(@layer base {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 690.5199212598424765 Td
+(  body {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 679.7482677165354517 Td
+(    background-color: #050505;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 668.9766141732283131 Td
+(    color: #e0e0e0;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 658.2049606299212883 Td
+(    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 647.4333070866141497 Td
+(    overflow-x: hidden;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 636.6616535433071249 Td
+(  }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 625.8900000000001 Td
+(}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 604.346692913385823 Td
+(.cyber-grid-bg {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 593.5750393700787981 Td
+(  background-image: ) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 582.8033858267717733 Td
+(    linear-gradient\(to right, rgba\(0, 243, 255, 0.04\) 1px, transparent 1px\),) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 572.0317322834646347 Td
+(    linear-gradient\(to bottom, rgba\(0, 243, 255, 0.04\) 1px, transparent 1px\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 561.2600787401574962 Td
+(  background-size: 32px 32px;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 550.4884251968504714 Td
+(}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 528.945118110236308 Td
+(.neon-glow-cyan {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 518.1734645669291695 Td
+(  box-shadow: 0 0 15px rgba\(0, 243, 255, 0.35\), inset 0 0 10px rgba\(0, 243, 255, 0.1\);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 507.4018110236221446 Td
+(}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 485.8585039370079812 Td
+(.clip-cyber-corner {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 475.0868503937008995 Td
+(  clip-path: polygon\() Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 464.315196850393761 Td
+(    0 0, ) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 453.5435433070866225 Td
+(    calc\(100% - 12px\) 0, ) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 442.7718897637795408 Td
+(    100% 12px, ) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 432.0002362204724022 Td
+(    100% 100%, ) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 421.2285826771652637 Td
+(    12px 100%, ) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 410.456929133858182 Td
+(    0 calc\(100% - 12px\)) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 399.6852755905510435 Td
+(  \);) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 388.9136220472439049 Td
+(}) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 367.3703149606296847 Td
+(@media print {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 356.5986614173225462 Td
+(  body {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 345.8270078740154645 Td
+(    background: white !important;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 335.055354330708326 Td
+(    color: black !important;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 324.2837007874012443 Td
+(  }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 313.5120472440941057 Td
+(  .no-print {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 302.7403937007869672 Td
+(    display: none !important;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 291.9687401574798287 Td
+(  }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 281.1970866141726901 Td
+(  .print-only {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 270.4254330708655516 Td
+(    display: block !important;) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 259.6537795275585268 Td
+(  }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 248.8821259842513882 Td
+(}) Tj
+ET
+endstream
+endobj
+41 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 42 0 R
+>>
+endobj
+42 0 obj
+<<
+/Length 3926
+>>
+stream
+1.4173228346456694 w
+0. 0.95 1. RG
+0.06 0.06 0.08 rg
+0. 841.8899999999999864 595.2799999999999727 -841.8899999999999864 re
+f
+0.1 0.1 0.14 rg
+39.6850393700787407 802.2049606299211746 515.9099212598424629 -62.3622047244094517 re
+f
+0. 0.95 1. RG
+39.6850393700787407 802.2049606299211746 515.9099212598424629 -62.3622047244094517 re
+S
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0. 0.953 1. rg
+51.0236220472441033 779.5277952755905062 Td
+(Language: JSON Configuration \(Project Dependencies & Scripts\)) Tj
+ET
+BT
+/F6 10 Tf
+11.5 TL
+1. g
+51.0236220472441033 756.8506299212598378 Td
+(File Path: /package.json | Lines: 28) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 722.8348818897637784 Td
+({) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 712.0632283464566399 Td
+(  "name": "eventisma-fest-app",) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 701.291574803149615 Td
+(  "private": true,) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 690.5199212598424765 Td
+(  "version": "1.0.0",) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 679.7482677165354517 Td
+(  "type": "module",) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 668.9766141732283131 Td
+(  "scripts": {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 658.2049606299212883 Td
+(    "dev": "vite --port=3000 --host=0.0.0.0",) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 647.4333070866141497 Td
+(    "build": "vite build",) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 636.6616535433071249 Td
+(    "preview": "vite preview",) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 625.8900000000001 Td
+(    "lint": "tsc --noEmit") Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 615.1183464566929615 Td
+(  },) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 604.346692913385823 Td
+(  "dependencies": {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 593.5750393700787981 Td
+(    "@google/genai": "^2.4.0",) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 582.8033858267717733 Td
+(    "canvas-confetti": "^1.9.4",) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 572.0317322834646347 Td
+(    "express": "^4.21.2",) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 561.2600787401574962 Td
+(    "jspdf": "^2.5.2",) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 550.4884251968504714 Td
+(    "lucide-react": "^0.546.0",) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 539.7167716535434465 Td
+(    "motion": "^12.23.24",) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 528.945118110236308 Td
+(    "react": "^19.0.1",) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 518.1734645669291695 Td
+(    "react-dom": "^19.0.1",) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 507.4018110236221446 Td
+(    "vite": "^6.2.3") Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 496.6301574803150629 Td
+(  },) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 485.8585039370079812 Td
+(  "devDependencies": {) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 475.0868503937008995 Td
+(    "@types/node": "^22.14.0",) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 464.315196850393761 Td
+(    "tailwindcss": "^4.1.14",) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 453.5435433070866225 Td
+(    "typescript": "~5.8.2") Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 442.7718897637795408 Td
+(  }) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 432.0002362204724022 Td
+(}) Tj
+ET
+endstream
+endobj
+43 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 44 0 R
+>>
+endobj
+44 0 obj
+<<
+/Length 1402
+>>
+stream
+1.4173228346456694 w
+0. 0.95 1. RG
+0.06 0.06 0.08 rg
+0. 841.8899999999999864 595.2799999999999727 -841.8899999999999864 re
+f
+0.1 0.1 0.14 rg
+39.6850393700787407 802.2049606299211746 515.9099212598424629 -62.3622047244094517 re
+f
+0. 0.95 1. RG
+39.6850393700787407 802.2049606299211746 515.9099212598424629 -62.3622047244094517 re
+S
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0. 0.953 1. rg
+51.0236220472441033 779.5277952755905062 Td
+(Language: JSON Configuration \(App Manifest\)) Tj
+ET
+BT
+/F6 10 Tf
+11.5 TL
+1. g
+51.0236220472441033 756.8506299212598378 Td
+(File Path: /metadata.json | Lines: 6) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 722.8348818897637784 Td
+({) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 712.0632283464566399 Td
+(  "name": "Eventisma",) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 701.291574803149615 Td
+(  "description": "Futuristic college event management platform with neon dark aesthetic, workshop registr) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 690.5199212598424765 Td
+(  "requestFramePermissions": [],) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 679.7482677165354517 Td
+(  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 668.9766141732283131 Td
+(}) Tj
+ET
+endstream
+endobj
+45 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 46 0 R
+>>
+endobj
+46 0 obj
+<<
+/Length 2054
+>>
+stream
+1.4173228346456694 w
+0. 0.95 1. RG
+0.06 0.06 0.08 rg
+0. 841.8899999999999864 595.2799999999999727 -841.8899999999999864 re
+f
+0.1 0.1 0.14 rg
+39.6850393700787407 802.2049606299211746 515.9099212598424629 -62.3622047244094517 re
+f
+0. 0.95 1. RG
+39.6850393700787407 802.2049606299211746 515.9099212598424629 -62.3622047244094517 re
+S
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0. 0.953 1. rg
+51.0236220472441033 779.5277952755905062 Td
+(Language: HTML \(Web Application Entry Point\)) Tj
+ET
+BT
+/F6 10 Tf
+11.5 TL
+1. g
+51.0236220472441033 756.8506299212598378 Td
+(File Path: /index.html | Lines: 12) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 722.8348818897637784 Td
+(<!doctype html>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 712.0632283464566399 Td
+(<html lang="en">) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 701.291574803149615 Td
+(  <head>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 690.5199212598424765 Td
+(    <meta charset="UTF-8" />) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 679.7482677165354517 Td
+(    <meta name="viewport" content="width=device-width, initial-scale=1.0" />) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 668.9766141732283131 Td
+(    <title>Eventisma - Festival Matrix</title>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 658.2049606299212883 Td
+(  </head>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 647.4333070866141497 Td
+(  <body>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 636.6616535433071249 Td
+(    <div id="root"></div>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 625.8900000000001 Td
+(    <script type="module" src="/src/main.tsx"></script>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 615.1183464566929615 Td
+(  </body>) Tj
+ET
+BT
+/F5 7.5 Tf
+8.625 TL
+0.902 0.902 0.941 rg
+39.6850393700787407 604.346692913385823 Td
+(</html>) Tj
+ET
+endstream
+endobj
+1 0 obj
+<</Type /Pages
+/Kids [3 0 R 5 0 R 7 0 R 9 0 R 11 0 R 13 0 R 15 0 R 17 0 R 19 0 R 21 0 R 23 0 R 25 0 R 27 0 R 29 0 R 31 0 R 33 0 R 35 0 R 37 0 R 39 0 R 41 0 R 43 0 R 45 0 R ]
+/Count 22
+>>
+endobj
+47 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+48 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica-Bold
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+49 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica-Oblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+50 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica-BoldOblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+51 0 obj
+<<
+/Type /Font
+/BaseFont /Courier
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+52 0 obj
+<<
+/Type /Font
+/BaseFont /Courier-Bold
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+53 0 obj
+<<
+/Type /Font
+/BaseFont /Courier-Oblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+54 0 obj
+<<
+/Type /Font
+/BaseFont /Courier-BoldOblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+55 0 obj
+<<
+/Type /Font
+/BaseFont /Times-Roman
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+56 0 obj
+<<
+/Type /Font
+/BaseFont /Times-Bold
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+57 0 obj
+<<
+/Type /Font
+/BaseFont /Times-Italic
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+58 0 obj
+<<
+/Type /Font
+/BaseFont /Times-BoldItalic
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+59 0 obj
+<<
+/Type /Font
+/BaseFont /ZapfDingbats
+/Subtype /Type1
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+60 0 obj
+<<
+/Type /Font
+/BaseFont /Symbol
+/Subtype /Type1
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+2 0 obj
+<<
+/ProcSet [/PDF /Text /ImageB /ImageC /ImageI]
+/Font <<
+/F1 47 0 R
+/F2 48 0 R
+/F3 49 0 R
+/F4 50 0 R
+/F5 51 0 R
+/F6 52 0 R
+/F7 53 0 R
+/F8 54 0 R
+/F9 55 0 R
+/F10 56 0 R
+/F11 57 0 R
+/F12 58 0 R
+/F13 59 0 R
+/F14 60 0 R
+>>
+/XObject <<
+>>
+>>
+endobj
+61 0 obj
+<<
+/Producer (jsPDF 4.2.1)
+/CreationDate (D:20260725012607+05'30')
+>>
+endobj
+62 0 obj
+<<
+/Type /Catalog
+/Pages 1 0 R
+/OpenAction [3 0 R /FitH null]
+/PageLayout /OneColumn
+>>
+endobj
+xref
+0 63
+0000000000 65535 f 
+0000109477 00000 n 
+0000111444 00000 n 
+0000000015 00000 n 
+0000000152 00000 n 
+0000003788 00000 n 
+0000003925 00000 n 
+0000012533 00000 n 
+0000012670 00000 n 
+0000021243 00000 n 
+0000021381 00000 n 
+0000025483 00000 n 
+0000025622 00000 n 
+0000033020 00000 n 
+0000033159 00000 n 
+0000033667 00000 n 
+0000033806 00000 n 
+0000042812 00000 n 
+0000042951 00000 n 
+0000044212 00000 n 
+0000044351 00000 n 
+0000052885 00000 n 
+0000053024 00000 n 
+0000055589 00000 n 
+0000055728 00000 n 
+0000062456 00000 n 
+0000062595 00000 n 
+0000064199 00000 n 
+0000064338 00000 n 
+0000071294 00000 n 
+0000071433 00000 n 
+0000072031 00000 n 
+0000072170 00000 n 
+0000078277 00000 n 
+0000078416 00000 n 
+0000083123 00000 n 
+0000083262 00000 n 
+0000088926 00000 n 
+0000089065 00000 n 
+0000095965 00000 n 
+0000096104 00000 n 
+0000101519 00000 n 
+0000101658 00000 n 
+0000105637 00000 n 
+0000105776 00000 n 
+0000107231 00000 n 
+0000107370 00000 n 
+0000109679 00000 n 
+0000109805 00000 n 
+0000109936 00000 n 
+0000110070 00000 n 
+0000110208 00000 n 
+0000110332 00000 n 
+0000110461 00000 n 
+0000110593 00000 n 
+0000110729 00000 n 
+0000110857 00000 n 
+0000110984 00000 n 
+0000111113 00000 n 
+0000111246 00000 n 
+0000111348 00000 n 
+0000111697 00000 n 
+0000111783 00000 n 
+trailer
+<<
+/Size 63
+/Root 62 0 R
+/Info 61 0 R
+/ID [ <E83EEFA168F61A1AE178F31A28BD94E6> <E83EEFA168F61A1AE178F31A28BD94E6> ]
+>>
+startxref
+111887
+%%EOF
