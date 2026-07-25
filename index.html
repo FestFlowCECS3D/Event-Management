@@ -1,13 +1,93 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Google AI Studio App</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eventisma</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background: #0a0a0c;
+      color: #e0e0e0;
+      margin: 0;
+      padding: 24px;
+    }
+    h1 {
+      color: #00f3ff;
+    }
+    #status {
+      margin-bottom: 16px;
+      color: #999;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: #16161a;
+      border: 1px solid #262630;
+      border-radius: 8px;
+      padding: 16px;
+    }
+    .card h3 {
+      margin: 0 0 8px;
+      color: #fff;
+    }
+    .card p {
+      margin: 4px 0;
+      font-size: 14px;
+      color: #aaa;
+    }
+    .price {
+      color: #00f3ff;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Eventisma</h1>
+  <div id="status">Loading events...</div>
+  <div class="grid" id="eventGrid"></div>
 
+  <script>
+    // This is the address of your Spring Boot backend.
+    // Change this if your Codespace URL is different.
+    const API_URL = "http://localhost:8080/api/events";
+
+    async function loadEvents() {
+      const statusEl = document.getElementById("status");
+      const gridEl = document.getElementById("eventGrid");
+
+      try {
+        const response = await fetch(API_URL);
+        const events = await response.json();
+
+        if (events.length === 0) {
+          statusEl.textContent = "No events yet. Add one via the API to see it here.";
+          return;
+        }
+
+        statusEl.textContent = `${events.length} event(s) found.`;
+
+        events.forEach(function (event) {
+          const card = document.createElement("div");
+          card.className = "card";
+          card.innerHTML = `
+            <h3>${event.title || "Untitled event"}</h3>
+            <p>${event.venue || ""}</p>
+            <p>${event.date || ""} ${event.startTime || ""}</p>
+            <p class="price">${event.price === 0 ? "Free" : "$" + event.price}</p>
+          `;
+          gridEl.appendChild(card);
+        });
+      } catch (err) {
+        statusEl.textContent = "Could not reach the backend. Is it running?";
+        console.error(err);
+      }
+    }
+
+    loadEvents();
+  </script>
+</body>
+</html>
