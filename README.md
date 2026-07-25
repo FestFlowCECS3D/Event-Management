@@ -47,21 +47,6 @@ EventNest models how a college fest or department event gets organized — from 
 - [ ] Phase 3: Pilot at a real FOCES event
 - [ ] Phase 4 (optional): Fold into a broader campus companion app as an "Events" module
 
-## 📦 Getting Started
 
-```bash
-git clone https://github.com/<your-username>/eventnest.git
-cd eventnest
-javac Main.java
-java Main
-```
 
-*(Update once the actual project structure/build tool is finalized — Maven/Gradle instructions go here.)*
-
-## 📄 License
-
-MIT — feel free to use and adapt.
-
-## 🙋 Author
-
-Built by Geowon — B.Tech CSE student, College of Engineering Chengannur (KTU).
+*
