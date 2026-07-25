@@ -1,0 +1,74 @@
+package com.eventisma.model;
+
+import jakarta.persistence.*;
+import java.util.List;
+
+@Entity
+@Table(name = "events")
+public class Event {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
+
+    private String title;
+    private String subtitle;
+    private String type;
+    private String category;
+
+    @Column(length = 2000)
+    private String description;
+
+    private String date;
+    private String startTime;
+    private String endTime;
+    private int dayNumber;
+    private String venue;
+    private double price;
+    private int totalSlots;
+    private int registeredSlots;
+    private boolean isWorkshop;
+    private boolean featured;
+
+    @ElementCollection
+    private List<String> tags;
+
+    @ElementCollection
+    private List<String> perks;
+
+    // Constructors
+    public Event() {}
+
+    // TODO: constructor parameter list was cut off in the source PDF ("String ven...") — verify against your intended fields
+    public Event(String title, String subtitle, String category, double price, int totalSlots, String venue) {
+        this.title = title;
+        this.subtitle = subtitle;
+        this.category = category;
+        this.price = price;
+        this.totalSlots = totalSlots;
+        this.venue = venue;
+        this.registeredSlots = 0;
+    }
+
+    // Getters and Setters
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
+
+    public String getTitle() { return title; }
+    public void setTitle(String title) { this.title = title; }
+
+    public String getCategory() { return category; }
+    public void setCategory(String category) { this.category = category; }
+
+    public double getPrice() { return price; }
+    public void setPrice(double price) { this.price = price; }
+
+    public int getTotalSlots() { return totalSlots; }
+    public void setTotalSlots(int totalSlots) { this.totalSlots = totalSlots; }
+
+    public int getRegisteredSlots() { return registeredSlots; }
+    public void setRegisteredSlots(int registeredSlots) { this.registeredSlots = registeredSlots; }
+
+    public boolean isWorkshop() { return isWorkshop; }
+    public void setWorkshop(boolean isWorkshop) { this.isWorkshop = isWorkshop; }
+}
