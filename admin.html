@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>EventNest — Admin Console</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root{
+    --bg:#070b14;
+    --panel:#0c1220;
+    --panel-2:#0e1526;
+    --border:#1c2740;
+    --border-soft:#161f34;
+    --text:#eef2ff;
+    --muted:#8a93ab;
+    --cyan:#22d3ee;
+    --purple:#a78bfa;
+    --green:#34d399;
+    --gold:#fbbf24;
+    --pink:#e879f9;
+    --red:#f87171;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(circle at 15% 0%, rgba(167,139,250,0.07), transparent 40%),
+      radial-gradient(circle at 85% 10%, rgba(34,211,238,0.06), transparent 40%),
+      var(--bg);
+    color:var(--text);
+    font-family:'Segoe UI', system-ui, -apple-system, sans-serif;
+    min-height:100vh;
+  }
+  a{color:inherit;text-decoration:none;}
+
+  /* NAVBAR */
+  .navbar{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 32px;
+    border-bottom:1px solid var(--border-soft);
+    background:rgba(7,11,20,0.85);
+    backdrop-filter:blur(10px);
+    position:sticky;top:0;z-index:50;
+    flex-wrap:wrap;gap:12px;
+  }
+  .brand{display:flex;align-items:center;gap:12px; z-index: 2;}
+  .brand-icon{
+    width:38px;height:38px;border-radius:10px;
+    background:linear-gradient(135deg,#241030,#190a30);
+    border:1px solid var(--purple);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--purple);font-size:18px;
+    box-shadow:0 0 14px rgba(167,139,250,0.35);
+  }
+  .brand-name{display:flex;flex-direction:column;line-height:1.15;}
+  .brand-title{display:flex;align-items:center;gap:8px;font-weight:800;font-size:18px;}
+  .spa-badge{
+    font-size:10px;font-weight:700;color:var(--gold);
+    background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.4);
+    padding:2px 8px;border-radius:20px;letter-spacing:0.4px;
+    display:flex;align-items:center;gap:4px;
+  }
+  .spa-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 6px var(--gold);}
+  .brand-sub{font-size:11px;color:var(--muted);}
+
+  /* Centered and Widened Search */
+  .search-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    padding: 0 20px;
+  }
+  .search-box{
+    display:flex;align-items:center;gap:8px;
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:9px 14px;
+    width:100%;
+    max-width:500px;
+    color:var(--muted);
+    font-size:13px;
+  }
+  .search-box svg{flex-shrink:0;opacity:0.7;}
+  
+  .nav-actions { display: flex; gap: 10px; align-items: center; z-index: 2; }
+
+  /* View Toggles */
+  .view-toggles {
+    display: flex; gap: 4px; background: var(--panel-2); 
+    padding: 4px; border-radius: 10px; border: 1px solid var(--border);
+  }
+  .btn-toggle {
+    background: transparent; color: var(--muted); border: none; font-weight: 700; font-size: 13px;
+    border-radius: 6px; padding: 6px 12px; cursor: pointer; transition: 0.15s; display: flex; align-items: center; gap: 6px;
+  }
+  .btn-toggle.active { 
+    background: var(--panel); color: var(--cyan); box-shadow: 0 0 8px rgba(34,211,238,0.1); border: 1px solid rgba(34,211,238,0.3);
+  }
+
+  .btn-user-link{
+    display:flex;align-items:center;gap:8px;
+    padding:10px 16px;border-radius:10px;
+    background:var(--panel);border:1px solid var(--border);
+    font-weight:700;font-size:12px;cursor:pointer;color:var(--muted);
+    transition:.15s;
+  }
+  .btn-user-link:hover{border-color:var(--cyan);color:var(--cyan);}
+
+  .btn-add{
+    display:flex;align-items:center;gap:8px;
+    padding:10px 18px;border-radius:10px;
+    background:linear-gradient(135deg,#a78bfa,#818cf8);
+    color:#0c0620;font-weight:800;font-size:13px;
+    border:none;cursor:pointer;
+    box-shadow:0 0 20px rgba(167,139,250,0.25);
+    transition:.15s;
+  }
+  .btn-add:hover{transform:translateY(-1px);box-shadow:0 0 26px rgba(167,139,250,0.4);}
+  
+  .btn-manage-clubs {
+    display:flex;align-items:center;gap:8px;
+    padding:10px 18px;border-radius:10px;
+    background:var(--panel-2);border:1px solid var(--border);
+    color:var(--text);font-weight:700;font-size:13px;
+    cursor:pointer;transition:.15s;
+  }
+  .btn-manage-clubs:hover { border-color:var(--purple); color:var(--purple); }
+
+  /* HERO */
+  .hero-wrap{padding:28px 32px 0;}
+  .hero{
+    border:1px solid var(--border);
+    border-radius:18px;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(167,139,250,0.09), transparent 45%),
+      radial-gradient(circle at 80% 80%, rgba(34,211,238,0.06), transparent 45%),
+      var(--panel);
+    padding:36px;
+    display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap;
+  }
+  .hero-left{flex:1;min-width:320px;}
+  .pill{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:12px;font-weight:700;color:var(--purple);
+    background:rgba(167,139,250,0.08);border:1px solid rgba(167,139,250,0.35);
+    padding:6px 14px;border-radius:20px;margin-bottom:20px;
+  }
+  .hero h1{
+    font-size:42px;line-height:1.15;margin:0 0 18px;font-weight:900;letter-spacing:-0.5px;
+  }
+  .grad-text{
+    background:linear-gradient(90deg,var(--purple),var(--cyan));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero p{color:var(--muted);font-size:15px;max-width:520px;line-height:1.6;margin:0 0 26px;}
+  .btn-create{
+    display:inline-flex;align-items:center;gap:10px;
+    background:linear-gradient(135deg,#a78bfa,#22d3ee);
+    color:#0c0620;font-weight:800;font-size:14px;
+    border:none;padding:14px 24px;border-radius:12px;cursor:pointer;
+    box-shadow:0 0 24px rgba(167,139,250,0.3);
+    transition:.15s;
+  }
+  .btn-create:hover{transform:translateY(-2px);box-shadow:0 0 30px rgba(167,139,250,0.45);}
+  .stats-grid{
+    align-items: center;
+    display:grid;grid-template-columns:repeat(3, 1fr);gap:14px;
+    width:100%;max-width:500px; /* Filled space evenly */
+  }
+  .stat-card{
+    background:var(--panel-2);border:1px solid var(--border);
+    border-radius:14px;padding:18px;
+    transition:.15s;cursor:default;
+    height:50%;
+  }
+  .stat-card:hover{border-color:var(--purple);transform:translateY(-2px);}
+  .stat-icon{
+    width:34px;height:34px;border-radius:9px;
+    display:flex;align-items:center;justify-content:center;margin-bottom:14px;
+    font-size:15px;
+  }
+  .stat-icon.cyan{background:rgba(34,211,238,0.12);color:var(--cyan);}
+  .stat-icon.green{background:rgba(52,211,153,0.12);color:var(--green);}
+  .stat-icon.purple{background:rgba(167,139,250,0.12);color:var(--purple);}
+  .stat-num{font-size:24px;font-weight:800;margin-bottom:2px;}
+  .stat-label{font-size:12px;color:var(--muted);}
+
+  /* CATEGORY FILTER */
+  .filter-section{padding:34px 32px 0;}
+  .filter-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px;}
+  .filter-title{font-size:12px;font-weight:800;letter-spacing:1.5px;color:var(--muted);}
+  .filter-status{font-size:12px;color:var(--purple);font-weight:600;}
+  .cat-row{display:flex;gap:10px;flex-wrap:wrap;}
+  .cat-btn{
+    display:flex;align-items:center;gap:7px;
+    padding:9px 16px;border-radius:10px;
+    background:var(--panel);border:1px solid var(--border);
+    color:var(--muted);font-size:13px;font-weight:600;cursor:pointer;
+    transition:.15s;
+  }
+  .cat-btn:hover{color:var(--text);border-color:#2a3859;}
+  .cat-btn.active{
+    background:rgba(167,139,250,0.1);color:var(--purple);border-color:var(--purple);
+    box-shadow:0 0 14px rgba(167,139,250,0.15);
+  }
+
+  /* EVENTS */
+  .events-section{padding:34px 32px 60px;}
+  .events-head{margin-bottom:20px;}
+  .events-head h2{
+    display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:22px;margin:0 0 6px;
+  }
+  .count-badge{
+    font-size:12px;color:var(--purple);background:rgba(167,139,250,0.1);
+    border:1px solid rgba(167,139,250,0.35);padding:3px 10px;border-radius:20px;font-weight:700;
+  }
+  .events-head p{color:var(--muted);font-size:13px;margin:0;}
+
+  /* Grid View (Default) */
+  .events-grid{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:22px;
+    transition: opacity 0.25s ease-in-out;
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  /* List View Modifier */
+  .events-grid.list-view {
+    display: flex; flex-direction: column; gap: 16px;
+    max-width: 70%; /* Stretches to 70% instead of 100% */
+  }
+  .events-grid.list-view .event-card {
+    flex-direction: row; height: 180px;
+  }
+  .events-grid.list-view .event-media {
+    width: 300px; height: 100%; border-right: 1px solid var(--border); flex-shrink: 0;
+  }
+  .events-grid.list-view .event-body {
+    justify-content: center;
+  }
+
+  .event-card{
+    background:var(--panel);border:1px solid var(--border);border-radius:16px;
+    overflow:hidden;transition:.2s;display:flex;flex-direction:column;
+  }
+  .event-card:hover{
+    transform:translateY(-4px);
+    border-color:var(--purple);
+    box-shadow:0 10px 30px rgba(167,139,250,0.15);
+  }
+  .event-media{
+    position:relative;height:170px;
+    background-size:cover;background-position:center;
+    display:flex;flex-direction:column;justify-content:space-between;padding:12px;
+  }
+  .event-media::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(0,0,0,0.05), rgba(4,8,16,0.75));
+  }
+  .media-top,.media-bottom{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:flex-start;}
+  .tag-row{display:flex;gap:6px; flex-wrap: wrap;}
+  .tag{
+    font-size:10.5px;font-weight:800;padding:4px 9px;border-radius:20px;letter-spacing:0.3px;
+    backdrop-filter:blur(6px);
+  }
+  .tag.cat{background:rgba(8,14,26,0.75);color:#dbe3f5;border:1px solid rgba(255,255,255,0.12);}
+  .tag.featured{background:rgba(251,191,36,0.15);color:var(--gold);border:1px solid rgba(251,191,36,0.5);display:flex;align-items:center;gap:4px;}
+  .tag.status-draft {background:rgba(138,147,171,0.2); color:var(--muted); border:1px solid rgba(138,147,171,0.5);}
+  .tag.status-pub {background:rgba(52,211,153,0.15); color:var(--green); border:1px solid rgba(52,211,153,0.5);}
+  .tag.status-closed {background:rgba(248,113,113,0.15); color:var(--red); border:1px solid rgba(248,113,113,0.5);}
+  
+  .price{
+    font-size:13px;font-weight:800;background:rgba(8,14,26,0.8);color:#fff;
+    padding:5px 10px;border-radius:20px;border:1px solid rgba(255,255,255,0.12);
+  }
+  .price.free{color:var(--green);}
+  .event-body{padding:16px; display:flex; flex-direction:column; flex:1;}
+  .event-title{font-size:15px;font-weight:700;margin:0 0 6px;}
+  .event-meta{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px;margin-bottom:8px;}
+  .event-org{font-size:12px; color:var(--cyan); margin-bottom: 12px; font-weight:600;}
+  .event-stats { font-size: 11px; color: var(--muted); margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--border-soft); display:flex; justify-content: space-between;}
+  
+  .event-actions{display:flex;gap:8px; margin-top:auto;}
+  .btn-action {
+    flex:1;text-align:center;padding:9px 12px;border-radius:9px;
+    font-weight:800;font-size:12.5px;border:none;cursor:pointer;transition:.15s;
+  }
+  .btn-edit{background:rgba(96,165,250,0.12);color:#60a5fa;border:1px solid rgba(96,165,250,0.4);}
+  .btn-edit:hover{background:rgba(96,165,250,0.2);}
+  .btn-attendees{background:rgba(167,139,250,0.12);color:var(--purple);border:1px solid rgba(167,139,250,0.4);}
+  .btn-attendees:hover{background:rgba(167,139,250,0.2);}
+  .btn-remove{background:rgba(248,113,113,0.12);color:var(--red);border:1px solid rgba(248,113,113,0.4);}
+  .btn-remove:hover{background:rgba(248,113,113,0.2);}
+
+  .empty-state{
+    grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--muted);
+    border:1px dashed var(--border);border-radius:16px;
+  }
+
+  footer{
+    text-align:center;padding:24px;color:var(--muted);font-size:12px;border-top:1px solid var(--border-soft);
+  }
+
+  ::selection{background:rgba(167,139,250,0.3);}
+
+  /* MODALS & TABLES */
+  .modal-overlay{
+    display:none;position:fixed;inset:0;background:rgba(4,6,12,0.85);
+    backdrop-filter:blur(6px);z-index:100;align-items:center;justify-content:center;padding:20px;
+  }
+  .modal-overlay.open{display:flex;}
+  .modal{
+    background:var(--panel);border:1px solid var(--border);border-radius:16px;
+    padding:26px;width:100%;max-width:550px;max-height:90vh;overflow-y:auto;
+    box-shadow:0 20px 60px rgba(0,0,0,0.5);
+  }
+  .modal.large { max-width: 800px; }
+  .modal h3{margin:0 0 18px;font-size:18px; display:flex; justify-content:space-between; align-items:center;}
+  .field{margin-bottom:14px;}
+  .field label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:600;}
+  .field input,.field select, .field textarea{
+    width:100%;background:var(--panel-2);border:1px solid var(--border);color:var(--text);
+    padding:10px 12px;border-radius:9px;font-size:13px;outline:none;
+  }
+  .field input:focus,.field select:focus, .field textarea:focus{border-color:var(--purple);}
+  .field-row{display:flex;gap:10px;}
+  .field-row .field{flex:1;}
+  .modal-actions{display:flex;gap:10px;margin-top:20px;}
+  .btn-cancel{
+    flex:1;padding:11px;border-radius:9px;background:var(--panel-2);border:1px solid var(--border);
+    color:var(--muted);font-weight:700;font-size:13px;cursor:pointer;
+  }
+  .btn-cancel:hover{color:var(--text);}
+  .btn-save{
+    flex:1;padding:11px;border-radius:9px;border:none;cursor:pointer;
+    background:linear-gradient(135deg,#a78bfa,#22d3ee);color:#0c0620;font-weight:800;font-size:13px;
+  }
+  .checkbox-row{display:flex;align-items:center;gap:8px;margin-bottom:14px;}
+  .checkbox-row input{width:auto;}
+  .checkbox-row label{margin:0;font-size:13px;color:var(--text);font-weight:600;}
+  
+  /* Tables */
+  .data-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; text-align: left; }
+  .data-table th { background: var(--panel-2); color: var(--muted); padding: 10px; font-weight: 600; border-bottom: 1px solid var(--border); }
+  .data-table td { padding: 10px; border-bottom: 1px solid var(--border-soft); color: var(--text); }
+  .data-table tr:last-child td { border-bottom: none; }
+  .status-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
+  .status-dot.paid { background: var(--green); box-shadow: 0 0 6px var(--green); }
+  .status-dot.pending { background: var(--gold); box-shadow: 0 0 6px var(--gold); }
+  .status-dot.failed { background: var(--red); box-shadow: 0 0 6px var(--red); }
+  
+  .flex-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;}
+  .btn-sm { padding: 6px 12px; font-size: 12px; border-radius: 6px; }
+
+  @media (max-width:900px){
+    .hero{padding:24px;}
+    .hero h1{font-size:32px;}
+    .search-wrapper{display:none;}
+    .events-grid.list-view { max-width: 100%; }
+    .events-grid.list-view .event-card { flex-direction: column; height: auto; }
+    .events-grid.list-view .event-media { width: 100%; height: 170px; border-right: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- LOGIN OVERLAY -->
+<div class="modal-overlay open" id="loginOverlay" style="z-index: 999; backdrop-filter: blur(15px);">
+  <div class="modal" style="max-width: 340px; text-align: center;">
+    <div class="brand-icon" style="margin: 0 auto 16px; width: 50px; height: 50px; font-size: 24px;">✦</div>
+    <h3 style="justify-content: center; margin-bottom: 8px;">Admin Authentication</h3>
+    <p style="font-size: 12px; color: var(--muted); margin-bottom: 20px;">Protected Route. Please sign in.</p>
+    <div class="field" style="text-align: left;">
+      <label>Username</label>
+      <input type="text" id="loginUser" value="admin">
+    </div>
+    <div class="field" style="text-align: left;">
+      <label>Password</label>
+      <input type="password" id="loginPass" placeholder="Enter 'password'">
+    </div>
+    <button class="btn-save" id="loginBtn" style="width: 100%; margin-top: 10px;">Authenticate Access</button>
+  </div>
+</div>
+
+<nav class="navbar">
+  <div class="brand">
+    <div class="brand-icon">✦</div>
+    <div class="brand-name">
+      <div class="brand-title">EventNest <span class="spa-badge">ADMIN</span></div>
+      <div class="brand-sub">Next-Gen Event Ecosystem</div>
+    </div>
+  </div>
+
+  <div class="search-wrapper">
+    <div class="search-box">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input id="searchInput" placeholder="Search events, tags, hosts, or location" style="background:transparent;border:none;outline:none;color:var(--text);font-size:13px;width:100%;">
+    </div>
+  </div>
+
+  <div class="nav-actions">
+    <div class="view-toggles">
+      <button id="btnGrid" class="btn-toggle active" title="Grid View">⊞ Grid</button>
+      <button id="btnList" class="btn-toggle" title="List View">☰ List</button>
+    </div>
+    <button class="btn-user-link">⧉ View User Portal</button>
+    <button class="btn-manage-clubs" id="manageClubsBtn">⚙ Organizers</button>
+    <button class="btn-add" id="addEventBtn">＋ Add Event</button>
+  </div>
+</nav>
+
+<div class="hero-wrap">
+  <div class="hero">
+    <div class="hero-left">
+      <div class="pill">✦ Admin Event Management Console</div>
+      <h1>MANAGE &amp;<br><span class="grad-text">CURATE ALL EVENTS</span></h1>
+      <p>Add new events, edit details, assign organizers, and monitor your ecosystem. Changes here reflect instantly on the public API.</p>
+      <button class="btn-create" id="createEventBtn">＋ Create New Event</button>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon purple">📅</div>
+        <div class="stat-num" id="statEvents">0</div>
+        <div class="stat-label">Published Events</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon green">👥</div>
+        <div class="stat-num" id="statGuests">0</div>
+        <div class="stat-label">Registered Guests</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon cyan">🏢</div>
+        <div class="stat-num" id="statClubs">0</div>
+        <div class="stat-label">Active Organizers</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="filter-section">
+  <div class="filter-head">
+    <div class="filter-title">FILTER BY EVENT CATEGORY</div>
+    <div class="filter-status" id="filterStatus">Showing All Categories</div>
+  </div>
+  <div class="cat-row" id="catRow">
+    <div class="cat-btn active" data-cat="All">✦ All</div>
+    <div class="cat-btn" data-cat="Tech">⚙ Tech</div>
+    <div class="cat-btn" data-cat="Gaming">🎮 Gaming</div>
+    <div class="cat-btn" data-cat="Workshop">🛠 Workshop</div>
+    <div class="cat-btn" data-cat="Hackathon">&gt;_ Hackathon</div>
+  </div>
+</div>
+
+<div class="events-section">
+  <div class="events-head">
+    <h2>Manage Events <span class="count-badge" id="eventCount">0 Events Found</span></h2>
+    <p>Add, edit, or remove events shown to users</p>
+  </div>
+  <div class="events-grid" id="eventsGrid"></div>
+</div>
+
+<footer>EventNest — Next-Gen Event Ecosystem · Admin Console Demo</footer>
+
+<!-- EVENT ADD/EDIT MODAL -->
+<div class="modal-overlay" id="eventModalOverlay">
+  <div class="modal">
+    <h3 id="modalTitle">Add New Event</h3>
+    
+    <div class="field">
+      <label>Event Title</label>
+      <input type="text" id="fTitle" placeholder="e.g. Hackathon 2024">
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label>Status</label>
+        <select id="fStatus">
+          <option value="DRAFT">Draft (Hidden)</option>
+          <option value="PUBLISHED" selected>Published</option>
+          <option value="COMPLETED">Completed / Closed</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Organizer / Club</label>
+        <select id="fOrganizer"></select>
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label>Category</label>
+        <select id="fCat">
+          <option>Tech</option>
+          <option>Gaming</option>
+          <option>Workshop</option>
+          <option>Hackathon</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Price ($, 0 = Free)</label>
+        <input type="number" id="fPrice" min="0" value="0">
+      </div>
+      <div class="field">
+        <label>Max Capacity</label>
+        <input type="number" id="fCapacity" min="1" value="100">
+      </div>
+    </div>
+    
+    <div class="field">
+      <label>Date / Time / Location</label>
+      <input type="text" id="fMeta" placeholder="e.g. 🕐 Fri · 9:00 PM · Downtown Arena">
+    </div>
+
+    <div class="field">
+      <label>Banner Image URL (Leave blank for category gradient)</label>
+      <input type="text" id="fImgUrl" placeholder="https://example.com/banner.jpg">
+    </div>
+
+    <div class="field">
+      <label>Tags (Comma separated)</label>
+      <input type="text" id="fTags" placeholder="e.g. Networking, Free Food, 18+">
+    </div>
+
+    <div class="checkbox-row">
+      <input type="checkbox" id="fFeatured">
+      <label for="fFeatured">Mark as Featured Listing</label>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn-cancel" id="eventModalCancel">Cancel</button>
+      <button class="btn-save" id="eventModalSave">Save Event</button>
+    </div>
+  </div>
+</div>
+
+<!-- ORGANIZER/CLUBS MODAL -->
+<div class="modal-overlay" id="clubModalOverlay">
+  <div class="modal">
+    <h3>Manage Organizers & Clubs <button class="btn-cancel btn-sm" id="closeClubModal" style="width:auto; padding: 4px 10px;">Close</button></h3>
+    
+    <div style="background: var(--panel-2); padding: 15px; border-radius: 10px; margin-bottom: 20px; border: 1px solid var(--border);">
+      <h4 style="margin: 0 0 10px; font-size: 13px;">Add New Organizer</h4>
+      <div class="field-row">
+        <div class="field" style="margin-bottom:0;"><input type="text" id="cName" placeholder="Organizer Name"></div>
+        <button class="btn-save" id="addClubBtn" style="flex: 0.3;">Add</button>
+      </div>
+    </div>
+
+    <table class="data-table" id="clubsTable">
+      <thead>
+        <tr><th>ID</th><th>Organizer Name</th><th>Events Hosted</th><th>Action</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ATTENDEES MODAL -->
+<div class="modal-overlay" id="attendeesModalOverlay">
+  <div class="modal large">
+    <div class="flex-header">
+      <h3 style="margin:0;">Event Registry: <span id="regEventTitle" style="color:var(--cyan); font-weight:600; font-size:15px; margin-left:8px;"></span></h3>
+      <div>
+        <button class="btn-save btn-sm" id="exportCsvBtn" style="margin-right:8px;">📥 Export CSV</button>
+        <button class="btn-cancel btn-sm" id="closeAttendeesModal" style="width:auto;">Close</button>
+      </div>
+    </div>
+    
+    <div class="stats-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 100%; margin-bottom: 20px;">
+      <div class="stat-card" style="padding: 12px;">
+        <div class="stat-label">Total Registrations</div>
+        <div class="stat-num" id="regTotal" style="font-size: 18px;">0</div>
+      </div>
+      <div class="stat-card" style="padding: 12px;">
+        <div class="stat-label">Available Slots</div>
+        <div class="stat-num" id="regSlots" style="font-size: 18px;">0</div>
+      </div>
+    </div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Roll No.</th>
+          <th>Dept</th>
+          <th>Ticket Hash</th>
+          <th>Payment</th>
+        </tr>
+      </thead>
+      <tbody id="attendeesTableBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+// Mock Login Logic
+document.getElementById('loginBtn').addEventListener('click', () => {
+  if (document.getElementById('loginPass').value === 'password') {
+    document.getElementById('loginOverlay').classList.remove('open');
+  } else {
+    alert('Invalid Credentials. Try password: password');
+  }
+});
+
+// Updated Relational Mock Data
+let clubs = [
+  {id: 1, name: "IEEE Institute of Electrical and Electronics Engineers"},
+  {id: 2, name: "GDG Google Developers Group"},
+  {id: 3, name: "FOCES"},
+  {id: 4, name: "TinkerHub"},
+  {id: 5, name: "IEDC"},
+  {id: 6, name: "MuLearn"}
+];
+let nextClubId = 7;
+
+// Statuses: DRAFT, PUBLISHED, COMPLETED
+let events = [
+  {id:1, title:"IEEE Tech Summit 2024", cat:"Tech", featured:true, price:10, status:"PUBLISHED", organizerId:1, capacity: 150, tags:['Workshop', 'Certification'], img:"", meta:"🕐 Fri · 9:00 AM · Main Auditorium"},
+  {id:2, title:"GDG Cloud DevFest", cat:"Hackathon", featured:true, price:0, status:"DRAFT", organizerId:2, capacity: 50, tags:['Google Cloud', 'Free Swag'], img:"", meta:"🕐 Sat · 10:00 AM · CS Dept"},
+  {id:3, title:"TinkerHub CodeJam", cat:"Gaming", featured:false, price:15, status:"PUBLISHED", organizerId:4, capacity: 300, tags:['Tournament', 'Prizes'], img:"", meta:"🕐 Sun · 6:00 PM · Online Arena"}
+];
+let nextEventId = 4;
+
+let attendees = [
+  {eventId: 1, name: "Alex Chen", roll: "22CS101", dept: "CompSci", hash: "TX-998A2", status: "PAID"},
+  {eventId: 1, name: "Sarah Miller", roll: "22EC045", dept: "Electronics", hash: "TX-771B4", status: "PENDING"},
+  {eventId: 3, name: "Jordan Lee", roll: "23ME201", dept: "Mechanical", hash: "TX-112C9", status: "PAID"},
+  {eventId: 3, name: "Emma Watson", roll: "21CS099", dept: "CompSci", hash: "TX-445D1", status: "FAILED"}
+];
+
+const catColors = {
+  Tech:"radial-gradient(circle at 30% 30%, #22d3ee, #0a1930)",
+  Gaming:"radial-gradient(circle at 70% 40%, #0ea5e9, #0f172a)",
+  Workshop:"radial-gradient(circle at 40% 60%, #fbbf24, #2a1e05)",
+  Hackathon:"radial-gradient(circle at 40% 60%, #a78bfa, #1e1033)"
+};
+
+// UI Elements
+const grid = document.getElementById('eventsGrid');
+const countEl = document.getElementById('eventCount');
+const statusEl = document.getElementById('filterStatus');
+const fOrgSelect = document.getElementById('fOrganizer');
+let activeCat = 'All';
+let searchTerm = '';
+let editingId = null;
+let currentEventForAttendees = null;
+
+// Helpers
+const getClubName = (id) => clubs.find(c => c.id == id)?.name || 'Unknown Organizer';
+const getEventAttendees = (id) => attendees.filter(a => a.eventId === id);
+
+function updateDashboardStats() {
+  const published = events.filter(e => e.status === 'PUBLISHED').length;
+  const validGuests = attendees.filter(a => a.status === 'PAID' || a.eventId === 2 /* free demo */).length;
+
+  document.getElementById('statEvents').textContent = published;
+  document.getElementById('statGuests').textContent = attendees.length;
+  document.getElementById('statClubs').textContent = clubs.length;
+}
+
+function renderEvents(){
+  const filtered = events.filter(e=>{
+    const matchCat = activeCat==='All' || e.cat===activeCat;
+    const matchSearch = e.title.toLowerCase().includes(searchTerm) || e.cat.toLowerCase().includes(searchTerm);
+    return matchCat && matchSearch;
+  });
+  
+  grid.innerHTML = '';
+  if(filtered.length===0){
+    grid.innerHTML = `<div class="empty-state">No events match. Try a different filter, or add a new event.</div>`;
+  }
+  
+  filtered.forEach(e=>{
+    const atts = getEventAttendees(e.id);
+    const slotsLeft = e.capacity - atts.length;
+    const bgImg = e.img ? `url(${e.img}), ${catColors[e.cat]}` : catColors[e.cat];
+    const statusClass = e.status === 'DRAFT' ? 'status-draft' : e.status === 'PUBLISHED' ? 'status-pub' : 'status-closed';
+    
+    // Tag generation
+    let tagsHtml = `<span class="tag cat">${e.cat.toUpperCase()}</span>`;
+    tagsHtml += `<span class="tag ${statusClass}">${e.status}</span>`;
+    if(e.featured) tagsHtml += `<span class="tag featured">✦ FEATURED</span>`;
+    if(slotsLeft <= 0) tagsHtml += `<span class="tag" style="background:var(--red); color:#fff">SOLD OUT</span>`;
+    e.tags?.forEach(t => { if(t.trim()) tagsHtml += `<span class="tag" style="border:1px solid var(--border)">${t.trim()}</span>`; });
+
+    const card = document.createElement('div');
+    card.className='event-card';
+    card.innerHTML = `
+      <div class="event-media" style="background-image:${bgImg}">
+        <div class="media-top">
+          <div class="tag-row">${tagsHtml}</div>
+          <span class="price ${e.price===0?'free':''}">${e.price===0?'FREE':'$'+e.price.toFixed(2)}</span>
+        </div>
+      </div>
+      <div class="event-body">
+        <div class="event-title">${e.title}</div>
+        <div class="event-org">Hosted by: ${getClubName(e.organizerId)}</div>
+        <div class="event-meta">${e.meta}</div>
+        <div class="event-stats">
+          <span>Capacity: ${e.capacity}</span>
+          <span>Registered: ${atts.length} ${slotsLeft < 0 ? '(Waitlist)' : ''}</span>
+        </div>
+        <div class="event-actions">
+          <button class="btn-action btn-attendees" data-id="${e.id}">👥 Attendees</button>
+          <button class="btn-action btn-edit" data-id="${e.id}">✎ Edit</button>
+          <button class="btn-action btn-remove" data-id="${e.id}">🗑</button>
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+  
+  countEl.textContent = `${filtered.length} Event${filtered.length!==1?'s':''} Found`;
+  statusEl.textContent = activeCat==='All' ? 'Showing All Categories' : `Filtered by: ${activeCat}`;
+  updateDashboardStats();
+}
+
+// ---- View Toggles Handle with Smooth Fade ----
+const btnGrid = document.getElementById('btnGrid');
+const btnList = document.getElementById('btnList');
+const eventsGrid = document.getElementById('eventsGrid');
+
+btnGrid.addEventListener('click', () => {
+  if (!btnGrid.classList.contains('active')) {
+    eventsGrid.style.opacity = 0; // Fade out
+    
+    setTimeout(() => {
+      eventsGrid.classList.remove('list-view');
+      btnGrid.classList.add('active');
+      btnList.classList.remove('active');
+      eventsGrid.style.opacity = 1; // Fade back in
+    }, 250);
+  }
+});
+
+btnList.addEventListener('click', () => {
+  if (!btnList.classList.contains('active')) {
+    eventsGrid.style.opacity = 0; // Fade out
+    
+    setTimeout(() => {
+      eventsGrid.classList.add('list-view');
+      btnList.classList.add('active');
+      btnGrid.classList.remove('active');
+      eventsGrid.style.opacity = 1; // Fade back in
+    }, 250);
+  }
+});
+
+// ---- Filters & Search ----
+document.getElementById('catRow').addEventListener('click', e=>{
+  const btn = e.target.closest('.cat-btn');
+  if(!btn) return;
+  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  activeCat = btn.dataset.cat;
+  renderEvents();
+});
+
+document.getElementById('searchInput').addEventListener('input', e=>{
+  searchTerm = e.target.value.toLowerCase();
+  renderEvents();
+});
+
+// ---- Event Modal Handling ----
+const eventOverlay = document.getElementById('eventModalOverlay');
+const fTitle = document.getElementById('fTitle'), fStatus = document.getElementById('fStatus');
+const fCat = document.getElementById('fCat'), fPrice = document.getElementById('fPrice');
+const fCapacity = document.getElementById('fCapacity'), fMeta = document.getElementById('fMeta');
+const fImgUrl = document.getElementById('fImgUrl'), fTags = document.getElementById('fTags');
+const fFeatured = document.getElementById('fFeatured');
+
+function populateOrgSelect() {
+  fOrgSelect.innerHTML = clubs.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
+}
+
+function openEventModal(id = null){
+  populateOrgSelect();
+  if(id){
+    const ev = events.find(e=>e.id===id);
+    editingId = id;
+    document.getElementById('modalTitle').textContent = 'Edit Event';
+    fTitle.value = ev.title; fStatus.value = ev.status; fOrgSelect.value = ev.organizerId;
+    fCat.value = ev.cat; fPrice.value = ev.price; fCapacity.value = ev.capacity;
+    fMeta.value = ev.meta; fImgUrl.value = ev.img || ""; fTags.value = ev.tags?.join(', ') || "";
+    fFeatured.checked = ev.featured;
+  } else {
+    editingId = null;
+    document.getElementById('modalTitle').textContent = 'Add New Event';
+    fTitle.value = ''; fStatus.value = 'DRAFT'; 
+    fCat.value = 'Tech'; fPrice.value = 0; fCapacity.value = 100;
+    fMeta.value = ''; fImgUrl.value = ''; fTags.value = ''; fFeatured.checked = false;
+  }
+  eventOverlay.classList.add('open');
+}
+
+document.getElementById('addEventBtn').addEventListener('click', () => openEventModal());
+document.getElementById('createEventBtn').addEventListener('click', () => openEventModal());
+document.getElementById('eventModalCancel').addEventListener('click', () => eventOverlay.classList.remove('open'));
+
+document.getElementById('eventModalSave').addEventListener('click', ()=>{
+  const title = fTitle.value.trim();
+  if(!title){ alert('Please enter an event title.'); return; }
+  
+  const payload = {
+    title, status: fStatus.value, organizerId: Number(fOrgSelect.value),
+    cat: fCat.value, price: Math.max(0, Number(fPrice.value) || 0), capacity: Number(fCapacity.value) || 10,
+    meta: fMeta.value.trim() || '🕐 TBD · Location TBD',
+    img: fImgUrl.value.trim(), featured: fFeatured.checked,
+    tags: fTags.value.split(',').map(t => t.trim()).filter(t=>t)
+  };
+
+  if(editingId){
+    Object.assign(events.find(e=>e.id===editingId), payload);
+  } else {
+    events.push({id: nextEventId++, ...payload});
+  }
+  eventOverlay.classList.remove('open');
+  renderEvents();
+});
+
+// ---- Organizers Modal ----
+const clubOverlay = document.getElementById('clubModalOverlay');
+function renderClubsTable() {
+  const tbody = document.querySelector('#clubsTable tbody');
+  tbody.innerHTML = clubs.map(c => {
+    const hostedCount = events.filter(e => e.organizerId === c.id).length;
+    return `<tr><td>#${c.id}</td><td>${c.name}</td><td>${hostedCount}</td>
+            <td><button class="btn-cancel btn-sm rm-club" data-id="${c.id}">Delete</button></td></tr>`;
+  }).join('');
+}
+document.getElementById('manageClubsBtn').addEventListener('click', () => { renderClubsTable(); clubOverlay.classList.add('open'); });
+document.getElementById('closeClubModal').addEventListener('click', () => clubOverlay.classList.remove('open'));
+document.getElementById('addClubBtn').addEventListener('click', () => {
+  const name = document.getElementById('cName').value.trim();
+  if(name) { clubs.push({id: nextClubId++, name}); document.getElementById('cName').value=''; renderClubsTable(); populateOrgSelect(); }
+});
+document.getElementById('clubsTable').addEventListener('click', e => {
+  if(e.target.classList.contains('rm-club')) {
+    const id = Number(e.target.dataset.id);
+    if(events.some(ev => ev.organizerId === id)) { alert("Cannot delete club: Currently hosting active events."); return; }
+    clubs = clubs.filter(c => c.id !== id); renderClubsTable(); populateOrgSelect();
+  }
+});
+
+// ---- Attendees Modal ----
+const attOverlay = document.getElementById('attendeesModalOverlay');
+function openAttendeesModal(eventId) {
+  currentEventForAttendees = events.find(e => e.id === eventId);
+  const evAtts = getEventAttendees(eventId);
+  
+  document.getElementById('regEventTitle').textContent = currentEventForAttendees.title;
+  document.getElementById('regTotal').textContent = evAtts.length;
+  document.getElementById('regSlots').textContent = Math.max(0, currentEventForAttendees.capacity - evAtts.length);
+  
+  const tbody = document.getElementById('attendeesTableBody');
+  tbody.innerHTML = evAtts.length === 0 ? `<tr><td colspan="5" style="text-align:center; color:var(--muted);">No registrations yet.</td></tr>` 
+  : evAtts.map(a => `
+    <tr>
+      <td style="font-weight:600">${a.name}</td>
+      <td>${a.roll}</td>
+      <td>${a.dept}</td>
+      <td style="font-family:monospace; color:var(--cyan)">${a.hash}</td>
+      <td><span class="status-dot ${a.status.toLowerCase()}"></span>${a.status}</td>
+    </tr>
+  `).join('');
+  
+  attOverlay.classList.add('open');
+}
+document.getElementById('closeAttendeesModal').addEventListener('click', () => attOverlay.classList.remove('open'));
+
+// CSV Export
+document.getElementById('exportCsvBtn').addEventListener('click', () => {
+  if(!currentEventForAttendees) return;
+  const evAtts = getEventAttendees(currentEventForAttendees.id);
+  let csv = "Name,Roll No,Department,Ticket Hash,Payment Status\n";
+  evAtts.forEach(a => { csv += `"${a.name}","${a.roll}","${a.dept}","${a.hash}","${a.status}"\n`; });
+  
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = `Attendees_${currentEventForAttendees.id}.csv`;
+  a.click(); window.URL.revokeObjectURL(url);
+});
+
+// ---- Grid Actions Delegate ----
+grid.addEventListener('click', e=>{
+  const editBtn = e.target.closest('.btn-edit');
+  const removeBtn = e.target.closest('.btn-remove');
+  const attBtn = e.target.closest('.btn-attendees');
+  
+  if(editBtn) return openEventModal(Number(editBtn.dataset.id));
+  if(attBtn) return openAttendeesModal(Number(attBtn.dataset.id));
+  if(removeBtn){
+    const id = Number(removeBtn.dataset.id);
+    const ev = events.find(e=>e.id===id);
+    if(ev && confirm(`Remove "${ev.title}"? This cannot be undone.`)){
+      events = events.filter(e=>e.id!==id);
+      renderEvents();
+    }
+  }
+});
+
+// Close modals on background click
+document.querySelectorAll('.modal-overlay').forEach(ov => {
+  ov.addEventListener('click', e => { if(e.target===ov && ov.id !== 'loginOverlay') ov.classList.remove('open'); });
+});
+
+renderEvents();
+</script>
+</body>
+</html>
