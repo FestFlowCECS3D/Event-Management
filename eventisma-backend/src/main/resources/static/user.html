@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>EventNest — User Portal</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root{
+    --bg:#070b14;
+    --panel:#0c1220;
+    --panel-2:#0e1526;
+    --border:#1c2740;
+    --border-soft:#161f34;
+    --text:#eef2ff;
+    --muted:#8a93ab;
+    --cyan:#22d3ee;
+    --purple:#a78bfa;
+    --green:#34d399;
+    --gold:#fbbf24;
+    --pink:#e879f9;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(circle at 15% 0%, rgba(34,211,238,0.06), transparent 40%),
+      radial-gradient(circle at 85% 10%, rgba(167,139,250,0.06), transparent 40%),
+      var(--bg);
+    color:var(--text);
+    font-family:'Segoe UI', system-ui, -apple-system, sans-serif;
+    min-height:100vh;
+  }
+  a{color:inherit;text-decoration:none;}
+
+  /* NAVBAR */
+  .navbar{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 32px;
+    border-bottom:1px solid var(--border-soft);
+    background:rgba(7,11,20,0.85);
+    backdrop-filter:blur(10px);
+    position:sticky;top:0;z-index:50;
+    flex-wrap:wrap;gap:12px;
+  }
+  .brand{display:flex;align-items:center;gap:12px;}
+  .brand-icon{
+    width:38px;height:38px;border-radius:10px;
+    background:linear-gradient(135deg,#0b2230,#0a1930);
+    border:1px solid var(--cyan);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--cyan);font-size:18px;
+    box-shadow:0 0 14px rgba(34,211,238,0.35);
+  }
+  .brand-name{display:flex;flex-direction:column;line-height:1.15;}
+  .brand-title{display:flex;align-items:center;gap:8px;font-weight:800;font-size:18px;}
+  .spa-badge{
+    font-size:10px;font-weight:700;color:var(--green);
+    background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.4);
+    padding:2px 8px;border-radius:20px;letter-spacing:0.4px;
+    display:flex;align-items:center;gap:4px;
+  }
+  .spa-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green);}
+  .brand-sub{font-size:11px;color:var(--muted);}
+
+  .search-box{
+    display:flex;align-items:center;gap:8px;
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:9px 14px;
+    width:260px;color:var(--muted);
+    font-size:13px;
+  }
+  .search-box svg{flex-shrink:0;opacity:0.7;}
+
+  .nav-tabs{display:flex;align-items:center;gap:4px;background:var(--panel);border:1px solid var(--border);padding:4px;border-radius:10px;}
+  .nav-tab{
+    display:flex;align-items:center;gap:6px;
+    padding:8px 12px;border-radius:8px;font-size:13px;font-weight:600;color:var(--muted);
+    cursor:pointer;border:1px solid transparent;background:transparent;
+    transition:.15s;
+  }
+  .nav-tab:hover{color:var(--text);}
+  .nav-tab.active{
+    background:rgba(34,211,238,0.12);color:var(--cyan);border-color:rgba(34,211,238,0.4);
+  }
+
+  .btn-tickets{
+    display:flex;align-items:center;gap:8px;
+    padding:10px 16px;border-radius:10px;
+    background:var(--panel);border:1px solid var(--border);
+    font-weight:700;font-size:13px;cursor:pointer;color:var(--text);
+    transition:.15s;
+  }
+  .btn-tickets:hover{border-color:var(--cyan);color:var(--cyan);}
+
+  .btn-admin-link{
+    display:flex;align-items:center;gap:8px;
+    padding:10px 16px;border-radius:10px;
+    background:var(--panel);border:1px solid var(--border);
+    font-weight:700;font-size:12px;cursor:pointer;color:var(--muted);
+    transition:.15s;
+  }
+  .btn-admin-link:hover{border-color:var(--purple);color:var(--purple);}
+
+  /* HERO */
+  .hero-wrap{padding:28px 32px 0;}
+  .hero{
+    border:1px solid var(--border);
+    border-radius:18px;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(34,211,238,0.08), transparent 45%),
+      radial-gradient(circle at 80% 80%, rgba(167,139,250,0.07), transparent 45%),
+      var(--panel);
+    padding:36px;
+    display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap;
+  }
+  .hero-left{flex:1;min-width:320px;}
+  .pill{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:12px;font-weight:700;color:var(--cyan);
+    background:rgba(34,211,238,0.08);border:1px solid rgba(34,211,238,0.35);
+    padding:6px 14px;border-radius:20px;margin-bottom:20px;
+  }
+  .hero h1{
+    font-size:42px;line-height:1.15;margin:0 0 18px;font-weight:900;letter-spacing:-0.5px;
+  }
+  .grad-text{
+    background:linear-gradient(90deg,var(--cyan),var(--purple));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero p{color:var(--muted);font-size:15px;max-width:520px;line-height:1.6;margin:0 0 26px;}
+  .btn-create{
+    display:inline-flex;align-items:center;gap:10px;
+    background:linear-gradient(135deg,#22d3ee,#34d399);
+    color:#04121a;font-weight:800;font-size:14px;
+    border:none;padding:14px 24px;border-radius:12px;cursor:pointer;
+    box-shadow:0 0 24px rgba(34,211,238,0.3);
+    transition:.15s;
+  }
+  .btn-create:hover{transform:translateY(-2px);box-shadow:0 0 30px rgba(34,211,238,0.45);}
+
+  .stats-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:14px;
+    width:100%;max-width:440px;
+  }
+  .stat-card{
+    background:var(--panel-2);border:1px solid var(--border);
+    border-radius:14px;padding:18px;
+    transition:.15s;cursor:default;
+  }
+  .stat-card:hover{border-color:var(--cyan);transform:translateY(-2px);}
+  .stat-icon{
+    width:34px;height:34px;border-radius:9px;
+    display:flex;align-items:center;justify-content:center;margin-bottom:14px;
+    font-size:15px;
+  }
+  .stat-icon.cyan{background:rgba(34,211,238,0.12);color:var(--cyan);}
+  .stat-icon.green{background:rgba(52,211,153,0.12);color:var(--green);}
+  .stat-icon.blue{background:rgba(96,165,250,0.12);color:#60a5fa;}
+  .stat-icon.pink{background:rgba(232,121,249,0.12);color:var(--pink);}
+  .stat-num{font-size:24px;font-weight:800;margin-bottom:2px;}
+  .stat-label{font-size:12px;color:var(--muted);}
+
+  /* FILTER + SORT */
+  .filter-section{padding:34px 32px 0;}
+  .filter-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px;}
+  .filter-title{font-size:12px;font-weight:800;letter-spacing:1.5px;color:var(--muted);}
+  .filter-status{font-size:12px;color:var(--cyan);font-weight:600;}
+  .cat-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;}
+  .cat-chips{display:flex;gap:10px;flex-wrap:wrap;}
+  .cat-btn{
+    display:flex;align-items:center;gap:7px;
+    padding:9px 16px;border-radius:10px;
+    background:var(--panel);border:1px solid var(--border);
+    color:var(--muted);font-size:13px;font-weight:600;cursor:pointer;
+    transition:.15s;
+  }
+  .cat-btn:hover{color:var(--text);border-color:#2a3859;}
+  .cat-btn.active{
+    background:rgba(34,211,238,0.1);color:var(--cyan);border-color:var(--cyan);
+    box-shadow:0 0 14px rgba(34,211,238,0.15);
+  }
+  .sort-select{
+    background:var(--panel);border:1px solid var(--border);color:var(--text);
+    font-size:13px;font-weight:600;padding:9px 14px;border-radius:10px;cursor:pointer;
+  }
+  .toggle-row{display:flex;gap:10px;margin-top:14px;}
+  .toggle-btn{
+    display:flex;align-items:center;gap:7px;
+    padding:9px 16px;border-radius:10px;
+    background:var(--panel);border:1px solid var(--border);
+    color:var(--muted);font-size:13px;font-weight:600;cursor:pointer;
+    transition:.15s;
+  }
+  .toggle-btn.active{
+    background:rgba(167,139,250,0.1);color:var(--purple);border-color:var(--purple);
+    box-shadow:0 0 14px rgba(167,139,250,0.15);
+  }
+
+  /* EVENTS */
+  .events-section{padding:34px 32px 60px;}
+  .events-head{margin-bottom:20px;}
+  .events-head h2{
+    display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:22px;margin:0 0 6px;
+  }
+  .count-badge{
+    font-size:12px;color:var(--cyan);background:rgba(34,211,238,0.1);
+    border:1px solid rgba(34,211,238,0.35);padding:3px 10px;border-radius:20px;font-weight:700;
+  }
+  .events-head p{color:var(--muted);font-size:13px;margin:0;}
+
+  .events-grid{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:22px;
+  }
+  .event-card{
+    background:var(--panel);border:1px solid var(--border);border-radius:16px;
+    overflow:hidden;cursor:pointer;transition:.2s;
+  }
+  .event-card:hover{
+    transform:translateY(-4px);
+    border-color:var(--cyan);
+    box-shadow:0 10px 30px rgba(34,211,238,0.15);
+  }
+  .event-media{
+    position:relative;height:170px;
+    background-size:cover;background-position:center;
+    display:flex;flex-direction:column;justify-content:space-between;padding:12px;
+  }
+  .event-media::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(0,0,0,0.05), rgba(4,8,16,0.75));
+  }
+  .media-top,.media-bottom{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:flex-start;}
+  .tag-row{display:flex;gap:6px;}
+  .tag{
+    font-size:10.5px;font-weight:800;padding:4px 9px;border-radius:20px;letter-spacing:0.3px;
+    backdrop-filter:blur(6px);
+  }
+  .tag.cat{background:rgba(8,14,26,0.75);color:#dbe3f5;border:1px solid rgba(255,255,255,0.12);}
+  .tag.featured{background:rgba(251,191,36,0.15);color:var(--gold);border:1px solid rgba(251,191,36,0.5);display:flex;align-items:center;gap:4px;}
+  .tag.registered{background:rgba(52,211,153,0.15);color:var(--green);border:1px solid rgba(52,211,153,0.5);display:flex;align-items:center;gap:4px;}
+  .price{
+    font-size:13px;font-weight:800;background:rgba(8,14,26,0.8);color:#fff;
+    padding:5px 10px;border-radius:20px;border:1px solid rgba(255,255,255,0.12);
+  }
+  .price.free{color:var(--green);}
+  .event-body{padding:16px;}
+  .event-title{font-size:15px;font-weight:700;margin:0 0 6px;}
+  .event-meta{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px;margin-bottom:12px;}
+  .event-actions{display:flex;gap:8px;}
+  .btn-register{
+    flex:1;text-align:center;padding:9px 12px;border-radius:9px;
+    background:linear-gradient(135deg,#22d3ee,#818cf8);color:#04121a;
+    font-weight:800;font-size:12.5px;border:none;cursor:pointer;transition:.15s;
+  }
+  .btn-register:hover{transform:translateY(-1px);box-shadow:0 0 16px rgba(34,211,238,0.35);}
+  .btn-register.done{
+    background:rgba(52,211,153,0.12);color:var(--green);border:1px solid rgba(52,211,153,0.4);
+    box-shadow:none;cursor:default;
+  }
+  .btn-register.done:hover{transform:none;box-shadow:none;}
+
+  .empty-state{
+    grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--muted);
+    border:1px dashed var(--border);border-radius:16px;
+  }
+
+  footer{
+    text-align:center;padding:24px;color:var(--muted);font-size:12px;border-top:1px solid var(--border-soft);
+  }
+
+  ::selection{background:rgba(34,211,238,0.3);}
+
+  @media (max-width:900px){
+    .hero{padding:24px;}
+    .hero h1{font-size:32px;}
+    .search-box{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="brand">
+    <div class="brand-icon">✦</div>
+    <div class="brand-name">
+      <div class="brand-title">EventNest <span class="spa-badge">USER</span></div>
+      <div class="brand-sub">Next-Gen Event Ecosystem</div>
+    </div>
+  </div>
+
+  <div class="search-box">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+    <input id="searchInput" placeholder="Search events, tags, hosts, or location" style="background:transparent;border:none;outline:none;color:var(--text);font-size:13px;width:100%;">
+  </div>
+
+  <div class="nav-tabs" id="viewTabs">
+    <div class="nav-tab active" data-view="Grid">▦ Grid</div>
+    <div class="nav-tab" data-view="List">☰ List</div>
+    <div class="nav-tab" data-view="Calendar">📅 Calendar</div>
+  </div>
+
+  <button class="btn-tickets" id="ticketsBtn">🎟 My Registrations</button>
+  <a class="btn-admin-link" href="admin.html">⚙ Admin Login</a>
+</nav>
+
+<div class="hero-wrap">
+  <div class="hero">
+    <div class="hero-left">
+      <div class="pill">✦ Discover Upcoming Events</div>
+      <h1>DISCOVER &amp;<br><span class="grad-text">REGISTER FOR EVENTS</span></h1>
+      <p>Browse upcoming experiences, filter by category, sort by what matters to you, and register for the ones you don't want to miss.</p>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon cyan">📅</div>
+        <div class="stat-num" id="statEvents">6</div>
+        <div class="stat-label">Upcoming Events</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon green">✅</div>
+        <div class="stat-num" id="statRegistered">0</div>
+        <div class="stat-label">You're Registered For</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon blue">🌐</div>
+        <div class="stat-num">100% Client</div>
+        <div class="stat-label">Standalone Frontend</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon pink">$</div>
+        <div class="stat-num">$18.4K</div>
+        <div class="stat-label">Ticket Volume</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="filter-section">
+  <div class="filter-head">
+    <div class="filter-title">FILTER BY EVENT CATEGORY</div>
+    <div class="filter-status" id="filterStatus">Showing All Categories</div>
+  </div>
+  <div class="cat-row">
+    <div class="cat-chips" id="catRow">
+      <div class="cat-btn active" data-cat="All">✦ All</div>
+      <div class="cat-btn" data-cat="Tech">⚙ Tech</div>
+      <div class="cat-btn" data-cat="Music">♫ Music</div>
+      <div class="cat-btn" data-cat="Gaming">🎮 Gaming</div>
+      <div class="cat-btn" data-cat="Cyberpunk">⚡ Cyberpunk</div>
+      <div class="cat-btn" data-cat="Workshop">🛠 Workshop</div>
+      <div class="cat-btn" data-cat="Business">💼 Business</div>
+      <div class="cat-btn" data-cat="Hackathon">&gt;_ Hackathon</div>
+      <div class="cat-btn" data-cat="Party">🎉 Party</div>
+    </div>
+    <select class="sort-select" id="sortSelect">
+      <option value="default">Sort: Default</option>
+      <option value="price-asc">Price: Low to High</option>
+      <option value="price-desc">Price: High to Low</option>
+      <option value="title-asc">Title: A → Z</option>
+      <option value="title-desc">Title: Z → A</option>
+    </select>
+  </div>
+  <div class="toggle-row">
+    <div class="toggle-btn active" id="allEventsToggle">📅 Upcoming Events</div>
+    <div class="toggle-btn" id="registeredToggle">✅ My Registered Events</div>
+  </div>
+</div>
+
+<div class="events-section">
+  <div class="events-head">
+    <h2 id="sectionHeading">Explore Upcoming Events <span class="count-badge" id="eventCount">6 Events Found</span></h2>
+    <p id="sectionSub">Discover experiences and register for the ones you like</p>
+  </div>
+  <div class="events-grid" id="eventsGrid"></div>
+</div>
+
+<footer>EventNest — Next-Gen Event Ecosystem · User Portal Demo</footer>
+
+<script>
+// Read-only event catalog for the user side. Admin side manages this list separately
+// (in a real app this would come from a shared backend/API).
+const events = [
+  {id:1, title:"Neon City Underground Aftershow", cat:"Music", featured:true, price:45, img:"linear-gradient(rgba(20,10,30,.3),rgba(10,5,15,.6)), radial-gradient(circle at 30% 30%, #7c3aed, #1e1b4b)", meta:"🕐 Fri · 9:00 PM · Downtown Arena"},
+  {id:2, title:"Virtual Store (Digital & Traditional)", cat:"Tech", featured:true, price:0, img:"repeating-linear-gradient(0deg, #001a10 0px, #003320 2px, #001a10 4px)", meta:"🕐 Sat · 10:00 AM · Online"},
+  {id:3, title:"Cyber Arena X: Pro Match Night", cat:"Gaming", featured:false, price:25, img:"linear-gradient(rgba(0,10,25,.4),rgba(0,5,15,.7)), radial-gradient(circle at 70% 40%, #0ea5e9, #0f172a)", meta:"🕐 Sun · 6:00 PM · EchoDome Stadium"},
+  {id:4, title:"Quantum Hack: 48hr Build Sprint", cat:"Hackathon", featured:true, price:0, img:"linear-gradient(rgba(10,0,20,.4),rgba(5,0,10,.7)), radial-gradient(circle at 40% 60%, #a78bfa, #1e1033)", meta:"🕐 Sat · 8:00 AM · Innovation Hub"},
+  {id:5, title:"Founders & Funders Mixer", cat:"Business", featured:false, price:60, img:"linear-gradient(rgba(10,15,10,.4),rgba(5,10,5,.7)), radial-gradient(circle at 60% 30%, #34d399, #052e21)", meta:"🕐 Thu · 7:00 PM · Skyline Lounge"},
+  {id:6, title:"Chrome & Circuits Warehouse Party", cat:"Cyberpunk", featured:true, price:35, img:"linear-gradient(rgba(20,0,20,.4),rgba(10,0,10,.7)), radial-gradient(circle at 50% 50%, #e879f9, #2a0a2a)", meta:"🕐 Fri · 11:00 PM · The Foundry"}
+];
+
+let registeredIds = new Set();
+let activeCat = 'All';
+let searchTerm = '';
+let sortMode = 'default';
+let showOnlyRegistered = false;
+
+const grid = document.getElementById('eventsGrid');
+const countEl = document.getElementById('eventCount');
+const statusEl = document.getElementById('filterStatus');
+const heading = document.getElementById('sectionHeading');
+const sub = document.getElementById('sectionSub');
+
+function getFiltered(){
+  let list = events.filter(e=>{
+    const matchCat = activeCat==='All' || e.cat===activeCat;
+    const matchSearch = e.title.toLowerCase().includes(searchTerm) || e.cat.toLowerCase().includes(searchTerm);
+    const matchReg = !showOnlyRegistered || registeredIds.has(e.id);
+    return matchCat && matchSearch && matchReg;
+  });
+  if(sortMode==='price-asc') list.sort((a,b)=>a.price-b.price);
+  if(sortMode==='price-desc') list.sort((a,b)=>b.price-a.price);
+  if(sortMode==='title-asc') list.sort((a,b)=>a.title.localeCompare(b.title));
+  if(sortMode==='title-desc') list.sort((a,b)=>b.title.localeCompare(a.title));
+  return list;
+}
+
+function render(){
+  const filtered = getFiltered();
+  grid.innerHTML = '';
+  if(filtered.length===0){
+    grid.innerHTML = `<div class="empty-state">No events match your filters right now.</div>`;
+  }
+  filtered.forEach(e=>{
+    const isReg = registeredIds.has(e.id);
+    const card = document.createElement('div');
+    card.className='event-card';
+    card.innerHTML = `
+      <div class="event-media" style="background-image:${e.img}">
+        <div class="media-top">
+          <div class="tag-row">
+            <span class="tag cat">${e.cat.toUpperCase()}</span>
+            ${e.featured?'<span class="tag featured">✦ FEATURED</span>':''}
+            ${isReg?'<span class="tag registered">✓ REGISTERED</span>':''}
+          </div>
+          <span class="price ${e.price===0?'free':''}">${e.price===0?'FREE':'$'+e.price.toFixed(2)}</span>
+        </div>
+      </div>
+      <div class="event-body">
+        <div class="event-title">${e.title}</div>
+        <div class="event-meta">${e.meta}</div>
+        <div class="event-actions">
+          <button class="btn-register ${isReg?'done':''}" data-id="${e.id}">${isReg?'✓ Registered':'Register Now'}</button>
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+
+  countEl.textContent = `${filtered.length} Event${filtered.length!==1?'s':''} Found`;
+  statusEl.textContent = activeCat==='All' ? 'Showing All Categories' : `Filtered by: ${activeCat}`;
+  document.getElementById('statEvents').textContent = events.length;
+  document.getElementById('statRegistered').textContent = registeredIds.size;
+
+  if(showOnlyRegistered){
+    heading.innerHTML = `My Registered Events <span class="count-badge" id="eventCount">${filtered.length} Event${filtered.length!==1?'s':''} Found</span>`;
+    sub.textContent = 'Events you have registered for';
+  } else {
+    heading.innerHTML = `Explore Upcoming Events <span class="count-badge" id="eventCount">${filtered.length} Event${filtered.length!==1?'s':''} Found</span>`;
+    sub.textContent = "Discover experiences and register for the ones you like";
+  }
+}
+
+document.getElementById('catRow').addEventListener('click', e=>{
+  const btn = e.target.closest('.cat-btn');
+  if(!btn) return;
+  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  activeCat = btn.dataset.cat;
+  render();
+});
+
+document.getElementById('viewTabs').addEventListener('click', e=>{
+  const tab = e.target.closest('.nav-tab');
+  if(!tab) return;
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  tab.classList.add('active');
+  if(tab.dataset.view !== 'Grid'){
+    alert(`${tab.dataset.view} view is coming soon in this demo.`);
+  }
+});
+
+document.getElementById('searchInput').addEventListener('input', e=>{
+  searchTerm = e.target.value.toLowerCase();
+  render();
+});
+
+document.getElementById('sortSelect').addEventListener('change', e=>{
+  sortMode = e.target.value;
+  render();
+});
+
+document.getElementById('allEventsToggle').addEventListener('click', ()=>{
+  showOnlyRegistered = false;
+  document.getElementById('allEventsToggle').classList.add('active');
+  document.getElementById('registeredToggle').classList.remove('active');
+  render();
+});
+document.getElementById('registeredToggle').addEventListener('click', ()=>{
+  showOnlyRegistered = true;
+  document.getElementById('registeredToggle').classList.add('active');
+  document.getElementById('allEventsToggle').classList.remove('active');
+  render();
+});
+
+grid.addEventListener('click', e=>{
+  const btn = e.target.closest('.btn-register');
+  if(!btn) return;
+  const id = Number(btn.dataset.id);
+  if(registeredIds.has(id)){
+    registeredIds.delete(id);
+  } else {
+    registeredIds.add(id);
+  }
+  render();
+});
+
+document.getElementById('ticketsBtn').addEventListener('click', ()=>{
+  showOnlyRegistered = true;
+  document.getElementById('registeredToggle').classList.add('active');
+  document.getElementById('allEventsToggle').classList.remove('active');
+  render();
+  window.scrollTo({top: document.querySelector('.filter-section').offsetTop - 20, behavior:'smooth'});
+});
+
+render();
+</script>
+</body>
+</html>
