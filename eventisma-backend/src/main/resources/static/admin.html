@@ -419,6 +419,12 @@
     border-color:rgba(34,211,238,0.35);background:rgba(34,211,238,0.04);
     box-shadow:0 0 14px rgba(34,211,238,0.06);
   }
+  .cal-cell.past{cursor:default;opacity:0.55;filter:saturate(0.6);}
+  .cal-cell.past:hover{border-color:var(--border-soft);box-shadow:none;}
+  .cal-cell.past.has-events{cursor:pointer;opacity:0.8;filter:none;}
+  .cal-cell.past.has-events:hover{border-color:rgba(34,211,238,0.35);box-shadow:0 0 14px rgba(34,211,238,0.06);}
+  .cal-cell.today{border-color:rgba(52,211,153,0.5);box-shadow:0 0 14px rgba(52,211,153,0.12);}
+  .cal-cell.today .cal-daynum{color:var(--green);}
   .cal-daynum{font-size:12px;font-weight:800;color:var(--muted);display:flex;justify-content:space-between;align-items:center;}
   .cal-cell.has-events .cal-daynum{color:var(--cyan);}
   .cal-dot{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 6px var(--cyan);}
@@ -761,15 +767,21 @@ togglePassBtn.addEventListener('click', () => {
 
 function attemptLogin() {
   const loginUserInput = document.getElementById('loginUser');
-  const username = loginUserInput.value.trim() || 'admin'; // username is always treated as 'admin'
+  const username = loginUserInput.value.trim();
   const val = loginPassInput.value;
+  if (!username) {
+    loginErrorEl.textContent = 'Username not entered.';
+    loginErrorEl.style.display = 'block';
+    loginUserInput.focus();
+    return;
+  }
   if (!val) {
     loginErrorEl.textContent = 'Password not entered.';
     loginErrorEl.style.display = 'block';
     loginPassInput.focus();
     return;
   }
-  if (val === 'password') {
+  if (username === 'admin' && val === 'password') {
     loginErrorEl.style.display = 'none';
     document.getElementById('loginOverlay').classList.remove('open');
   } else {
@@ -789,6 +801,12 @@ loginPassInput.addEventListener('keydown', (e) => {
 
 loginPassInput.addEventListener('input', () => {
   if (loginErrorEl.style.display === 'block' && loginPassInput.value) {
+    loginErrorEl.style.display = 'none';
+  }
+});
+
+document.getElementById('loginUser').addEventListener('input', () => {
+  if (loginErrorEl.style.display === 'block' && document.getElementById('loginUser').value) {
     loginErrorEl.style.display = 'none';
   }
 });
@@ -1005,6 +1023,8 @@ function getEventsForDay(dateStr){
 
 function renderCalendar(){
   const year = calDate.getFullYear(), month = calDate.getMonth();
+  const todayMidnight = new Date();
+  todayMidnight.setHours(0,0,0,0);
   calMonthLabel.textContent = `${monthNames[month]} ${year}`;
   const daysInMonth = new Date(year, month+1, 0).getDate();
   const firstDayOfWeek = new Date(year, month, 1).getDay();
@@ -1024,9 +1044,17 @@ function renderCalendar(){
   for (let day=1; day<=daysInMonth; day++){
     const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
     const dayEvents = getEventsForDay(dateStr);
+    const cellDate = new Date(year, month, day);
+    cellDate.setHours(0,0,0,0);
+    const isPast = cellDate.getTime() < todayMidnight.getTime();
+    const isToday = cellDate.getTime() === todayMidnight.getTime();
     const cell = document.createElement('div');
-    cell.className = 'cal-cell' + (dayEvents.length ? ' has-events' : '');
+    cell.className = 'cal-cell'
+      + (dayEvents.length ? ' has-events' : '')
+      + (isPast ? ' past' : '')
+      + (isToday ? ' today' : '');
     cell.dataset.date = dateStr;
+    if (isPast) cell.dataset.past = 'true';
     cell.innerHTML = `
       <div class="cal-daynum"><span>${day}</span>${dayEvents.length ? '<span class="cal-dot"></span>' : ''}</div>
       <div class="cal-events">
@@ -1046,6 +1074,15 @@ calGrid.addEventListener('click', e => {
 
   const dateStr = cell.dataset.date;
   const dayEvents = getEventsForDay(dateStr);
+
+  if (cell.dataset.past === 'true'){
+    // Past days: only allow viewing/editing an already-assigned event, no new events, no empty-cell click.
+    if (dayEvents.length){
+      openEventModal(dayEvents[0].id);
+    }
+    return;
+  }
+
   if (dayEvents.length){
     openEventModal(dayEvents[0].id);
   } else {
