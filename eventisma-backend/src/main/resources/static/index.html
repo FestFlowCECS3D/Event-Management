@@ -749,6 +749,10 @@
 </div>
 
 <script>
+// Address of your Spring Boot backend.
+// IMPORTANT: update this if your Codespace URL ever changes.
+const API_URL = "/api/events";
+
 // Mock Login Logic
 const loginPassInput = document.getElementById('loginPass');
 const loginErrorEl = document.getElementById('loginError');
@@ -823,12 +827,66 @@ let clubs = [
 let nextClubId = 7;
 
 // Statuses: DRAFT, PUBLISHED, COMPLETED
-let events = [
-  {id:1, title:"IEEE Tech Summit 2024", cat:"Tech", featured:true, price:10, status:"PUBLISHED", organizerId:1, capacity: 150, tags:['Workshop', 'Certification'], img:"", meta:"🕐 Fri · 9:00 AM · Main Auditorium", date:"2026-08-07", time:"09:00", isVirtual:false, venue:"Main Auditorium", location:"Main Auditorium", description:"", agenda:[]},
-  {id:2, title:"GDG Cloud DevFest", cat:"Hackathon", featured:true, price:0, status:"DRAFT", organizerId:2, capacity: 50, tags:['Google Cloud', 'Free Swag'], img:"", meta:"🕐 Sat · 10:00 AM · CS Dept", date:"2026-08-15", time:"10:00", isVirtual:false, venue:"CS Dept Seminar Hall", location:"CS Dept Seminar Hall", description:"", agenda:[]},
-  {id:3, title:"TinkerHub CodeJam", cat:"Gaming", featured:false, price:15, status:"PUBLISHED", organizerId:4, capacity: 300, tags:['Tournament', 'Prizes'], img:"", meta:"🕐 Sun · 6:00 PM · Online Arena", date:"2026-08-23", time:"18:00", isVirtual:true, venue:"Online Arena (Discord/YouTube)", location:"Online Arena (Discord/YouTube)", description:"", agenda:[]}
-];
-let nextEventId = 4;
+// events[] is populated from the backend by loadEvents() below — this starts empty.
+let events = [];
+let nextEventId = 1;
+
+// NOTE on data mismatch: the backend (Spring Boot /api/events) only stores
+// title, category, venue, date, price, totalSlots, registeredSlots.
+// The admin UI also tracks status, organizerId, format, tags, description, etc.
+// Those admin-only fields are NOT persisted server-side — they exist only in
+// this browser session and will reset to defaults after a page reload/backend fetch.
+
+// Map a backend event object -> the richer shape the admin UI renders.
+// Preserves any admin-only fields already held locally for that id (so editing
+// status/tags/etc. in this session doesn't get clobbered by every reload).
+function mapServerEventToAdmin(serverEv) {
+  const existing = events.find(e => e.id === serverEv.id) || {};
+  const cat = serverEv.category || existing.cat || 'Tech';
+  const venue = serverEv.venue || existing.venue || '';
+  const date = serverEv.date || existing.date || '';
+  const time = existing.time || '18:00';
+  const dateLabel = date ? new Date(date + 'T00:00:00').toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }) : 'TBD';
+  return {
+    id: serverEv.id,
+    title: serverEv.title || 'Untitled event',
+    cat,
+    featured: existing.featured || false,
+    price: serverEv.price || 0,
+    status: existing.status || 'PUBLISHED',
+    organizerId: existing.organizerId ?? null,
+    capacity: serverEv.totalSlots ?? existing.capacity ?? 10,
+    registeredSlots: serverEv.registeredSlots ?? 0,
+    tags: existing.tags || [],
+    img: existing.img || '',
+    meta: `🕐 ${dateLabel}${time ? ' · ' + time : ''} · 📍 ${venue || 'TBD'}`,
+    date, time,
+    isVirtual: existing.isVirtual || false,
+    format: existing.format || 'inperson',
+    venue,
+    streamLink: existing.streamLink || '',
+    location: venue || 'TBD',
+    description: existing.description || '',
+    agenda: existing.agenda || []
+  };
+}
+
+// Fetch the live event list from the backend and re-render.
+async function loadEvents() {
+  try {
+    const response = await fetch(API_URL);
+    if (!response.ok) throw new Error('Server responded with an error');
+    const serverEvents = await response.json();
+    events = serverEvents.map(mapServerEventToAdmin);
+    nextEventId = events.reduce((max, e) => Math.max(max, e.id), 0) + 1;
+  } catch (err) {
+    console.error('Could not load events from backend:', err);
+    // Keep whatever was already in `events` (e.g. empty on first load) rather than crash the UI.
+  }
+  renderEvents();
+  updateDashboardStats();
+  if (typeof renderCalendar === 'function') renderCalendar();
+}
 
 let attendees = [
   {eventId: 1, name: "Alex Chen", roll: "22CS101", dept: "CompSci", hash: "TX-998A2", status: "PAID"},
@@ -1304,14 +1362,47 @@ document.getElementById('eventModalSave').addEventListener('click', ()=>{
     tags: fTags.value.split(',').map(t => t.trim()).filter(t=>t)
   };
 
-  if(editingId){
-    Object.assign(events.find(e=>e.id===editingId), payload);
-  } else {
-    events.push({id: nextEventId++, ...payload});
-  }
-  eventOverlay.classList.remove('open');
-  renderEvents();
-  if (typeof renderCalendar === 'function') renderCalendar();
+  // Only these fields exist on the backend model — everything else in
+  // `payload` (status, organizerId, format, tags, description, ...) stays local-only.
+  const serverPayload = {
+    title: payload.title,
+    category: payload.cat,
+    venue: venueName,
+    date: payload.date,
+    price: payload.price,
+    totalSlots: payload.capacity,
+    registeredSlots: editingId ? (events.find(e => e.id === editingId)?.registeredSlots ?? 0) : 0
+  };
+
+  (async () => {
+    try {
+      const response = await fetch(
+        editingId ? `${API_URL}/${editingId}` : API_URL,
+        {
+          method: editingId ? 'PUT' : 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(serverPayload)
+        }
+      );
+      if (!response.ok) throw new Error('Server responded with an error');
+    } catch (err) {
+      console.error('Failed to save event to backend:', err);
+      alert('Could not save the event to the backend. Check that it is running.');
+      return;
+    }
+
+    // Keep the admin-only fields (status, tags, etc.) locally, merged onto
+    // whatever the backend returns on next load.
+    if (editingId) {
+      Object.assign(events.find(e => e.id === editingId), payload);
+    } else {
+      events.push({ id: nextEventId++, ...payload });
+    }
+    eventOverlay.classList.remove('open');
+    renderEvents();
+    if (typeof renderCalendar === 'function') renderCalendar();
+    loadEvents(); // resync with backend (admin-only fields are preserved by mapServerEventToAdmin)
+  })();
 });
 
 // ---- Organizers Modal ----
@@ -1390,8 +1481,18 @@ grid.addEventListener('click', e=>{
     const id = Number(removeBtn.dataset.id);
     const ev = events.find(e=>e.id===id);
     if(ev && confirm(`Remove "${ev.title}"? This cannot be undone.`)){
-      events = events.filter(e=>e.id!==id);
-      renderEvents();
+      (async () => {
+        try {
+          const response = await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
+          if (!response.ok) throw new Error('Server responded with an error');
+        } catch (err) {
+          console.error('Failed to delete event on backend:', err);
+          alert('Could not delete the event on the backend. Check that it is running.');
+          return;
+        }
+        events = events.filter(e=>e.id!==id);
+        renderEvents();
+      })();
     }
   }
 });
@@ -1403,7 +1504,7 @@ document.querySelectorAll('.modal-overlay').forEach(ov => {
 
 renderCatFilter();
 renderOrgFilter();
-renderEvents();
+loadEvents();
 </script>
 </body>
 </html>
