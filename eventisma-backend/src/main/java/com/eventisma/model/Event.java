@@ -30,6 +30,19 @@ public class Event {
     private boolean isWorkshop;
     private boolean featured;
 
+    // Admin console fields (previously only kept client-side; now persisted)
+    private String status;        // DRAFT, PUBLISHED, COMPLETED
+
+    private Long organizerId;     // Club/organizer id (organizers are managed client-side, id is a stable reference)
+    private String organizerName; // Snapshot of the organizer/club name at save time, for display without a join
+
+    private String format;        // virtual, inperson, both
+    private String streamLink;    // Used when format is virtual/both
+
+    @Lob
+    @Column(name = "image_url")
+    private String imageUrl;      // Banner image (URL or base64 data URI)
+
     @ElementCollection
     private List<String> tags;
 
@@ -103,4 +116,22 @@ public class Event {
 
     public List<String> getPerks() { return perks; }
     public void setPerks(List<String> perks) { this.perks = perks; }
+
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
+
+    public Long getOrganizerId() { return organizerId; }
+    public void setOrganizerId(Long organizerId) { this.organizerId = organizerId; }
+
+    public String getOrganizerName() { return organizerName; }
+    public void setOrganizerName(String organizerName) { this.organizerName = organizerName; }
+
+    public String getFormat() { return format; }
+    public void setFormat(String format) { this.format = format; }
+
+    public String getStreamLink() { return streamLink; }
+    public void setStreamLink(String streamLink) { this.streamLink = streamLink; }
+
+    public String getImageUrl() { return imageUrl; }
+    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
 }
