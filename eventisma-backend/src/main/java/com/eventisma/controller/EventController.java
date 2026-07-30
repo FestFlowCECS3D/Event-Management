@@ -40,8 +40,43 @@ public class EventController {
 
     @PostMapping
     public ResponseEntity<Event> createEvent(@RequestBody Event event) {
+        // Ensure a create always generates a fresh id, even if the client accidentally sent one.
+        event.setId(null);
         Event saved = eventRepository.save(event);
         return ResponseEntity.ok(saved);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Event> updateEvent(@PathVariable String id, @RequestBody Event updatedEvent) {
+        return eventRepository.findById(id)
+                .map(existing -> {
+                    existing.setTitle(updatedEvent.getTitle());
+                    existing.setSubtitle(updatedEvent.getSubtitle());
+                    existing.setType(updatedEvent.getType());
+                    existing.setCategory(updatedEvent.getCategory());
+                    existing.setDescription(updatedEvent.getDescription());
+                    existing.setDate(updatedEvent.getDate());
+                    existing.setStartTime(updatedEvent.getStartTime());
+                    existing.setEndTime(updatedEvent.getEndTime());
+                    existing.setDayNumber(updatedEvent.getDayNumber());
+                    existing.setVenue(updatedEvent.getVenue());
+                    existing.setPrice(updatedEvent.getPrice());
+                    existing.setTotalSlots(updatedEvent.getTotalSlots());
+                    existing.setRegisteredSlots(updatedEvent.getRegisteredSlots());
+                    existing.setWorkshop(updatedEvent.isWorkshop());
+                    existing.setFeatured(updatedEvent.isFeatured());
+                    existing.setTags(updatedEvent.getTags());
+                    existing.setPerks(updatedEvent.getPerks());
+                    existing.setStatus(updatedEvent.getStatus());
+                    existing.setOrganizerId(updatedEvent.getOrganizerId());
+                    existing.setOrganizerName(updatedEvent.getOrganizerName());
+                    existing.setFormat(updatedEvent.getFormat());
+                    existing.setStreamLink(updatedEvent.getStreamLink());
+                    existing.setImageUrl(updatedEvent.getImageUrl());
+                    Event saved = eventRepository.save(existing);
+                    return ResponseEntity.ok(saved);
+                })
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")
