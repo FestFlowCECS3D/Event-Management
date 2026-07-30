@@ -497,7 +497,7 @@
       <button id="btnList" class="btn-toggle" title="List View">☰ List</button>
       <button id="btnCalendar" class="btn-toggle" title="Calendar View">📅 Calendar</button>
     </div>
-    <button class="btn-user-link">⧉ View User Portal</button>
+    <button class="btn-user-link" id="viewUserPortalBtn">⧉ View User Portal</button>
     <button class="btn-manage-clubs" id="manageClubsBtn">⚙ Organizers</button>
     <button class="btn-add" id="addEventBtn"><span class="btn-icon">+</span> Add Event</button>
   </div>
@@ -877,10 +877,11 @@ async function loadEvents() {
     const response = await fetch(API_URL);
     if (!response.ok) throw new Error('Server responded with an error');
     const serverEvents = await response.json();
+    console.log(`✅ Backend connected (${API_URL}) — ${serverEvents.length} event${serverEvents.length === 1 ? '' : 's'} loaded from database.`);
     events = serverEvents.map(mapServerEventToAdmin);
     nextEventId = events.reduce((max, e) => Math.max(max, e.id), 0) + 1;
   } catch (err) {
-    console.error('Could not load events from backend:', err);
+    console.error(`❌ Backend NOT connected (${API_URL}) — is the Spring Boot server running?`, err);
     // Keep whatever was already in `events` (e.g. empty on first load) rather than crash the UI.
   }
   renderEvents();
@@ -888,12 +889,7 @@ async function loadEvents() {
   if (typeof renderCalendar === 'function') renderCalendar();
 }
 
-let attendees = [
-  {eventId: 1, name: "Alex Chen", roll: "22CS101", dept: "CompSci", hash: "TX-998A2", status: "PAID"},
-  {eventId: 1, name: "Sarah Miller", roll: "22EC045", dept: "Electronics", hash: "TX-771B4", status: "PENDING"},
-  {eventId: 3, name: "Jordan Lee", roll: "23ME201", dept: "Mechanical", hash: "TX-112C9", status: "PAID"},
-  {eventId: 3, name: "Emma Watson", roll: "21CS099", dept: "CompSci", hash: "TX-445D1", status: "FAILED"}
-];
+let attendees = [];
 
 const catColors = {
   Tech:"radial-gradient(circle at 30% 30%, #22d3ee, #0a1930)",
@@ -972,7 +968,7 @@ function renderEvents(){
       <div class="event-media" style="background-image:${bgImg}">
         <div class="media-top">
           <div class="tag-row">${tagsHtml}</div>
-          <span class="price ${e.price===0?'free':''}">${e.price===0?'FREE':'$'+e.price.toFixed(2)}</span>
+          <span class="price ${e.price===0?'free':''}">${e.price===0?'FREE':'₹'+e.price.toFixed(2)}</span>
         </div>
       </div>
       <div class="event-body">
@@ -986,7 +982,7 @@ function renderEvents(){
         <div class="event-actions">
           <button class="btn-action btn-attendees" data-id="${e.id}">👥 Attendees</button>
           <button class="btn-action btn-edit" data-id="${e.id}">✎ Edit</button>
-          <button class="btn-action btn-remove" data-id="${e.id}">🗑</button>
+          <button class="btn-action btn-remove" data-id="${e.id}">🗑 Remove</button>
         </div>
       </div>
     `;
@@ -1027,6 +1023,7 @@ function showGridOrList(active){
   eventsGrid.style.opacity = 0;
 
   setEventsHeading('manage');
+  renderEvents();
 
   setTimeout(() => {
     eventsGrid.classList.toggle('list-view', active === 'list');
@@ -1320,6 +1317,11 @@ function openEventModal(id = null){
   }
   eventOverlay.classList.add('open');
 }
+
+document.getElementById('viewUserPortalBtn').addEventListener('click', () => {
+  alert('You are being logged out of the admin console.');
+  window.location.href = 'user.html';
+});
 
 document.getElementById('addEventBtn').addEventListener('click', () => openEventModal());
 document.getElementById('createEventBtn').addEventListener('click', () => openEventModal());
