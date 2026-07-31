@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>EventNest — User Portal</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root{
+    --bg:#070b14;
+    --panel:#0c1220;
+    --panel-2:#0e1526;
+    --border:#1c2740;
+    --border-soft:#161f34;
+    --text:#eef2ff;
+    --muted:#8a93ab;
+    --cyan:#22d3ee;
+    --purple:#a78bfa;
+    --green:#34d399;
+    --gold:#fbbf24;
+    --pink:#e879f9;
+    --red:#f87171;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(circle at 15% 0%, rgba(167,139,250,0.07), transparent 40%),
+      radial-gradient(circle at 85% 10%, rgba(34,211,238,0.06), transparent 40%),
+      var(--bg);
+    color:var(--text);
+    font-family:'Segoe UI', system-ui, -apple-system, sans-serif;
+    min-height:100vh;
+  }
+  a{color:inherit;text-decoration:none;}
+
+  /* NAVBAR */
+  .navbar{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 32px;
+    border-bottom:1px solid rgba(34,211,238,0.2);
+    background:rgba(2,6,23,0.8);
+    backdrop-filter:blur(20px);
+    position:sticky;top:0;z-index:50;
+    flex-wrap:wrap;gap:12px;
+    box-shadow:0 4px 30px rgba(34,211,238,0.05);
+  }
+  .brand{display:flex;align-items:center;gap:12px; z-index: 2;}
+  .brand-icon{
+    width:38px;height:38px;border-radius:11px;
+    background:linear-gradient(135deg,#0c1220,#0a1830);
+    border:1px solid transparent;
+    background-image:linear-gradient(#0c1220,#0a1830), linear-gradient(135deg,#22d3ee,#2563eb,#d946ef);
+    background-origin:border-box;background-clip:padding-box, border-box;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--cyan);font-size:18px;
+    box-shadow:0 0 15px rgba(34,211,238,0.4);
+    transition:box-shadow .3s;
+  }
+  .brand:hover .brand-icon{box-shadow:0 0 25px rgba(34,211,238,0.7);}
+  .brand-name{display:flex;flex-direction:column;line-height:1.15;}
+  .brand-title{display:flex;align-items:center;gap:8px;font-weight:800;font-size:20px;letter-spacing:0.5px;
+    background:linear-gradient(90deg,#22d3ee,#5eead4,#e879f9);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .spa-badge{
+    font-size:10px;font-weight:700;color:var(--cyan);
+    background:rgba(34,211,238,0.1);border:1px solid rgba(34,211,238,0.4);
+    padding:2px 8px;border-radius:20px;letter-spacing:0.4px;
+    display:flex;align-items:center;gap:4px;
+    box-shadow:0 0 10px rgba(34,211,238,0.2);
+  }
+  .spa-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 6px var(--cyan);}
+  .brand-sub{font-size:11px;color:var(--muted);font-weight:500;letter-spacing:0.3px;}
+
+  .search-wrapper { flex: 1; display: flex; justify-content: center; padding: 0 20px; }
+  .search-box{
+    display:flex;align-items:center;gap:8px;
+    background:rgba(15,23,42,0.9);
+    border:1px solid #1e293b;
+    border-radius:10px;
+    padding:9px 14px;
+    width:100%;
+    max-width:500px;
+    color:var(--muted);
+    font-size:13px;
+    transition:border-color .2s, box-shadow .2s;
+  }
+  .search-box:focus-within{border-color:rgba(34,211,238,0.8);box-shadow:0 0 15px rgba(34,211,238,0.2);}
+  .search-box svg{flex-shrink:0;opacity:0.7;}
+
+  .nav-actions { display: flex; gap: 10px; align-items: center; z-index: 2; }
+
+  .view-toggles {
+    display: flex; gap: 4px; background: rgba(15,23,42,0.9);
+    padding: 4px; border-radius: 10px; border: 1px solid #1e293b;
+  }
+  .btn-toggle {
+    background: transparent; color: var(--muted); border: none; font-weight: 700; font-size: 13px;
+    border-radius: 6px; padding: 6px 12px; cursor: pointer; transition: 0.15s; display: flex; align-items: center; gap: 6px;
+  }
+  .btn-toggle:hover{color:#e2e8f0;}
+  .btn-toggle.active {
+    background: rgba(34,211,238,0.2); color: #67e8f9; box-shadow: 0 0 10px rgba(34,211,238,0.2); border: 1px solid rgba(34,211,238,0.5);
+  }
+
+  .btn-user-link{
+    display:flex;align-items:center;gap:8px;
+    padding:10px 16px;border-radius:10px;
+    background:rgba(15,23,42,0.9);border:1px solid #1e293b;
+    font-weight:700;font-size:12px;cursor:pointer;color:var(--cyan);
+    transition:.15s;
+  }
+  .btn-user-link:hover{border-color:rgba(34,211,238,0.5);background:#0f172a;}
+
+  .btn-icon{font-size:1em;font-weight:800;line-height:1;display:inline-flex;align-items:center;justify-content:center;}
+
+  /* HERO */
+  .hero-wrap{padding:28px 32px 0;}
+  .hero{
+    border:1px solid var(--border);
+    border-radius:18px;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(167,139,250,0.09), transparent 45%),
+      radial-gradient(circle at 80% 80%, rgba(34,211,238,0.06), transparent 45%),
+      var(--panel);
+    padding:36px;
+    display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap;
+  }
+  .hero-left{flex:1;min-width:320px;}
+  .pill{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:12px;font-weight:700;color:var(--purple);
+    background:rgba(167,139,250,0.08);border:1px solid rgba(167,139,250,0.35);
+    padding:6px 14px;border-radius:20px;margin-bottom:20px;
+  }
+  .hero h1{ font-size:42px;line-height:1.15;margin:0 0 18px;font-weight:900;letter-spacing:-0.5px; }
+  .grad-text{
+    background:linear-gradient(90deg,var(--purple),var(--cyan));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero p{color:var(--muted);font-size:15px;max-width:520px;line-height:1.6;margin:0 0 26px;}
+  .btn-create{
+    display:inline-flex;align-items:center;gap:10px;
+    background:linear-gradient(135deg,#a78bfa,#22d3ee);
+    color:#0c0620;font-weight:800;font-size:14px;
+    border:none;padding:14px 24px;border-radius:12px;cursor:pointer;
+    box-shadow:0 0 24px rgba(167,139,250,0.3);
+    transition:.15s;
+  }
+  .btn-create:hover{transform:translateY(-2px);box-shadow:0 0 30px rgba(167,139,250,0.45);}
+  .stats-grid{
+    align-items: center;
+    display:grid;grid-template-columns:repeat(3, 1fr);gap:14px;
+    width:100%;max-width:500px;
+  }
+  .stat-card{
+    background:var(--panel-2);border:1px solid var(--border);
+    border-radius:14px;padding:18px;
+    transition:.15s;cursor:default;
+    height:50%;
+  }
+  .stat-card:hover{border-color:var(--purple);transform:translateY(-2px);}
+  .stat-icon{
+    width:34px;height:34px;border-radius:9px;
+    display:flex;align-items:center;justify-content:center;margin-bottom:14px;
+    font-size:15px;
+  }
+  .stat-icon.cyan{background:rgba(34,211,238,0.12);color:var(--cyan);}
+  .stat-icon.green{background:rgba(52,211,153,0.12);color:var(--green);}
+  .stat-icon.purple{background:rgba(167,139,250,0.12);color:var(--purple);}
+  .stat-num{font-size:24px;font-weight:800;margin-bottom:2px;}
+  .stat-label{font-size:12px;color:var(--muted);}
+
+  /* CATEGORY / ORGANIZER FILTER */
+  .filter-section{padding:34px 32px 0;}
+  .filter-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px;}
+  .filter-title{font-size:12px;font-weight:800;letter-spacing:1.5px;color:var(--muted);}
+  .filter-status{font-size:12px;color:var(--purple);font-weight:600;}
+  .cat-row{display:flex;gap:10px;flex-wrap:wrap;}
+  .cat-btn{
+    display:flex;align-items:center;gap:7px;
+    padding:9px 16px;border-radius:10px;
+    background:var(--panel);border:1px solid var(--border);
+    color:var(--muted);font-size:13px;font-weight:600;cursor:pointer;
+    transition:.15s;
+  }
+  .cat-btn:hover{color:var(--text);border-color:#2a3859;}
+  .cat-btn.active{
+    background:rgba(167,139,250,0.1);color:var(--purple);border-color:var(--purple);
+    box-shadow:0 0 14px rgba(167,139,250,0.15);
+  }
+  .sort-select{
+    background:var(--panel);border:1px solid var(--border);color:var(--text);
+    font-size:13px;font-weight:600;padding:9px 14px;border-radius:10px;cursor:pointer;outline:none;
+  }
+  .sort-select:focus{border-color:var(--purple);}
+
+  /* EVENTS */
+  .events-section{padding:34px 32px 60px;}
+  .events-head{margin-bottom:20px;}
+  .events-head h2{ display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:22px;margin:0 0 6px; }
+  .count-badge{
+    font-size:12px;color:var(--purple);background:rgba(167,139,250,0.1);
+    border:1px solid rgba(167,139,250,0.35);padding:3px 10px;border-radius:20px;font-weight:700;
+  }
+  .events-head p{color:var(--muted);font-size:13px;margin:0;}
+
+  .events-grid{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:22px;
+    transition: opacity 0.25s ease-in-out;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .events-grid.list-view {
+    display: flex; flex-direction: column; gap: 16px;
+    max-width: 70%;
+  }
+  .events-grid.list-view .event-card { flex-direction: row; height: 180px; }
+  .events-grid.list-view .event-media { width: 300px; height: 100%; border-right: 1px solid var(--border); flex-shrink: 0; }
+  .events-grid.list-view .event-body { justify-content: center; }
+
+  .event-card{
+    background:var(--panel);border:1px solid var(--border);border-radius:16px;
+    overflow:hidden;transition:.2s;display:flex;flex-direction:column;
+  }
+  .event-card:hover{
+    transform:translateY(-4px);
+    border-color:var(--purple);
+    box-shadow:0 10px 30px rgba(167,139,250,0.15);
+  }
+  .event-media{
+    position:relative;height:170px;
+    background-size:cover;background-position:center;
+    display:flex;flex-direction:column;justify-content:space-between;padding:12px;
+  }
+  .event-media::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(0,0,0,0.05), rgba(4,8,16,0.75));
+  }
+  .media-top,.media-bottom{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:flex-start;}
+  .tag-row{display:flex;gap:6px; flex-wrap: wrap;}
+  .tag{
+    font-size:10.5px;font-weight:800;padding:4px 9px;border-radius:20px;letter-spacing:0.3px;
+    backdrop-filter:blur(6px);
+  }
+  .tag.cat{background:rgba(8,14,26,0.75);color:#dbe3f5;border:1px solid rgba(255,255,255,0.12);}
+  .tag.featured{background:rgba(251,191,36,0.15);color:var(--gold);border:1px solid rgba(251,191,36,0.5);display:flex;align-items:center;gap:4px;}
+  .tag.registered{background:rgba(52,211,153,0.15);color:var(--green);border:1px solid rgba(52,211,153,0.5);display:flex;align-items:center;gap:4px;}
+  .tag.mode{background:rgba(96,165,250,0.15);color:#60a5fa;border:1px solid rgba(96,165,250,0.5);}
+
+  .price{
+    font-size:13px;font-weight:800;background:rgba(8,14,26,0.8);color:#fff;
+    padding:5px 10px;border-radius:20px;border:1px solid rgba(255,255,255,0.12);
+  }
+  .price.free{color:var(--green);}
+  .event-body{padding:16px; display:flex; flex-direction:column; flex:1;}
+  .event-title{font-size:15px;font-weight:700;margin:0 0 6px;}
+  .event-meta{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px;margin-bottom:8px;}
+  .event-org{font-size:12px; color:var(--cyan); margin-bottom: 12px; font-weight:600;}
+
+  .event-actions{display:flex;gap:8px; margin-top:auto;}
+  .btn-action {
+    flex:1;text-align:center;padding:9px 12px;border-radius:9px;
+    font-weight:800;font-size:12.5px;border:none;cursor:pointer;transition:.15s;
+  }
+  .btn-details{background:rgba(96,165,250,0.12);color:#60a5fa;border:1px solid rgba(96,165,250,0.4);}
+  .btn-details:hover{background:rgba(96,165,250,0.2);}
+  .btn-register{background:linear-gradient(135deg,#a78bfa,#22d3ee);color:#0c0620;}
+  .btn-register:hover{box-shadow:0 0 14px rgba(167,139,250,0.4);}
+  .btn-register.done{
+    background:rgba(52,211,153,0.12);color:var(--green);border:1px solid rgba(52,211,153,0.4);
+    box-shadow:none;cursor:default;
+  }
+  .btn-register.done:hover{box-shadow:none;}
+
+  .empty-state{
+    grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--muted);
+    border:1px dashed var(--border);border-radius:16px;
+  }
+
+  footer{ text-align:center;padding:24px;color:var(--muted);font-size:12px;border-top:1px solid var(--border-soft); }
+
+  ::selection{background:rgba(167,139,250,0.3);}
+
+  /* MODAL */
+  .modal-overlay{
+    display:none;position:fixed;inset:0;background:rgba(4,6,12,0.85);
+    backdrop-filter:blur(6px);z-index:100;align-items:center;justify-content:center;padding:20px;
+  }
+  .modal-overlay.open{display:flex;}
+  .modal{
+    background:var(--panel);border:1px solid var(--border);border-radius:16px;
+    padding:26px;width:100%;max-width:550px;max-height:90vh;overflow-y:auto;
+    box-shadow:0 20px 60px rgba(0,0,0,0.5);
+  }
+  .modal.large { max-width: 720px; }
+  .modal h3{margin:0 0 18px;font-size:18px; display:flex; justify-content:space-between; align-items:center;}
+  .field{margin-bottom:14px;}
+  .field label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:600;}
+  .field-row{display:flex;gap:10px;}
+  .field-row .field{flex:1;}
+  .modal-actions{display:flex;gap:10px;margin-top:20px;}
+  .btn-cancel{
+    flex:1;padding:11px;border-radius:9px;background:var(--panel-2);border:1px solid var(--border);
+    color:var(--muted);font-weight:700;font-size:13px;cursor:pointer;
+  }
+  .btn-cancel:hover{color:var(--text);}
+  .btn-sm { padding: 6px 12px; font-size: 12px; border-radius: 6px; flex: none; width: auto; }
+
+  /* CALENDAR VIEW (read-only) */
+  .calendar-wrap{
+    background:var(--panel-2);border:1px solid var(--border);border-radius:20px;
+    padding:24px;box-shadow:0 0 40px rgba(0,0,0,0.25);
+  }
+  .cal-header{
+    display:flex;align-items:center;justify-content:space-between;
+    margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--border-soft);
+    flex-wrap:wrap;gap:12px;
+  }
+  .cal-title{display:flex;align-items:center;gap:10px;font-size:19px;font-weight:800;}
+  .cal-nav{display:flex;align-items:center;gap:8px;}
+  .cal-nav-btn{
+    padding:8px 12px;border-radius:10px;background:var(--panel);border:1px solid var(--border);
+    color:var(--muted);cursor:pointer;font-weight:700;transition:.15s;
+  }
+  .cal-nav-btn:hover{border-color:var(--cyan);color:var(--cyan);}
+  .cal-nav-btn:disabled,.cal-nav-btn.disabled{ opacity:0.35;cursor:not-allowed;color:var(--muted);border-color:var(--border-soft); }
+  .cal-nav-btn:disabled:hover,.cal-nav-btn.disabled:hover{border-color:var(--border-soft);color:var(--muted);}
+  .cal-weekdays{
+    display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:8px;
+    text-align:center;font-size:11px;font-weight:800;letter-spacing:1px;color:var(--muted);
+  }
+  .cal-weekdays div{padding:8px 0;}
+  .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;}
+  .cal-cell{
+    min-height:100px;border-radius:12px;border:1px solid var(--border-soft);
+    background:rgba(255,255,255,0.015);padding:8px;display:flex;flex-direction:column;
+    justify-content:space-between;transition:.15s;cursor:default;
+  }
+  .cal-cell.empty{background:transparent;border:1px solid transparent;cursor:default;}
+  .cal-cell.has-events{
+    border-color:rgba(34,211,238,0.35);background:rgba(34,211,238,0.04);
+    box-shadow:0 0 14px rgba(34,211,238,0.06);cursor:pointer;
+  }
+  .cal-cell.has-events:hover{border-color:rgba(167,139,250,0.5);box-shadow:0 0 14px rgba(167,139,250,0.12);}
+  .cal-cell.past{opacity:0.55;filter:saturate(0.6);}
+  .cal-cell.past.has-events{opacity:0.8;filter:none;cursor:pointer;}
+  .cal-cell.today{border-color:rgba(52,211,153,0.5);box-shadow:0 0 14px rgba(52,211,153,0.12);}
+  .cal-cell.today .cal-daynum{color:var(--green);}
+  .cal-daynum{font-size:12px;font-weight:800;color:var(--muted);display:flex;justify-content:space-between;align-items:center;}
+  .cal-cell.has-events .cal-daynum{color:var(--cyan);}
+  .cal-dot{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 6px var(--cyan);}
+  .cal-events{display:flex;flex-direction:column;gap:4px;margin-top:6px;overflow-y:auto;max-height:56px;}
+  .cal-event-chip{
+    font-size:10px;font-weight:700;padding:3px 6px;border-radius:6px;
+    background:rgba(34,211,238,0.1);border:1px solid rgba(34,211,238,0.3);color:#a5f3fc;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;
+  }
+  .cal-event-chip:hover{border-color:var(--cyan);background:rgba(34,211,238,0.2);}
+
+  @media (max-width:900px){
+    .hero{padding:24px;}
+    .hero h1{font-size:32px;}
+    .search-wrapper{display:none;}
+    .events-grid.list-view { max-width: 100%; }
+    .events-grid.list-view .event-card { flex-direction: column; height: auto; }
+    .events-grid.list-view .event-media { width: 100%; height: 170px; border-right: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="brand">
+    <div class="brand-icon">✦</div>
+    <div class="brand-name">
+      <div class="brand-title">EventNest <span class="spa-badge">USER</span></div>
+      <div class="brand-sub">Next-Gen Event Ecosystem</div>
+    </div>
+  </div>
+
+  <div class="search-wrapper">
+    <div class="search-box">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input id="searchInput" placeholder="Search events, tags, hosts, or location" style="background:transparent;border:none;outline:none;color:var(--text);font-size:13px;width:100%;">
+    </div>
+  </div>
+
+  <div class="nav-actions">
+    <div class="view-toggles">
+      <button id="btnGrid" class="btn-toggle active" title="Grid View">⊞ Grid</button>
+      <button id="btnList" class="btn-toggle" title="List View">☰ List</button>
+      <button id="btnCalendar" class="btn-toggle" title="Calendar View">📅 Calendar</button>
+    </div>
+    <button class="btn-user-link" id="loginBtn">🔐 Login</button>
+  </div>
+</nav>
+
+<div class="hero-wrap">
+  <div class="hero">
+    <div class="hero-left">
+      <div class="pill">✦ Discover Upcoming Events</div>
+      <h1>DISCOVER &amp;<br><span class="grad-text">REGISTER FOR EVENTS</span></h1>
+      <p>Browse live events pulled straight from EventNest, filter by category or organizer, and register for the ones you don't want to miss.</p>
+      <button class="btn-create" id="browseBtn"><span class="btn-icon">↓</span> Browse Events</button>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon cyan">📅</div>
+        <div class="stat-num" id="statEvents">0</div>
+        <div class="stat-label">Live Events</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon green">🏢</div>
+        <div class="stat-num" id="statOrganizers">0</div>
+        <div class="stat-label">Organizers Hosting</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon purple">✦</div>
+        <div class="stat-num" id="statFeatured">0</div>
+        <div class="stat-label">Featured Picks</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="filter-section" id="filterSection">
+  <div class="filter-head">
+    <div class="filter-title">FILTER BY EVENT CATEGORY</div>
+    <div class="filter-status" id="filterStatus">Showing All Categories</div>
+  </div>
+  <div class="cat-row" id="catRow"></div>
+
+  <div class="filter-head" style="margin-top:18px;">
+    <div class="filter-title">FILTER BY ORGANIZER</div>
+    <select class="sort-select" id="sortSelect">
+      <option value="default">Sort: Soonest First</option>
+      <option value="price-asc">Price: Low to High</option>
+      <option value="price-desc">Price: High to Low</option>
+      <option value="title-asc">Title: A → Z</option>
+      <option value="title-desc">Title: Z → A</option>
+    </select>
+  </div>
+  <div class="cat-row" id="orgRow"></div>
+</div>
+
+<div class="events-section" id="eventsSection">
+  <div class="events-head">
+    <h2 id="eventsHeadTitle">Explore Upcoming Events <span class="count-badge" id="eventCount">0 Events Found</span></h2>
+    <p id="eventsHeadSubtitle">Discover experiences and register for the ones you like</p>
+  </div>
+  <div class="events-grid" id="eventsGrid"></div>
+
+  <!-- CALENDAR VIEW (read-only; hides the events grid when active) -->
+  <div class="calendar-wrap" id="calendarView" style="display:none;">
+    <div class="cal-header">
+      <div class="cal-title">📅 <span id="calMonthLabel">August 2026</span></div>
+      <div class="cal-nav">
+        <button class="cal-nav-btn" id="calPrev">‹ Prev</button>
+        <button class="cal-nav-btn" id="calToday">Today</button>
+        <button class="cal-nav-btn" id="calNext">Next ›</button>
+      </div>
+    </div>
+    <div class="cal-weekdays">
+      <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+    </div>
+    <div class="cal-grid" id="calGrid"></div>
+  </div>
+</div>
+
+<footer>EventNest — Next-Gen Event Ecosystem · User Portal</footer>
+
+<!-- EVENT DETAILS MODAL (read-only, includes Register action) -->
+<div class="modal-overlay" id="detailsModalOverlay">
+  <div class="modal large">
+    <h3>Event Details <button class="btn-cancel btn-sm" id="closeDetailsModal" style="width:auto; padding: 4px 10px;">Close</button></h3>
+    <div id="detailsBanner" style="height:160px;border-radius:12px;background-size:cover;background-position:center;margin-bottom:18px;border:1px solid var(--border);"></div>
+    <div class="tag-row" id="detailsTags" style="margin-bottom:16px;"></div>
+    <div class="field-row">
+      <div class="field">
+        <label>Event Title</label>
+        <div id="dTitle" style="font-weight:700;font-size:15px;"></div>
+      </div>
+      <div class="field">
+        <label>Organizer / Club</label>
+        <div id="dOrganizer" style="color:var(--cyan);font-weight:600;"></div>
+      </div>
+    </div>
+    <div class="field">
+      <label>Description</label>
+      <div id="dDescription" style="color:var(--muted);font-size:13px;line-height:1.5;"></div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>Date</label>
+        <div id="dDate"></div>
+      </div>
+      <div class="field">
+        <label>Time</label>
+        <div id="dTime"></div>
+      </div>
+      <div class="field">
+        <label>Venue / Mode</label>
+        <div id="dVenue"></div>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>Price</label>
+        <div id="dPrice"></div>
+      </div>
+      <div class="field">
+        <label>Slots Remaining</label>
+        <div id="dRegistration"></div>
+      </div>
+    </div>
+    <div class="field">
+      <label>Tags</label>
+      <div id="dTagsList" style="color:var(--muted);font-size:13px;"></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" id="detailsCloseBtn2">Close</button>
+      <button class="btn-action btn-register" id="detailsRegisterBtn" style="flex:1;">Register Now</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// Address of the shared Spring Boot backend (same one the admin console uses).
+const API_URL = "/api/events";
+
+// ---- Login button: sends the user to the admin console's login screen ----
+document.getElementById('loginBtn').addEventListener('click', () => {
+  window.location.href = 'admin.html';
+});
+
+document.getElementById('browseBtn').addEventListener('click', () => {
+  document.getElementById('filterSection').scrollIntoView({ behavior: 'smooth' });
+});
+
+// ---- Live event data (read-only) ----
+// Everything here comes straight from the database via /api/events.
+// Only PUBLISHED events are shown to users — DRAFT and COMPLETED events stay admin-only.
+let events = [];
+
+// Session-only "Register Now" toggle. There is no registration/attendee API yet,
+// so this is purely a local UI state that resets on refresh — no data is persisted
+// or sent to the backend, and no separate "My Registrations" view exists for it.
+let registeredIds = new Set();
+
+function formatMode(format) {
+  if (format === 'virtual') return { icon: '🌐', label: 'Online', cls: 'online' };
+  if (format === 'both') return { icon: '🌐📍', label: 'Hybrid', cls: 'hybrid' };
+  return { icon: '📍', label: 'In-Person', cls: 'inperson' };
+}
+
+const catColors = {
+  Tech:"radial-gradient(circle at 30% 30%, #22d3ee, #0a1930)",
+  Gaming:"radial-gradient(circle at 70% 40%, #0ea5e9, #0f172a)",
+  Workshop:"radial-gradient(circle at 40% 60%, #fbbf24, #2a1e05)",
+  Hackathon:"radial-gradient(circle at 40% 60%, #a78bfa, #1e1033)"
+};
+const defaultCatGradient = "radial-gradient(circle at 40% 60%, #67e8f9, #0f172a)";
+function getCatBg(cat){ return catColors[cat] || defaultCatGradient; }
+
+// Map a backend Event -> the shape this page renders, keeping only PUBLISHED events
+// and only the fields relevant to someone deciding whether to register.
+function mapServerEventToUser(serverEv) {
+  const date = serverEv.date || '';
+  const time = serverEv.startTime || '';
+  const mode = formatMode(serverEv.format);
+  const dateLabel = date ? new Date(date + 'T00:00:00').toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }) : 'TBD';
+  const locationText = serverEv.format === 'virtual' ? (serverEv.streamLink || 'Online') : (serverEv.venue || 'TBD');
+  return {
+    id: serverEv.id,
+    title: serverEv.title || 'Untitled event',
+    cat: serverEv.category || 'General',
+    organizerName: serverEv.organizerName || 'Unknown Organizer',
+    date, time,
+    dateLabel,
+    venue: serverEv.venue || '',
+    format: serverEv.format || 'inperson',
+    mode,
+    streamLink: serverEv.streamLink || '',
+    location: locationText,
+    price: serverEv.price || 0,
+    capacity: serverEv.totalSlots ?? 0,
+    registeredSlots: serverEv.registeredSlots ?? 0,
+    featured: !!serverEv.featured,
+    tags: serverEv.tags || [],
+    img: serverEv.imageUrl || '',
+    description: serverEv.description || '',
+    meta: `🕐 ${dateLabel}${time ? ' · ' + time : ''} · ${mode.icon} ${locationText}`
+  };
+}
+
+async function loadEvents() {
+  try {
+    const response = await fetch(API_URL);
+    if (!response.ok) throw new Error('Server responded with an error');
+    const serverEvents = await response.json();
+    events = serverEvents
+      .filter(e => (e.status || 'PUBLISHED') === 'PUBLISHED')
+      .map(mapServerEventToUser);
+    console.log(`✅ Backend connected (${API_URL}) — ${events.length} published event${events.length === 1 ? '' : 's'} loaded.`);
+  } catch (err) {
+    console.error(`❌ Backend NOT connected (${API_URL}) — is the Spring Boot server running?`, err);
+    events = [];
+  }
+  renderCatFilter();
+  renderOrgFilter();
+  renderEvents();
+  if (typeof renderCalendar === 'function') renderCalendar();
+}
+
+// ---- UI state ----
+const grid = document.getElementById('eventsGrid');
+let activeCat = 'All';
+let activeOrg = 'All';
+let searchTerm = '';
+let sortMode = 'default';
+
+// ---- Category & Organizer filters (built dynamically from live data) ----
+const catRow = document.getElementById('catRow');
+function renderCatFilter() {
+  const cats = ['All', ...new Set(events.map(e => e.cat))];
+  if (!cats.includes(activeCat)) activeCat = 'All';
+  catRow.innerHTML = cats.map(c =>
+    `<div class="cat-btn${activeCat === c ? ' active' : ''}" data-cat="${c}">${c === 'All' ? '✦' : '⚙'} ${c}</div>`
+  ).join('');
+}
+catRow.addEventListener('click', e => {
+  const btn = e.target.closest('.cat-btn');
+  if (!btn) return;
+  activeCat = btn.dataset.cat;
+  renderCatFilter();
+  renderEvents();
+});
+
+const orgRow = document.getElementById('orgRow');
+function renderOrgFilter() {
+  const orgs = [...new Set(events.map(e => e.organizerName).filter(Boolean))];
+  if (activeOrg !== 'All' && !orgs.includes(activeOrg)) activeOrg = 'All';
+  orgRow.innerHTML = `<div class="cat-btn${activeOrg === 'All' ? ' active' : ''}" data-org="All">✦ All Organizers</div>` +
+    orgs.map(o => `<div class="cat-btn${activeOrg === o ? ' active' : ''}" data-org="${o}">${o}</div>`).join('');
+}
+orgRow.addEventListener('click', e => {
+  const btn = e.target.closest('.cat-btn');
+  if (!btn) return;
+  activeOrg = btn.dataset.org;
+  renderOrgFilter();
+  renderEvents();
+});
+
+document.getElementById('searchInput').addEventListener('input', e => {
+  searchTerm = e.target.value.toLowerCase();
+  renderEvents();
+});
+document.getElementById('sortSelect').addEventListener('change', e => {
+  sortMode = e.target.value;
+  renderEvents();
+});
+
+function getFiltered() {
+  let list = events.filter(e => {
+    const matchCat = activeCat === 'All' || e.cat === activeCat;
+    const matchOrg = activeOrg === 'All' || e.organizerName === activeOrg;
+    const matchSearch = e.title.toLowerCase().includes(searchTerm)
+      || e.cat.toLowerCase().includes(searchTerm)
+      || e.organizerName.toLowerCase().includes(searchTerm)
+      || (e.venue || '').toLowerCase().includes(searchTerm);
+    return matchCat && matchOrg && matchSearch;
+  });
+  if (sortMode === 'price-asc') list.sort((a,b) => a.price - b.price);
+  else if (sortMode === 'price-desc') list.sort((a,b) => b.price - a.price);
+  else if (sortMode === 'title-asc') list.sort((a,b) => a.title.localeCompare(b.title));
+  else if (sortMode === 'title-desc') list.sort((a,b) => b.title.localeCompare(a.title));
+  else list.sort((a,b) => (a.date || '9999').localeCompare(b.date || '9999'));
+  return list;
+}
+
+function updateStats() {
+  document.getElementById('statEvents').textContent = events.length;
+  document.getElementById('statOrganizers').textContent = new Set(events.map(e => e.organizerName)).size;
+  document.getElementById('statFeatured').textContent = events.filter(e => e.featured).length;
+}
+
+function renderEvents() {
+  const filtered = getFiltered();
+  grid.innerHTML = '';
+  if (filtered.length === 0) {
+    grid.innerHTML = `<div class="empty-state">No events match right now. Try a different filter or check back soon.</div>`;
+  }
+
+  filtered.forEach(e => {
+    const isReg = registeredIds.has(e.id);
+    const slotsLeft = e.capacity - e.registeredSlots;
+    const bgImg = e.img ? `url(${e.img}), ${getCatBg(e.cat)}` : getCatBg(e.cat);
+
+    let tagsHtml = `<span class="tag cat">${e.cat.toUpperCase()}</span>`;
+    tagsHtml += `<span class="tag mode">${e.mode.icon} ${e.mode.label.toUpperCase()}</span>`;
+    if (e.featured) tagsHtml += `<span class="tag featured">✦ FEATURED</span>`;
+    if (isReg) tagsHtml += `<span class="tag registered">✓ REGISTERED</span>`;
+    if (slotsLeft <= 0) tagsHtml += `<span class="tag" style="background:var(--red); color:#fff">SOLD OUT</span>`;
+
+    const card = document.createElement('div');
+    card.className = 'event-card';
+    card.innerHTML = `
+      <div class="event-media" style="background-image:${bgImg}">
+        <div class="media-top">
+          <div class="tag-row">${tagsHtml}</div>
+          <span class="price ${e.price === 0 ? 'free' : ''}">${e.price === 0 ? 'FREE' : '₹' + e.price.toFixed(2)}</span>
+        </div>
+      </div>
+      <div class="event-body">
+        <div class="event-title">${e.title}</div>
+        <div class="event-org">Hosted by: ${e.organizerName}</div>
+        <div class="event-meta">${e.meta}</div>
+        <div class="event-actions">
+          <button class="btn-action btn-details" data-id="${e.id}">ℹ Details</button>
+          <button class="btn-action btn-register ${isReg ? 'done' : ''}" data-id="${e.id}" ${slotsLeft <= 0 && !isReg ? 'disabled' : ''}>${isReg ? '✓ Registered' : (slotsLeft <= 0 ? 'Sold Out' : 'Register Now')}</button>
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+
+  document.getElementById('eventCount').textContent = `${filtered.length} Event${filtered.length !== 1 ? 's' : ''} Found`;
+  const catLabel = activeCat === 'All' ? null : activeCat;
+  const orgLabel = activeOrg === 'All' ? null : activeOrg;
+  const statusEl = document.getElementById('filterStatus');
+  statusEl.textContent = (!catLabel && !orgLabel) ? 'Showing All Categories' : `Filtered by: ${[catLabel, orgLabel].filter(Boolean).join(' · ')}`;
+  updateStats();
+}
+
+// Register Now / Details click delegate — shared between Grid and List views (same DOM).
+grid.addEventListener('click', e => {
+  const detailsBtn = e.target.closest('.btn-details');
+  const registerBtn = e.target.closest('.btn-register');
+  if (detailsBtn) return openDetailsModal(detailsBtn.dataset.id);
+  if (registerBtn && !registerBtn.disabled) {
+    const id = registerBtn.dataset.id;
+    if (registeredIds.has(id)) registeredIds.delete(id); else registeredIds.add(id);
+    renderEvents();
+  }
+});
+
+// ---- Details Modal (read-only, with Register action) ----
+const detailsOverlay = document.getElementById('detailsModalOverlay');
+let detailsEventId = null;
+function openDetailsModal(id) {
+  const e = events.find(ev => ev.id === id);
+  if (!e) return;
+  detailsEventId = id;
+
+  const bgImg = e.img ? `url(${e.img}), ${getCatBg(e.cat)}` : getCatBg(e.cat);
+  document.getElementById('detailsBanner').style.backgroundImage = bgImg;
+
+  let tagsHtml = `<span class="tag cat">${e.cat.toUpperCase()}</span>`;
+  tagsHtml += `<span class="tag mode">${e.mode.icon} ${e.mode.label.toUpperCase()}</span>`;
+  if (e.featured) tagsHtml += `<span class="tag featured">✦ FEATURED</span>`;
+  document.getElementById('detailsTags').innerHTML = tagsHtml;
+
+  document.getElementById('dTitle').textContent = e.title;
+  document.getElementById('dOrganizer').textContent = e.organizerName;
+  document.getElementById('dDescription').textContent = e.description || '— No description provided —';
+  document.getElementById('dDate').textContent = e.date ? new Date(e.date + 'T00:00:00').toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) : 'TBD';
+  document.getElementById('dTime').textContent = e.time || 'TBD';
+  document.getElementById('dVenue').textContent = `${e.mode.label} — ${e.location}`;
+  document.getElementById('dPrice').textContent = e.price === 0 ? 'FREE' : `₹${Number(e.price).toFixed(2)}`;
+  const slotsLeft = e.capacity - e.registeredSlots;
+  document.getElementById('dRegistration').textContent = slotsLeft > 0 ? `${slotsLeft} of ${e.capacity} left` : 'Sold Out';
+  document.getElementById('dTagsList').textContent = (e.tags && e.tags.length) ? e.tags.join(', ') : '— None —';
+
+  const isReg = registeredIds.has(id);
+  const regBtn = document.getElementById('detailsRegisterBtn');
+  regBtn.textContent = isReg ? '✓ Registered' : (slotsLeft <= 0 ? 'Sold Out' : 'Register Now');
+  regBtn.disabled = slotsLeft <= 0 && !isReg;
+  regBtn.className = 'btn-action btn-register' + (isReg ? ' done' : '');
+
+  detailsOverlay.classList.add('open');
+}
+document.getElementById('closeDetailsModal').addEventListener('click', () => detailsOverlay.classList.remove('open'));
+document.getElementById('detailsCloseBtn2').addEventListener('click', () => detailsOverlay.classList.remove('open'));
+document.getElementById('detailsRegisterBtn').addEventListener('click', () => {
+  if (!detailsEventId) return;
+  if (registeredIds.has(detailsEventId)) registeredIds.delete(detailsEventId); else registeredIds.add(detailsEventId);
+  renderEvents();
+  openDetailsModal(detailsEventId); // refresh modal state
+});
+
+// ---- View Toggles (Grid / List / Calendar) ----
+const btnGrid = document.getElementById('btnGrid');
+const btnList = document.getElementById('btnList');
+const eventsGrid = document.getElementById('eventsGrid');
+const btnCalendar = document.getElementById('btnCalendar');
+const calendarView = document.getElementById('calendarView');
+const filterSection = document.getElementById('filterSection');
+const calGrid = document.getElementById('calGrid');
+const calMonthLabel = document.getElementById('calMonthLabel');
+const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+let calDate = new Date();
+
+const eventsHeadTitle = document.getElementById('eventsHeadTitle');
+const eventsHeadSubtitle = document.getElementById('eventsHeadSubtitle');
+function setEventsHeading(mode){
+  if (mode === 'calendar') {
+    eventsHeadTitle.innerHTML = 'Event Schedule Calendar <span class="count-badge" id="eventCount">0 Events Found</span>';
+    eventsHeadSubtitle.textContent = 'Browse events by date — click a day to see what\'s on';
+  } else {
+    eventsHeadTitle.innerHTML = 'Explore Upcoming Events <span class="count-badge" id="eventCount">0 Events Found</span>';
+    eventsHeadSubtitle.textContent = 'Discover experiences and register for the ones you like';
+  }
+}
+
+function showGridOrList(active){
+  const alreadyOn = (active==='grid' && btnGrid.classList.contains('active') && eventsGrid.style.display !== 'none')
+    || (active==='list' && btnList.classList.contains('active') && eventsGrid.style.display !== 'none');
+  if (alreadyOn) return;
+
+  calendarView.style.display = 'none';
+  filterSection.style.display = '';
+  eventsGrid.style.display = '';
+  eventsGrid.style.opacity = 0;
+
+  setEventsHeading('browse');
+  renderEvents();
+
+  setTimeout(() => {
+    eventsGrid.classList.toggle('list-view', active === 'list');
+    btnGrid.classList.toggle('active', active==='grid');
+    btnList.classList.toggle('active', active==='list');
+    btnCalendar.classList.remove('active');
+    eventsGrid.style.opacity = 1;
+  }, 250);
+}
+btnGrid.addEventListener('click', () => showGridOrList('grid'));
+btnList.addEventListener('click', () => showGridOrList('list'));
+
+btnCalendar.addEventListener('click', () => {
+  if (!btnCalendar.classList.contains('active')) {
+    btnCalendar.classList.add('active');
+    btnGrid.classList.remove('active');
+    btnList.classList.remove('active');
+    eventsGrid.style.display = 'none';
+    calendarView.style.display = 'block';
+    filterSection.style.display = 'none';
+    setEventsHeading('calendar');
+    renderCalendar();
+  }
+});
+
+document.getElementById('calPrev').addEventListener('click', () => { calDate = new Date(calDate.getFullYear(), calDate.getMonth()-1, 1); renderCalendar(); });
+document.getElementById('calNext').addEventListener('click', () => { calDate = new Date(calDate.getFullYear(), calDate.getMonth()+1, 1); renderCalendar(); });
+document.getElementById('calToday').addEventListener('click', () => { calDate = new Date(); renderCalendar(); });
+
+function getEventsForDay(dateStr){
+  return events.filter(e => e.date === dateStr && (activeCat==='All' || e.cat===activeCat));
+}
+
+// Read-only calendar: shows events per day, no create/edit affordances.
+function renderCalendar(){
+  const year = calDate.getFullYear(), month = calDate.getMonth();
+  const todayMidnight = new Date();
+  todayMidnight.setHours(0,0,0,0);
+  calMonthLabel.textContent = `${monthNames[month]} ${year}`;
+  const daysInMonth = new Date(year, month+1, 0).getDate();
+  const firstDayOfWeek = new Date(year, month, 1).getDay();
+
+  calGrid.innerHTML = '';
+  for (let i=0; i<firstDayOfWeek; i++){
+    const empty = document.createElement('div');
+    empty.className = 'cal-cell empty';
+    calGrid.appendChild(empty);
+  }
+
+  for (let day=1; day<=daysInMonth; day++){
+    const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+    const dayEvents = getEventsForDay(dateStr);
+    const cellDate = new Date(year, month, day);
+    cellDate.setHours(0,0,0,0);
+    const isPast = cellDate.getTime() < todayMidnight.getTime();
+    const isToday = cellDate.getTime() === todayMidnight.getTime();
+    const cell = document.createElement('div');
+    cell.className = 'cal-cell'
+      + (dayEvents.length ? ' has-events' : '')
+      + (isPast ? ' past' : '')
+      + (isToday ? ' today' : '');
+    cell.dataset.date = dateStr;
+    cell.innerHTML = `
+      <div class="cal-daynum"><span>${day}</span>${dayEvents.length ? '<span class="cal-dot"></span>' : ''}</div>
+      <div class="cal-events">
+        ${dayEvents.map(e => `<div class="cal-event-chip" data-id="${e.id}" title="${e.title}">${e.title}</div>`).join('')}
+      </div>
+    `;
+    calGrid.appendChild(cell);
+  }
+}
+
+calGrid.addEventListener('click', e => {
+  const chip = e.target.closest('.cal-event-chip');
+  if (chip) { openDetailsModal(chip.dataset.id); return; }
+  const cell = e.target.closest('.cal-cell.has-events');
+  if (!cell || !cell.dataset.date) return;
+  const dayEvents = getEventsForDay(cell.dataset.date);
+  if (dayEvents.length) openDetailsModal(dayEvents[0].id);
+});
+
+// Close modal on background click
+document.querySelectorAll('.modal-overlay').forEach(ov => {
+  ov.addEventListener('click', e => { if (e.target === ov) ov.classList.remove('open'); });
+});
+
+renderCatFilter();
+renderOrgFilter();
+loadEvents(); // no login wall on this page — this simply loads on every visit/refresh
+</script>
+</body>
+</html>
