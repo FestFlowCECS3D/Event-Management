@@ -38,6 +38,7 @@ public class Event {
 
     private String format;        // virtual, inperson, both
     private String streamLink;    // Used when format is virtual/both
+    private String platform;      // Streaming platform (YouTube, Google Meet, Zoom...), used when format is virtual/both
 
     @Lob
     @Column(name = "image_url")
@@ -131,6 +132,12 @@ public class Event {
 
     public String getStreamLink() { return streamLink; }
     public void setStreamLink(String streamLink) { this.streamLink = streamLink; }
+
+    public String getPlatform() { return platform; }
+    public void setPlatform(String platform) { this.platform = platform; }
+
+    public String getPlatform() { return platform; }
+    public void setPlatform(String platform) { this.platform = platform; }
 
     public String getImageUrl() { return imageUrl; }
     public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
