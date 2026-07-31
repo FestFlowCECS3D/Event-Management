@@ -72,6 +72,7 @@ public class EventController {
                     existing.setOrganizerName(updatedEvent.getOrganizerName());
                     existing.setFormat(updatedEvent.getFormat());
                     existing.setStreamLink(updatedEvent.getStreamLink());
+                    existing.setPlatform(updatedEvent.getPlatform());
                     existing.setImageUrl(updatedEvent.getImageUrl());
                     Event saved = eventRepository.save(existing);
                     return ResponseEntity.ok(saved);
