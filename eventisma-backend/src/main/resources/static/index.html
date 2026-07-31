@@ -1,372 +1,421 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>EventNest — User Portal</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-  :root{
-    --bg:#070b14;
-    --panel:#0c1220;
-    --panel-2:#0e1526;
-    --border:#1c2740;
-    --border-soft:#161f34;
-    --text:#eef2ff;
-    --muted:#8a93ab;
-    --cyan:#22d3ee;
-    --purple:#a78bfa;
-    --green:#34d399;
-    --gold:#fbbf24;
-    --pink:#e879f9;
-    --red:#f87171;
-  }
-  *{box-sizing:border-box;}
-  body{
-    margin:0;
-    background:
-      radial-gradient(circle at 15% 0%, rgba(167,139,250,0.07), transparent 40%),
-      radial-gradient(circle at 85% 10%, rgba(34,211,238,0.06), transparent 40%),
-      var(--bg);
-    color:var(--text);
-    font-family:'Segoe UI', system-ui, -apple-system, sans-serif;
-    min-height:100vh;
-  }
-  a{color:inherit;text-decoration:none;}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EventNest — User Portal</title>
+  <style>
+    :root{
+      --bg:#070b14;
+      --panel:#0c1220;
+      --panel-2:#0e1526;
+      --border:#1c2740;
+      --border-soft:#161f34;
+      --text:#eef2ff;
+      --muted:#8a93ab;
+      --cyan:#22d3ee;
+      --purple:#a78bfa;
+      --green:#34d399;
+      --gold:#fbbf24;
+      --pink:#e879f9;
+      --red:#f87171;
+    }
+    *{box-sizing:border-box;}
+    body{
+      margin:0;
+      background:
+        radial-gradient(circle at 15% 0%, rgba(167,139,250,0.07), transparent 40%),
+        radial-gradient(circle at 85% 10%, rgba(34,211,238,0.06), transparent 40%),
+        var(--bg);
+      color:var(--text);
+      font-family:'Segoe UI', system-ui, -apple-system, sans-serif;
+      min-height:100vh;
+    }
+    a{color:inherit;text-decoration:none;}
 
-  /* NAVBAR */
-  .navbar{
-    display:flex;align-items:center;justify-content:space-between;
-    padding:14px 32px;
-    border-bottom:1px solid rgba(34,211,238,0.2);
-    background:rgba(2,6,23,0.8);
-    backdrop-filter:blur(20px);
-    position:sticky;top:0;z-index:50;
-    flex-wrap:wrap;gap:12px;
-    box-shadow:0 4px 30px rgba(34,211,238,0.05);
-  }
-  .brand{display:flex;align-items:center;gap:12px; z-index: 2;}
-  .brand-icon{
-    width:38px;height:38px;border-radius:11px;
-    background:linear-gradient(135deg,#0c1220,#0a1830);
-    border:1px solid transparent;
-    background-image:linear-gradient(#0c1220,#0a1830), linear-gradient(135deg,#22d3ee,#2563eb,#d946ef);
-    background-origin:border-box;background-clip:padding-box, border-box;
-    display:flex;align-items:center;justify-content:center;
-    color:var(--cyan);font-size:18px;
-    box-shadow:0 0 15px rgba(34,211,238,0.4);
-    transition:box-shadow .3s;
-  }
-  .brand:hover .brand-icon{box-shadow:0 0 25px rgba(34,211,238,0.7);}
-  .brand-name{display:flex;flex-direction:column;line-height:1.15;}
-  .brand-title{display:flex;align-items:center;gap:8px;font-weight:800;font-size:20px;letter-spacing:0.5px;
-    background:linear-gradient(90deg,#22d3ee,#5eead4,#e879f9);
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-  }
-  .spa-badge{
-    font-size:10px;font-weight:700;color:var(--cyan);
-    background:rgba(34,211,238,0.1);border:1px solid rgba(34,211,238,0.4);
-    padding:2px 8px;border-radius:20px;letter-spacing:0.4px;
-    display:flex;align-items:center;gap:4px;
-    box-shadow:0 0 10px rgba(34,211,238,0.2);
-  }
-  .spa-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 6px var(--cyan);}
-  .brand-sub{font-size:11px;color:var(--muted);font-weight:500;letter-spacing:0.3px;}
+    /* NAVBAR */
+    .navbar{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:14px 32px;
+      border-bottom:1px solid rgba(34,211,238,0.2);
+      background:rgba(2,6,23,0.8);
+      backdrop-filter:blur(20px);
+      position:sticky;top:0;z-index:50;
+      flex-wrap:wrap;gap:12px;
+      box-shadow:0 4px 30px rgba(34,211,238,0.05);
+    }
+    .brand{display:flex;align-items:center;gap:12px; z-index: 2;}
+    .brand-icon{
+      width:38px;height:38px;border-radius:11px;
+      background:linear-gradient(135deg,#0c1220,#0a1830);
+      border:1px solid transparent;
+      background-image:linear-gradient(#0c1220,#0a1830), linear-gradient(135deg,#22d3ee,#2563eb,#d946ef);
+      background-origin:border-box;background-clip:padding-box, border-box;
+      display:flex;align-items:center;justify-content:center;
+      color:var(--cyan);font-size:18px;
+      box-shadow:0 0 15px rgba(34,211,238,0.4);
+      transition:box-shadow .3s;
+    }
+    .brand:hover .brand-icon{box-shadow:0 0 25px rgba(34,211,238,0.7);}
+    .brand-name{display:flex;flex-direction:column;line-height:1.15;}
+    .brand-title{display:flex;align-items:center;gap:8px;font-weight:800;font-size:20px;letter-spacing:0.5px;
+      background:linear-gradient(90deg,#22d3ee,#5eead4,#e879f9);
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+    }
+    .spa-badge{
+      font-size:10px;font-weight:700;color:var(--cyan);
+      background:rgba(34,211,238,0.1);border:1px solid rgba(34,211,238,0.4);
+      padding:2px 8px;border-radius:20px;letter-spacing:0.4px;
+      display:flex;align-items:center;gap:4px;
+      box-shadow:0 0 10px rgba(34,211,238,0.2);
+    }
+    .spa-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 6px var(--cyan);}
+    .brand-sub{font-size:11px;color:var(--muted);font-weight:500;letter-spacing:0.3px;}
 
-  .search-wrapper { flex: 1; display: flex; justify-content: center; padding: 0 20px; }
-  .search-box{
-    display:flex;align-items:center;gap:8px;
-    background:rgba(15,23,42,0.9);
-    border:1px solid #1e293b;
-    border-radius:10px;
-    padding:9px 14px;
-    width:100%;
-    max-width:500px;
-    color:var(--muted);
-    font-size:13px;
-    transition:border-color .2s, box-shadow .2s;
-  }
-  .search-box:focus-within{border-color:rgba(34,211,238,0.8);box-shadow:0 0 15px rgba(34,211,238,0.2);}
-  .search-box svg{flex-shrink:0;opacity:0.7;}
+    .search-wrapper { flex: 1; display: flex; justify-content: center; padding: 0 20px; }
+    .search-box{
+      display:flex;align-items:center;gap:8px;
+      background:rgba(15,23,42,0.9);
+      border:1px solid #1e293b;
+      border-radius:10px;
+      padding:9px 14px;
+      width:100%;
+      max-width:500px;
+      color:var(--muted);
+      font-size:13px;
+      transition:border-color .2s, box-shadow .2s;
+    }
+    .search-box:focus-within{border-color:rgba(34,211,238,0.8);box-shadow:0 0 15px rgba(34,211,238,0.2);}
+    .search-box svg{flex-shrink:0;opacity:0.7;}
 
-  .nav-actions { display: flex; gap: 10px; align-items: center; z-index: 2; }
+    .nav-actions { display: flex; gap: 10px; align-items: center; z-index: 2; }
 
-  .view-toggles {
-    display: flex; gap: 4px; background: rgba(15,23,42,0.9);
-    padding: 4px; border-radius: 10px; border: 1px solid #1e293b;
-  }
-  .btn-toggle {
-    background: transparent; color: var(--muted); border: none; font-weight: 700; font-size: 13px;
-    border-radius: 6px; padding: 6px 12px; cursor: pointer; transition: 0.15s; display: flex; align-items: center; gap: 6px;
-  }
-  .btn-toggle:hover{color:#e2e8f0;}
-  .btn-toggle.active {
-    background: rgba(34,211,238,0.2); color: #67e8f9; box-shadow: 0 0 10px rgba(34,211,238,0.2); border: 1px solid rgba(34,211,238,0.5);
-  }
+    .view-toggles {
+      display: flex; gap: 4px; background: rgba(15,23,42,0.9);
+      padding: 4px; border-radius: 10px; border: 1px solid #1e293b;
+    }
+    .btn-toggle {
+      background: transparent; color: var(--muted); border: none; font-weight: 700; font-size: 13px;
+      border-radius: 6px; padding: 6px 12px; cursor: pointer; transition: 0.15s; display: flex; align-items: center; gap: 6px;
+    }
+    .btn-toggle:hover{color:#e2e8f0;}
+    .btn-toggle.active {
+      background: rgba(34,211,238,0.2); color: #67e8f9; box-shadow: 0 0 10px rgba(34,211,238,0.2); border: 1px solid rgba(34,211,238,0.5);
+    }
 
-  .btn-user-link{
-    display:flex;align-items:center;gap:8px;
-    padding:10px 16px;border-radius:10px;
-    background:rgba(15,23,42,0.9);border:1px solid #1e293b;
-    font-weight:700;font-size:12px;cursor:pointer;color:var(--cyan);
-    transition:.15s;
-  }
-  .btn-user-link:hover{border-color:rgba(34,211,238,0.5);background:#0f172a;}
+    .btn-user-link{
+      display:flex;align-items:center;gap:8px;
+      padding:10px 16px;border-radius:10px;
+      background:rgba(15,23,42,0.9);border:1px solid #1e293b;
+      font-weight:700;font-size:12px;cursor:pointer;color:var(--cyan);
+      transition:.15s;
+    }
+    .btn-user-link:hover{border-color:rgba(34,211,238,0.5);background:#0f172a;}
 
-  .btn-icon{font-size:1em;font-weight:800;line-height:1;display:inline-flex;align-items:center;justify-content:center;}
+    .btn-icon{font-size:1em;font-weight:800;line-height:1;display:inline-flex;align-items:center;justify-content:center;}
 
-  /* HERO */
-  .hero-wrap{padding:28px 32px 0;}
-  .hero{
-    border:1px solid var(--border);
-    border-radius:18px;
-    background:
-      radial-gradient(circle at 20% 20%, rgba(167,139,250,0.09), transparent 45%),
-      radial-gradient(circle at 80% 80%, rgba(34,211,238,0.06), transparent 45%),
-      var(--panel);
-    padding:36px;
-    display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap;
-  }
-  .hero-left{flex:1;min-width:320px;}
-  .pill{
-    display:inline-flex;align-items:center;gap:8px;
-    font-size:12px;font-weight:700;color:var(--purple);
-    background:rgba(167,139,250,0.08);border:1px solid rgba(167,139,250,0.35);
-    padding:6px 14px;border-radius:20px;margin-bottom:20px;
-  }
-  .hero h1{ font-size:42px;line-height:1.15;margin:0 0 18px;font-weight:900;letter-spacing:-0.5px; }
-  .grad-text{
-    background:linear-gradient(90deg,var(--purple),var(--cyan));
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-  }
-  .hero p{color:var(--muted);font-size:15px;max-width:520px;line-height:1.6;margin:0 0 26px;}
-  .btn-create{
-    display:inline-flex;align-items:center;gap:10px;
-    background:linear-gradient(135deg,#a78bfa,#22d3ee);
-    color:#0c0620;font-weight:800;font-size:14px;
-    border:none;padding:14px 24px;border-radius:12px;cursor:pointer;
-    box-shadow:0 0 24px rgba(167,139,250,0.3);
-    transition:.15s;
-  }
-  .btn-create:hover{transform:translateY(-2px);box-shadow:0 0 30px rgba(167,139,250,0.45);}
-  .stats-grid{
-    align-items: center;
-    display:grid;grid-template-columns:repeat(3, 1fr);gap:14px;
-    width:100%;max-width:500px;
-  }
-  .stat-card{
-    background:var(--panel-2);border:1px solid var(--border);
-    border-radius:14px;padding:18px;
-    transition:.15s;cursor:default;
-    height:50%;
-  }
-  .stat-card:hover{border-color:var(--purple);transform:translateY(-2px);}
-  .stat-icon{
-    width:34px;height:34px;border-radius:9px;
-    display:flex;align-items:center;justify-content:center;margin-bottom:14px;
-    font-size:15px;
-  }
-  .stat-icon.cyan{background:rgba(34,211,238,0.12);color:var(--cyan);}
-  .stat-icon.green{background:rgba(52,211,153,0.12);color:var(--green);}
-  .stat-icon.purple{background:rgba(167,139,250,0.12);color:var(--purple);}
-  .stat-num{font-size:24px;font-weight:800;margin-bottom:2px;}
-  .stat-label{font-size:12px;color:var(--muted);}
+    /* HERO */
+    .hero-wrap{padding:28px 32px 0;}
+    .hero{
+      border:1px solid var(--border);
+      border-radius:18px;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(167,139,250,0.09), transparent 45%),
+        radial-gradient(circle at 80% 80%, rgba(34,211,238,0.06), transparent 45%),
+        var(--panel);
+      padding:36px;
+      display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap;
+    }
+    .hero-left{flex:1;min-width:320px;}
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      font-size:12px;font-weight:700;color:var(--purple);
+      background:rgba(167,139,250,0.08);border:1px solid rgba(167,139,250,0.35);
+      padding:6px 14px;border-radius:20px;margin-bottom:20px;
+    }
+    .hero h1{ font-size:42px;line-height:1.15;margin:0 0 18px;font-weight:900;letter-spacing:-0.5px; }
+    .grad-text{
+      background:linear-gradient(90deg,var(--purple),var(--cyan));
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+    }
+    .hero p{color:var(--muted);font-size:15px;max-width:520px;line-height:1.6;margin:0 0 26px;}
+    .btn-create{
+      display:inline-flex;align-items:center;gap:10px;
+      background:linear-gradient(135deg,#a78bfa,#22d3ee);
+      color:#0c0620;font-weight:800;font-size:14px;
+      border:none;padding:14px 24px;border-radius:12px;cursor:pointer;
+      box-shadow:0 0 24px rgba(167,139,250,0.3);
+      transition:.15s;
+    }
+    .btn-create:hover{transform:translateY(-2px);box-shadow:0 0 30px rgba(167,139,250,0.45);}
+    .stats-grid{
+      align-items: center;
+      display:grid;grid-template-columns:repeat(3, 1fr);gap:14px;
+      width:100%;max-width:500px;
+    }
+    .stat-card{
+      background:var(--panel-2);border:1px solid var(--border);
+      border-radius:14px;padding:18px;
+      transition:.15s;cursor:default;
+      height:50%;
+    }
+    .stat-card:hover{border-color:var(--purple);transform:translateY(-2px);}
+    .stat-icon{
+      width:34px;height:34px;border-radius:9px;
+      display:flex;align-items:center;justify-content:center;margin-bottom:14px;
+      font-size:15px;
+    }
+    .stat-icon.cyan{background:rgba(34,211,238,0.12);color:var(--cyan);}
+    .stat-icon.green{background:rgba(52,211,153,0.12);color:var(--green);}
+    .stat-icon.purple{background:rgba(167,139,250,0.12);color:var(--purple);}
+    .stat-num{font-size:24px;font-weight:800;margin-bottom:2px;}
+    .stat-label{font-size:12px;color:var(--muted);}
 
-  /* CATEGORY / ORGANIZER FILTER */
-  .filter-section{padding:34px 32px 0;}
-  .filter-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px;}
-  .filter-title{font-size:12px;font-weight:800;letter-spacing:1.5px;color:var(--muted);}
-  .filter-status{font-size:12px;color:var(--purple);font-weight:600;}
-  .cat-row{display:flex;gap:10px;flex-wrap:wrap;}
-  .cat-btn{
-    display:flex;align-items:center;gap:7px;
-    padding:9px 16px;border-radius:10px;
-    background:var(--panel);border:1px solid var(--border);
-    color:var(--muted);font-size:13px;font-weight:600;cursor:pointer;
-    transition:.15s;
-  }
-  .cat-btn:hover{color:var(--text);border-color:#2a3859;}
-  .cat-btn.active{
-    background:rgba(167,139,250,0.1);color:var(--purple);border-color:var(--purple);
-    box-shadow:0 0 14px rgba(167,139,250,0.15);
-  }
-  .sort-select{
-    background:var(--panel);border:1px solid var(--border);color:var(--text);
-    font-size:13px;font-weight:600;padding:9px 14px;border-radius:10px;cursor:pointer;outline:none;
-  }
-  .sort-select:focus{border-color:var(--purple);}
+    /* CATEGORY / ORGANIZER FILTER */
+    .filter-section{padding:34px 32px 0;}
+    .filter-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px;}
+    .filter-title{font-size:12px;font-weight:800;letter-spacing:1.5px;color:var(--muted);}
+    .filter-status{font-size:12px;color:var(--purple);font-weight:600;}
+    .cat-row{display:flex;gap:10px;flex-wrap:wrap;}
+    .cat-btn{
+      display:flex;align-items:center;gap:7px;
+      padding:9px 16px;border-radius:10px;
+      background:var(--panel);border:1px solid var(--border);
+      color:var(--muted);font-size:13px;font-weight:600;cursor:pointer;
+      transition:.15s;
+    }
+    .cat-btn:hover{color:var(--text);border-color:#2a3859;}
+    .cat-btn.active{
+      background:rgba(167,139,250,0.1);color:var(--purple);border-color:var(--purple);
+      box-shadow:0 0 14px rgba(167,139,250,0.15);
+    }
+    .sort-select{
+      background:var(--panel);border:1px solid var(--border);color:var(--text);
+      font-size:13px;font-weight:600;padding:9px 14px;border-radius:10px;cursor:pointer;outline:none;
+    }
+    .sort-select:focus{border-color:var(--purple);}
 
-  /* EVENTS */
-  .events-section{padding:34px 32px 60px;}
-  .events-head{margin-bottom:20px;}
-  .events-head h2{ display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:22px;margin:0 0 6px; }
-  .count-badge{
-    font-size:12px;color:var(--purple);background:rgba(167,139,250,0.1);
-    border:1px solid rgba(167,139,250,0.35);padding:3px 10px;border-radius:20px;font-weight:700;
-  }
-  .events-head p{color:var(--muted);font-size:13px;margin:0;}
+    /* EVENTS */
+    .events-section{padding:34px 32px 60px;}
+    .events-head{margin-bottom:20px;}
+    .events-head h2{ display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:22px;margin:0 0 6px; }
+    .count-badge{
+      font-size:12px;color:var(--purple);background:rgba(167,139,250,0.1);
+      border:1px solid rgba(167,139,250,0.35);padding:3px 10px;border-radius:20px;font-weight:700;
+    }
+    .events-head p{color:var(--muted);font-size:13px;margin:0;}
 
-  .events-grid{
-    display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:22px;
-    transition: opacity 0.25s ease-in-out;
-    width: 100%;
-    margin: 0 auto;
-  }
-  .events-grid.list-view {
-    display: flex; flex-direction: column; gap: 16px;
-    max-width: 70%;
-  }
-  .events-grid.list-view .event-card { flex-direction: row; height: 180px; }
-  .events-grid.list-view .event-media { width: 300px; height: 100%; border-right: 1px solid var(--border); flex-shrink: 0; }
-  .events-grid.list-view .event-body { justify-content: center; }
+    .events-grid{
+      display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:22px;
+      transition: opacity 0.25s ease-in-out;
+      width: 100%;
+      margin: 0 auto;
+    }
+    .events-grid.list-view {
+      display: flex; flex-direction: column; gap: 16px;
+      max-width: 70%;
+    }
+    .events-grid.list-view .event-card { flex-direction: row; height: 180px; }
+    .events-grid.list-view .event-media { width: 300px; height: 100%; border-right: 1px solid var(--border); flex-shrink: 0; }
+    .events-grid.list-view .event-body { justify-content: center; }
 
-  .event-card{
-    background:var(--panel);border:1px solid var(--border);border-radius:16px;
-    overflow:hidden;transition:.2s;display:flex;flex-direction:column;
-  }
-  .event-card:hover{
-    transform:translateY(-4px);
-    border-color:var(--purple);
-    box-shadow:0 10px 30px rgba(167,139,250,0.15);
-  }
-  .event-media{
-    position:relative;height:170px;
-    background-size:cover;background-position:center;
-    display:flex;flex-direction:column;justify-content:space-between;padding:12px;
-  }
-  .event-media::after{
-    content:'';position:absolute;inset:0;
-    background:linear-gradient(180deg, rgba(0,0,0,0.05), rgba(4,8,16,0.75));
-  }
-  .media-top,.media-bottom{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:flex-start;}
-  .tag-row{display:flex;gap:6px; flex-wrap: wrap;}
-  .tag{
-    font-size:10.5px;font-weight:800;padding:4px 9px;border-radius:20px;letter-spacing:0.3px;
-    backdrop-filter:blur(6px);
-  }
-  .tag.cat{background:rgba(8,14,26,0.75);color:#dbe3f5;border:1px solid rgba(255,255,255,0.12);}
-  .tag.featured{background:rgba(251,191,36,0.15);color:var(--gold);border:1px solid rgba(251,191,36,0.5);display:flex;align-items:center;gap:4px;}
-  .tag.registered{background:rgba(52,211,153,0.15);color:var(--green);border:1px solid rgba(52,211,153,0.5);display:flex;align-items:center;gap:4px;}
-  .tag.mode{background:rgba(96,165,250,0.15);color:#60a5fa;border:1px solid rgba(96,165,250,0.5);}
+    .event-card{
+      background:var(--panel);border:1px solid var(--border);border-radius:16px;
+      overflow:hidden;transition:.2s;display:flex;flex-direction:column;
+    }
+    .event-card:hover{
+      transform:translateY(-4px);
+      border-color:var(--purple);
+      box-shadow:0 10px 30px rgba(167,139,250,0.15);
+    }
+    .event-media{
+      position:relative;height:170px;
+      background-size:cover;background-position:center;
+      display:flex;flex-direction:column;justify-content:space-between;padding:12px;
+    }
+    .event-media::after{
+      content:'';position:absolute;inset:0;
+      background:linear-gradient(180deg, rgba(0,0,0,0.05), rgba(4,8,16,0.75));
+    }
+    .media-top,.media-bottom{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:flex-start;}
+    .tag-row{display:flex;gap:6px; flex-wrap: wrap;}
+    .tag{
+      font-size:10.5px;font-weight:800;padding:4px 9px;border-radius:20px;letter-spacing:0.3px;
+      backdrop-filter:blur(6px);
+    }
+    .tag.cat{background:rgba(8,14,26,0.75);color:#dbe3f5;border:1px solid rgba(255,255,255,0.12);}
+    .tag.featured{background:rgba(251,191,36,0.15);color:var(--gold);border:1px solid rgba(251,191,36,0.5);display:flex;align-items:center;gap:4px;}
+    .tag.registered{background:rgba(52,211,153,0.15);color:var(--green);border:1px solid rgba(52,211,153,0.5);display:flex;align-items:center;gap:4px;}
+    .tag.mode{background:rgba(96,165,250,0.15);color:#60a5fa;border:1px solid rgba(96,165,250,0.5);}
 
-  .price{
-    font-size:13px;font-weight:800;background:rgba(8,14,26,0.8);color:#fff;
-    padding:5px 10px;border-radius:20px;border:1px solid rgba(255,255,255,0.12);
-  }
-  .price.free{color:var(--green);}
-  .event-body{padding:16px; display:flex; flex-direction:column; flex:1;}
-  .event-title{font-size:15px;font-weight:700;margin:0 0 6px;}
-  .event-meta{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px;margin-bottom:8px;}
-  .event-org{font-size:12px; color:var(--cyan); margin-bottom: 12px; font-weight:600;}
+    .price{
+      font-size:13px;font-weight:800;background:rgba(8,14,26,0.8);color:#fff;
+      padding:5px 10px;border-radius:20px;border:1px solid rgba(255,255,255,0.12);
+    }
+    .price.free{color:var(--green);}
+    .event-body{padding:16px; display:flex; flex-direction:column; flex:1;}
+    .event-title{font-size:15px;font-weight:700;margin:0 0 6px;}
+    .event-meta{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px;margin-bottom:8px;}
+    .event-org{font-size:12px; color:var(--cyan); margin-bottom: 12px; font-weight:600;}
+    .event-link-info {
+      font-size: 12px;
+      color: var(--gold);
+      background: rgba(251,191,36,0.1);
+      border-radius: 8px;
+      padding: 6px 10px;
+      margin-bottom: 12px;
+      border-left: 2px solid var(--gold);
+    }
+    .event-actions{display:flex;gap:8px; margin-top:auto;}
+    .btn-action {
+      flex:1;text-align:center;padding:9px 12px;border-radius:9px;
+      font-weight:800;font-size:12.5px;border:none;cursor:pointer;transition:.15s;
+    }
+    .btn-details{background:rgba(96,165,250,0.12);color:#60a5fa;border:1px solid rgba(96,165,250,0.4);}
+    .btn-details:hover{background:rgba(96,165,250,0.2);}
+    .btn-register{background:linear-gradient(135deg,#a78bfa,#22d3ee);color:#0c0620;}
+    .btn-register:hover{box-shadow:0 0 14px rgba(167,139,250,0.4);}
+    .btn-register.done{
+      background:rgba(52,211,153,0.12);color:var(--green);border:1px solid rgba(52,211,153,0.4);
+      box-shadow:none;cursor:default;
+    }
+    .btn-register.done:hover{box-shadow:none;}
 
-  .event-actions{display:flex;gap:8px; margin-top:auto;}
-  .btn-action {
-    flex:1;text-align:center;padding:9px 12px;border-radius:9px;
-    font-weight:800;font-size:12.5px;border:none;cursor:pointer;transition:.15s;
-  }
-  .btn-details{background:rgba(96,165,250,0.12);color:#60a5fa;border:1px solid rgba(96,165,250,0.4);}
-  .btn-details:hover{background:rgba(96,165,250,0.2);}
-  .btn-register{background:linear-gradient(135deg,#a78bfa,#22d3ee);color:#0c0620;}
-  .btn-register:hover{box-shadow:0 0 14px rgba(167,139,250,0.4);}
-  .btn-register.done{
-    background:rgba(52,211,153,0.12);color:var(--green);border:1px solid rgba(52,211,153,0.4);
-    box-shadow:none;cursor:default;
-  }
-  .btn-register.done:hover{box-shadow:none;}
+    .empty-state{
+      grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--muted);
+      border:1px dashed var(--border);border-radius:16px;
+    }
 
-  .empty-state{
-    grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--muted);
-    border:1px dashed var(--border);border-radius:16px;
-  }
+    footer{ text-align:center;padding:24px;color:var(--muted);font-size:12px;border-top:1px solid var(--border-soft); }
 
-  footer{ text-align:center;padding:24px;color:var(--muted);font-size:12px;border-top:1px solid var(--border-soft); }
+    ::selection{background:rgba(167,139,250,0.3);}
 
-  ::selection{background:rgba(167,139,250,0.3);}
+    /* MODAL */
+    .modal-overlay{
+      display:none;position:fixed;inset:0;background:rgba(4,6,12,0.85);
+      backdrop-filter:blur(6px);z-index:100;align-items:center;justify-content:center;padding:20px;
+    }
+    .modal-overlay.open{display:flex;}
+    .modal{
+      background:var(--panel);border:1px solid var(--border);border-radius:16px;
+      padding:26px;width:100%;max-width:550px;max-height:90vh;overflow-y:auto;
+      box-shadow:0 20px 60px rgba(0,0,0,0.5);
+    }
+    .modal.large { max-width: 720px; }
+    .modal h3{margin:0 0 18px;font-size:18px; display:flex; justify-content:space-between; align-items:center;}
+    .field{margin-bottom:14px;}
+    .field label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:600;}
+    .field-row{display:flex;gap:10px;}
+    .field-row .field{flex:1;}
+    .modal-actions{display:flex;gap:10px;margin-top:20px;}
+    .btn-cancel{
+      flex:1;padding:11px;border-radius:9px;background:var(--panel-2);border:1px solid var(--border);
+      color:var(--muted);font-weight:700;font-size:13px;cursor:pointer;
+    }
+    .btn-cancel:hover{color:var(--text);}
+    .btn-sm { padding: 6px 12px; font-size: 12px; border-radius: 6px; flex: none; width: auto; }
 
-  /* MODAL */
-  .modal-overlay{
-    display:none;position:fixed;inset:0;background:rgba(4,6,12,0.85);
-    backdrop-filter:blur(6px);z-index:100;align-items:center;justify-content:center;padding:20px;
-  }
-  .modal-overlay.open{display:flex;}
-  .modal{
-    background:var(--panel);border:1px solid var(--border);border-radius:16px;
-    padding:26px;width:100%;max-width:550px;max-height:90vh;overflow-y:auto;
-    box-shadow:0 20px 60px rgba(0,0,0,0.5);
-  }
-  .modal.large { max-width: 720px; }
-  .modal h3{margin:0 0 18px;font-size:18px; display:flex; justify-content:space-between; align-items:center;}
-  .field{margin-bottom:14px;}
-  .field label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:600;}
-  .field-row{display:flex;gap:10px;}
-  .field-row .field{flex:1;}
-  .modal-actions{display:flex;gap:10px;margin-top:20px;}
-  .btn-cancel{
-    flex:1;padding:11px;border-radius:9px;background:var(--panel-2);border:1px solid var(--border);
-    color:var(--muted);font-weight:700;font-size:13px;cursor:pointer;
-  }
-  .btn-cancel:hover{color:var(--text);}
-  .btn-sm { padding: 6px 12px; font-size: 12px; border-radius: 6px; flex: none; width: auto; }
+    /* TICKET STYLES */
+    .ticket {
+      background: #0c1220;
+      border: 1px solid var(--gold);
+      border-radius: 20px;
+      padding: 24px;
+      position: relative;
+      margin: 12px 0;
+      background: linear-gradient(145deg, #0e1526, #0a1220);
+      box-shadow: 0 0 30px rgba(251,191,36,0.15);
+    }
+    .ticket::before, .ticket::after {
+      content: '';
+      position: absolute;
+      top: 20px;
+      bottom: 20px;
+      width: 14px;
+      background: radial-gradient(circle at center, var(--bg) 60%, transparent 70%);
+      background-size: 14px 14px;
+      background-repeat: repeat-y;
+    }
+    .ticket::before { left: -7px; background-position: 0 0; }
+    .ticket::after { right: -7px; background-position: 0 0; }
+    .ticket-inner {
+      border: 1px dashed rgba(251,191,36,0.3);
+      border-radius: 14px;
+      padding: 20px;
+      text-align: center;
+    }
+    .ticket .event-name { font-size: 22px; font-weight: 800; background: linear-gradient(90deg, var(--gold), var(--pink)); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 6px; }
+    .ticket .attendee-name { font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+    .ticket .ticket-meta { font-size: 13px; color: var(--muted); margin-bottom: 12px; }
+    .ticket .stream-link { font-size: 13px; color: var(--cyan); word-break: break-all; background: rgba(34,211,238,0.08); padding: 8px; border-radius: 8px; border: 1px solid rgba(34,211,238,0.2); }
+    .ticket .ticket-footer { margin-top: 14px; font-size: 11px; color: var(--muted); border-top: 1px solid var(--border-soft); padding-top: 12px; }
 
-  /* CALENDAR VIEW (read-only) */
-  .calendar-wrap{
-    background:var(--panel-2);border:1px solid var(--border);border-radius:20px;
-    padding:24px;box-shadow:0 0 40px rgba(0,0,0,0.25);
-  }
-  .cal-header{
-    display:flex;align-items:center;justify-content:space-between;
-    margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--border-soft);
-    flex-wrap:wrap;gap:12px;
-  }
-  .cal-title{display:flex;align-items:center;gap:10px;font-size:19px;font-weight:800;}
-  .cal-nav{display:flex;align-items:center;gap:8px;}
-  .cal-nav-btn{
-    padding:8px 12px;border-radius:10px;background:var(--panel);border:1px solid var(--border);
-    color:var(--muted);cursor:pointer;font-weight:700;transition:.15s;
-  }
-  .cal-nav-btn:hover{border-color:var(--cyan);color:var(--cyan);}
-  .cal-nav-btn:disabled,.cal-nav-btn.disabled{ opacity:0.35;cursor:not-allowed;color:var(--muted);border-color:var(--border-soft); }
-  .cal-nav-btn:disabled:hover,.cal-nav-btn.disabled:hover{border-color:var(--border-soft);color:var(--muted);}
-  .cal-weekdays{
-    display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:8px;
-    text-align:center;font-size:11px;font-weight:800;letter-spacing:1px;color:var(--muted);
-  }
-  .cal-weekdays div{padding:8px 0;}
-  .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;}
-  .cal-cell{
-    min-height:100px;border-radius:12px;border:1px solid var(--border-soft);
-    background:rgba(255,255,255,0.015);padding:8px;display:flex;flex-direction:column;
-    justify-content:space-between;transition:.15s;cursor:default;
-  }
-  .cal-cell.empty{background:transparent;border:1px solid transparent;cursor:default;}
-  .cal-cell.has-events{
-    border-color:rgba(34,211,238,0.35);background:rgba(34,211,238,0.04);
-    box-shadow:0 0 14px rgba(34,211,238,0.06);cursor:pointer;
-  }
-  .cal-cell.has-events:hover{border-color:rgba(167,139,250,0.5);box-shadow:0 0 14px rgba(167,139,250,0.12);}
-  .cal-cell.past{opacity:0.55;filter:saturate(0.6);}
-  .cal-cell.past.has-events{opacity:0.8;filter:none;cursor:pointer;}
-  .cal-cell.today{border-color:rgba(52,211,153,0.5);box-shadow:0 0 14px rgba(52,211,153,0.12);}
-  .cal-cell.today .cal-daynum{color:var(--green);}
-  .cal-daynum{font-size:12px;font-weight:800;color:var(--muted);display:flex;justify-content:space-between;align-items:center;}
-  .cal-cell.has-events .cal-daynum{color:var(--cyan);}
-  .cal-dot{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 6px var(--cyan);}
-  .cal-events{display:flex;flex-direction:column;gap:4px;margin-top:6px;overflow-y:auto;max-height:56px;}
-  .cal-event-chip{
-    font-size:10px;font-weight:700;padding:3px 6px;border-radius:6px;
-    background:rgba(34,211,238,0.1);border:1px solid rgba(34,211,238,0.3);color:#a5f3fc;
-    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;
-  }
-  .cal-event-chip:hover{border-color:var(--cyan);background:rgba(34,211,238,0.2);}
+    .reg-form .field input, .reg-form .field select {
+      width:100%; background:var(--panel-2); border:1px solid var(--border); color:var(--text);
+      padding:10px 12px; border-radius:9px; font-size:13px; outline:none; box-sizing:border-box;
+    }
+    .reg-form .field input:focus, .reg-form .field select:focus { border-color:var(--purple); }
 
-  @media (max-width:900px){
-    .hero{padding:24px;}
-    .hero h1{font-size:32px;}
-    .search-wrapper{display:none;}
-    .events-grid.list-view { max-width: 100%; }
-    .events-grid.list-view .event-card { flex-direction: column; height: auto; }
-    .events-grid.list-view .event-media { width: 100%; height: 170px; border-right: none; }
-  }
-</style>
+    /* CALENDAR VIEW (read-only) */
+    .calendar-wrap{
+      background:var(--panel-2);border:1px solid var(--border);border-radius:20px;
+      padding:24px;box-shadow:0 0 40px rgba(0,0,0,0.25);
+    }
+    .cal-header{
+      display:flex;align-items:center;justify-content:space-between;
+      margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--border-soft);
+      flex-wrap:wrap;gap:12px;
+    }
+    .cal-title{display:flex;align-items:center;gap:10px;font-size:19px;font-weight:800;}
+    .cal-nav{display:flex;align-items:center;gap:8px;}
+    .cal-nav-btn{
+      padding:8px 12px;border-radius:10px;background:var(--panel);border:1px solid var(--border);
+      color:var(--muted);cursor:pointer;font-weight:700;transition:.15s;
+    }
+    .cal-nav-btn:hover{border-color:var(--cyan);color:var(--cyan);}
+    .cal-nav-btn:disabled,.cal-nav-btn.disabled{ opacity:0.35;cursor:not-allowed;color:var(--muted);border-color:var(--border-soft); }
+    .cal-nav-btn:disabled:hover,.cal-nav-btn.disabled:hover{border-color:var(--border-soft);color:var(--muted);}
+    .cal-weekdays{
+      display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:8px;
+      text-align:center;font-size:11px;font-weight:800;letter-spacing:1px;color:var(--muted);
+    }
+    .cal-weekdays div{padding:8px 0;}
+    .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;}
+    .cal-cell{
+      min-height:100px;border-radius:12px;border:1px solid var(--border-soft);
+      background:rgba(255,255,255,0.015);padding:8px;display:flex;flex-direction:column;
+      justify-content:space-between;transition:.15s;cursor:default;
+    }
+    .cal-cell.empty{background:transparent;border:1px solid transparent;cursor:default;}
+    .cal-cell.has-events{
+      border-color:rgba(34,211,238,0.35);background:rgba(34,211,238,0.04);
+      box-shadow:0 0 14px rgba(34,211,238,0.06);cursor:pointer;
+    }
+    .cal-cell.has-events:hover{border-color:rgba(167,139,250,0.5);box-shadow:0 0 14px rgba(167,139,250,0.12);}
+    .cal-cell.past{opacity:0.55;filter:saturate(0.6);}
+    .cal-cell.past.has-events{opacity:0.8;filter:none;cursor:pointer;}
+    .cal-cell.today{border-color:rgba(52,211,153,0.5);box-shadow:0 0 14px rgba(52,211,153,0.12);}
+    .cal-cell.today .cal-daynum{color:var(--green);}
+    .cal-daynum{font-size:12px;font-weight:800;color:var(--muted);display:flex;justify-content:space-between;align-items:center;}
+    .cal-cell.has-events .cal-daynum{color:var(--cyan);}
+    .cal-dot{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 6px var(--cyan);}
+    .cal-events{display:flex;flex-direction:column;gap:4px;margin-top:6px;overflow-y:auto;max-height:56px;}
+    .cal-event-chip{
+      font-size:10px;font-weight:700;padding:3px 6px;border-radius:6px;
+      background:rgba(34,211,238,0.1);border:1px solid rgba(34,211,238,0.3);color:#a5f3fc;
+      white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;
+    }
+    .cal-event-chip:hover{border-color:var(--cyan);background:rgba(34,211,238,0.2);}
+
+    @media (max-width:900px){
+      .hero{padding:24px;}
+      .hero h1{font-size:32px;}
+      .search-wrapper{display:none;}
+      .events-grid.list-view { max-width: 100%; }
+      .events-grid.list-view .event-card { flex-direction: column; height: auto; }
+      .events-grid.list-view .event-media { width: 100%; height: 170px; border-right: none; }
+    }
+  </style>
 </head>
 <body>
 
@@ -471,6 +520,68 @@
 
 <footer>EventNest — Next-Gen Event Ecosystem · User Portal</footer>
 
+<!-- REGISTRATION MODAL -->
+<div class="modal-overlay" id="registerModalOverlay">
+  <div class="modal reg-form" style="max-width: 600px;">
+    <h3>Register for <span id="regEventTitle" style="color:var(--cyan);"></span></h3>
+    <div id="regPriceInfo" style="font-size:13px; color:var(--gold); margin-bottom:12px;"></div>
+    <div class="field">
+      <label>Full Name</label>
+      <input type="text" id="regName" placeholder="e.g. Priya Sharma">
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>Semester</label>
+        <select id="regSemester">
+          <option value="S1">S1</option><option value="S2">S2</option><option value="S3">S3</option>
+          <option value="S4">S4</option><option value="S5">S5</option><option value="S6">S6</option>
+          <option value="S7">S7</option><option value="S8">S8</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Division</label>
+        <select id="regDivision">
+          <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+          <option value="D">D</option><option value="E">E</option><option value="F">F</option>
+          <option value="G">G</option>
+        </select>
+      </div>
+    </div>
+    <div class="field">
+      <label>Phone Number</label>
+      <input type="tel" id="regPhone" placeholder="e.g. 9876543210">
+    </div>
+    <div class="field">
+      <label>Email ID</label>
+      <input type="email" id="regEmail" placeholder="e.g. priya@college.edu">
+    </div>
+    <div class="field" id="regTxnField">
+      <label>Transaction ID <span id="txnRequired" style="color:var(--red);">(Required for paid events)</span></label>
+      <input type="text" id="regTxn" placeholder="Enter transaction ID or NA if free">
+    </div>
+    <div id="regPaySection" style="margin: 10px 0;">
+      <button class="btn-action btn-register" id="regPayBtn" style="width:100%;">💳 Pay ₹<span id="regPayAmount">0</span></button>
+      <p style="font-size:11px; color:var(--muted); margin-top:6px;">Payment API integration placeholder. Click to simulate payment.</p>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" id="regCancel">Cancel</button>
+      <button class="btn-save" id="regSubmit">Complete Registration</button>
+    </div>
+  </div>
+</div>
+
+<!-- TICKET MODAL -->
+<div class="modal-overlay" id="ticketModalOverlay">
+  <div class="modal" style="max-width: 480px;">
+    <h3 style="justify-content:center;">🎫 Your Ticket</h3>
+    <div id="ticketContainer"></div>
+    <div class="modal-actions">
+      <button class="btn-cancel" id="ticketClose">Close</button>
+      <button class="btn-save" id="ticketDownload">⬇ Download Ticket</button>
+    </div>
+  </div>
+</div>
+
 <!-- EVENT DETAILS MODAL (read-only, includes Register action) -->
 <div class="modal-overlay" id="detailsModalOverlay">
   <div class="modal large">
@@ -529,6 +640,7 @@
 <script>
 // Address of the shared Spring Boot backend (same one the admin console uses).
 const API_URL = "/api/events";
+const ATTENDEES_URL = "/api/attendees";
 
 // ---- Login button: sends the user to the admin console's login screen ----
 document.getElementById('loginBtn').addEventListener('click', () => {
@@ -540,14 +652,8 @@ document.getElementById('browseBtn').addEventListener('click', () => {
 });
 
 // ---- Live event data (read-only) ----
-// Everything here comes straight from the database via /api/events.
-// Only PUBLISHED events are shown to users — DRAFT and COMPLETED events stay admin-only.
 let events = [];
-
-// Session-only "Register Now" toggle. There is no registration/attendee API yet,
-// so this is purely a local UI state that resets on refresh — no data is persisted
-// or sent to the backend, and no separate "My Registrations" view exists for it.
-let registeredIds = new Set();
+let registeredIds = new Set(); // local UI state, also used to track registration
 
 function formatMode(format) {
   if (format === 'virtual') return { icon: '🌐', label: 'Online', cls: 'online' };
@@ -564,8 +670,6 @@ const catColors = {
 const defaultCatGradient = "radial-gradient(circle at 40% 60%, #67e8f9, #0f172a)";
 function getCatBg(cat){ return catColors[cat] || defaultCatGradient; }
 
-// Map a backend Event -> the shape this page renders, keeping only PUBLISHED events
-// and only the fields relevant to someone deciding whether to register.
 function mapServerEventToUser(serverEv) {
   const date = serverEv.date || '';
   const time = serverEv.startTime || '';
@@ -583,6 +687,7 @@ function mapServerEventToUser(serverEv) {
     format: serverEv.format || 'inperson',
     mode,
     streamLink: serverEv.streamLink || '',
+    platform: serverEv.platform || '',
     location: locationText,
     price: serverEv.price || 0,
     capacity: serverEv.totalSlots ?? 0,
@@ -702,7 +807,22 @@ function renderEvents() {
     tagsHtml += `<span class="tag mode">${e.mode.icon} ${e.mode.label.toUpperCase()}</span>`;
     if (e.featured) tagsHtml += `<span class="tag featured">✦ FEATURED</span>`;
     if (isReg) tagsHtml += `<span class="tag registered">✓ REGISTERED</span>`;
-    if (slotsLeft <= 0) tagsHtml += `<span class="tag" style="background:var(--red); color:#fff">SOLD OUT</span>`;
+    if (slotsLeft <= 0 && !isReg) tagsHtml += `<span class="tag" style="background:var(--red); color:#fff">SOLD OUT</span>`;
+
+    // Show stream/venue info only if registered, or if offline (venue always shown)
+    let linkInfo = '';
+    if (isReg) {
+      if (e.streamLink) linkInfo = `<div class="event-link-info">🔗 Stream: ${e.streamLink}</div>`;
+      else if (e.venue) linkInfo = `<div class="event-link-info">📍 Venue: ${e.venue}</div>`;
+    } else {
+      if (e.format === 'inperson' && e.venue) {
+        linkInfo = `<div class="event-link-info">📍 Venue: ${e.venue}</div>`;
+      } else if (e.format !== 'inperson' && e.platform) {
+        linkInfo = `<div class="event-link-info">📡 Platform: ${e.platform}</div>`;
+      } else if (e.format !== 'inperson' && !e.platform) {
+        linkInfo = `<div class="event-link-info">📡 Online Event</div>`;
+      }
+    }
 
     const card = document.createElement('div');
     card.className = 'event-card';
@@ -717,6 +837,7 @@ function renderEvents() {
         <div class="event-title">${e.title}</div>
         <div class="event-org">Hosted by: ${e.organizerName}</div>
         <div class="event-meta">${e.meta}</div>
+        ${linkInfo}
         <div class="event-actions">
           <button class="btn-action btn-details" data-id="${e.id}">ℹ Details</button>
           <button class="btn-action btn-register ${isReg ? 'done' : ''}" data-id="${e.id}" ${slotsLeft <= 0 && !isReg ? 'disabled' : ''}>${isReg ? '✓ Registered' : (slotsLeft <= 0 ? 'Sold Out' : 'Register Now')}</button>
@@ -734,17 +855,171 @@ function renderEvents() {
   updateStats();
 }
 
-// Register Now / Details click delegate — shared between Grid and List views (same DOM).
-grid.addEventListener('click', e => {
-  const detailsBtn = e.target.closest('.btn-details');
-  const registerBtn = e.target.closest('.btn-register');
-  if (detailsBtn) return openDetailsModal(detailsBtn.dataset.id);
-  if (registerBtn && !registerBtn.disabled) {
-    const id = registerBtn.dataset.id;
-    if (registeredIds.has(id)) registeredIds.delete(id); else registeredIds.add(id);
+// ---- Registration Modal ----
+const regOverlay = document.getElementById('registerModalOverlay');
+let regEventId = null;
+let regEventPrice = 0;
+let regEventData = null;
+
+function openRegisterModal(id) {
+  const e = events.find(ev => ev.id === id);
+  if (!e) return;
+  regEventId = id;
+  regEventData = e;
+  regEventPrice = e.price;
+  document.getElementById('regEventTitle').textContent = e.title;
+  document.getElementById('regPriceInfo').textContent = e.price === 0 ? '✨ This is a FREE event' : `💳 Payment of ₹${e.price.toFixed(2)} required`;
+  document.getElementById('regPayAmount').textContent = e.price.toFixed(2);
+  document.getElementById('regTxn').value = '';
+  document.getElementById('regTxn').disabled = e.price === 0;
+  document.getElementById('txnRequired').style.display = e.price === 0 ? 'none' : 'inline';
+  document.getElementById('regPaySection').style.display = e.price === 0 ? 'none' : 'block';
+  document.getElementById('regName').value = '';
+  document.getElementById('regSemester').value = 'S1';
+  document.getElementById('regDivision').value = 'A';
+  document.getElementById('regPhone').value = '';
+  document.getElementById('regEmail').value = '';
+  regOverlay.classList.add('open');
+}
+
+document.getElementById('regCancel').addEventListener('click', () => regOverlay.classList.remove('open'));
+
+// Simulate payment
+document.getElementById('regPayBtn').addEventListener('click', function() {
+  alert('💳 Payment simulation: ₹' + regEventPrice.toFixed(2) + ' processed successfully. Enter your transaction ID below.');
+  document.getElementById('regTxn').value = 'TXN-' + Date.now().toString(36).toUpperCase();
+});
+
+document.getElementById('regSubmit').addEventListener('click', async function() {
+  const name = document.getElementById('regName').value.trim();
+  const sem = document.getElementById('regSemester').value;
+  const div = document.getElementById('regDivision').value;
+  const phone = document.getElementById('regPhone').value.trim();
+  const email = document.getElementById('regEmail').value.trim();
+  let txn = document.getElementById('regTxn').value.trim();
+
+  if (!name) { alert('Please enter your full name.'); return; }
+  if (!phone) { alert('Please enter your phone number.'); return; }
+  if (!email) { alert('Please enter your email.'); return; }
+  if (regEventPrice > 0 && !txn) { alert('Please enter a transaction ID or use the Pay button.'); return; }
+  if (regEventPrice === 0) txn = 'NA';
+
+  const semesterDivision = sem + ' ' + div;
+
+  // Build attendee payload
+  const payload = {
+    eventId: regEventId,
+    name: name,
+    className: semesterDivision,
+    phoneNumber: phone,
+    email: email,
+    transactionId: txn,
+    registeredAt: new Date().toISOString()
+  };
+
+  try {
+    const response = await fetch(ATTENDEES_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    if (!response.ok) throw new Error('Server responded with an error');
+
+    // Update the event's registeredSlots on the backend
+    const eventToUpdate = events.find(e => e.id === regEventId);
+    if (eventToUpdate) {
+      const updatePayload = {
+        title: eventToUpdate.title,
+        status: 'PUBLISHED',
+        organizerId: null,
+        organizerName: eventToUpdate.organizerName,
+        category: eventToUpdate.cat,
+        price: eventToUpdate.price,
+        totalSlots: eventToUpdate.capacity,
+        registeredSlots: eventToUpdate.registeredSlots + 1,
+        date: eventToUpdate.date,
+        startTime: eventToUpdate.time,
+        format: eventToUpdate.format,
+        venue: eventToUpdate.venue,
+        streamLink: eventToUpdate.streamLink,
+        platform: eventToUpdate.platform,
+        imageUrl: eventToUpdate.img,
+        description: eventToUpdate.description,
+        featured: eventToUpdate.featured,
+        tags: eventToUpdate.tags || []
+      };
+      await fetch(`${API_URL}/${regEventId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatePayload)
+      });
+    }
+
+    // Update local state
+    registeredIds.add(regEventId);
+    const ev = events.find(e => e.id === regEventId);
+    if (ev) ev.registeredSlots += 1;
+
+    regOverlay.classList.remove('open');
     renderEvents();
+
+    // Show ticket
+    showTicket(regEventId, name, semesterDivision);
+
+  } catch (err) {
+    console.error('Registration failed:', err);
+    alert('Registration failed. Please try again.');
   }
 });
+
+// ---- Ticket Generation ----
+function showTicket(eventId, attendeeName, classDiv) {
+  const e = events.find(ev => ev.id === eventId);
+  if (!e) return;
+  const container = document.getElementById('ticketContainer');
+  const streamOrVenue = e.streamLink || e.venue || 'Check event details';
+  container.innerHTML = `
+    <div class="ticket" id="ticketToDownload">
+      <div class="ticket-inner">
+        <div style="font-size:12px; color:var(--gold); letter-spacing:2px; margin-bottom:6px;">✦ EVENTNEST ✦</div>
+        <div class="event-name">${e.title}</div>
+        <div class="attendee-name">${attendeeName}</div>
+        <div class="ticket-meta">${classDiv} · ${e.dateLabel || ''}</div>
+        <div class="stream-link">${e.streamLink ? '🔗 ' + e.streamLink : '📍 ' + (e.venue || 'Venue info')}</div>
+        <div class="ticket-footer">#${e.id.slice(0,8)} · ${e.organizerName}</div>
+      </div>
+    </div>
+  `;
+  document.getElementById('ticketModalOverlay').classList.add('open');
+
+  // Auto-download after a short delay
+  setTimeout(() => {
+    downloadTicket();
+  }, 800);
+}
+
+function downloadTicket() {
+  const ticketEl = document.getElementById('ticketToDownload');
+  if (!ticketEl) return;
+  html2canvas(ticketEl, {
+    backgroundColor: '#0c1220',
+    scale: 2,
+    useCORS: true
+  }).then(canvas => {
+    const link = document.createElement('a');
+    link.download = 'eventnest-ticket.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  }).catch(err => {
+    console.warn('html2canvas not loaded, using fallback print.');
+    window.print();
+  });
+}
+
+document.getElementById('ticketClose').addEventListener('click', () => {
+  document.getElementById('ticketModalOverlay').classList.remove('open');
+});
+document.getElementById('ticketDownload').addEventListener('click', downloadTicket);
 
 // ---- Details Modal (read-only, with Register action) ----
 const detailsOverlay = document.getElementById('detailsModalOverlay');
@@ -785,9 +1060,26 @@ document.getElementById('closeDetailsModal').addEventListener('click', () => det
 document.getElementById('detailsCloseBtn2').addEventListener('click', () => detailsOverlay.classList.remove('open'));
 document.getElementById('detailsRegisterBtn').addEventListener('click', () => {
   if (!detailsEventId) return;
-  if (registeredIds.has(detailsEventId)) registeredIds.delete(detailsEventId); else registeredIds.add(detailsEventId);
-  renderEvents();
-  openDetailsModal(detailsEventId); // refresh modal state
+  if (registeredIds.has(detailsEventId)) {
+    alert('You are already registered for this event.');
+    return;
+  }
+  openRegisterModal(detailsEventId);
+});
+
+// ---- Grid Actions (Register / Details) ----
+grid.addEventListener('click', e => {
+  const detailsBtn = e.target.closest('.btn-details');
+  const registerBtn = e.target.closest('.btn-register');
+  if (detailsBtn) return openDetailsModal(detailsBtn.dataset.id);
+  if (registerBtn && !registerBtn.disabled) {
+    const id = registerBtn.dataset.id;
+    if (registeredIds.has(id)) {
+      alert('You are already registered for this event.');
+      return;
+    }
+    openRegisterModal(id);
+  }
 });
 
 // ---- View Toggles (Grid / List / Calendar) ----
@@ -859,7 +1151,6 @@ function getEventsForDay(dateStr){
   return events.filter(e => e.date === dateStr && (activeCat==='All' || e.cat===activeCat));
 }
 
-// Read-only calendar: shows events per day, no create/edit affordances.
 function renderCalendar(){
   const year = calDate.getFullYear(), month = calDate.getMonth();
   const todayMidnight = new Date();
@@ -907,14 +1198,19 @@ calGrid.addEventListener('click', e => {
   if (dayEvents.length) openDetailsModal(dayEvents[0].id);
 });
 
-// Close modal on background click
+// Close modals on background click
 document.querySelectorAll('.modal-overlay').forEach(ov => {
   ov.addEventListener('click', e => { if (e.target === ov) ov.classList.remove('open'); });
 });
 
+// Load html2canvas for ticket download
+const script = document.createElement('script');
+script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+document.head.appendChild(script);
+
 renderCatFilter();
 renderOrgFilter();
-loadEvents(); // no login wall on this page — this simply loads on every visit/refresh
+loadEvents();
 </script>
 </body>
 </html>
