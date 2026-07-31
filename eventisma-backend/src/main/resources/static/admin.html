@@ -353,7 +353,6 @@
   .field select:disabled, .field input:disabled{opacity:0.45; cursor:not-allowed;}
   .field-row{display:flex;gap:10px;}
   .field-row .field{flex:1;}
-  .modal-actions{display:flex;gap:10px;margin-top:20px;}
   .btn-cancel{
     flex:1;padding:11px;border-radius:9px;background:var(--panel-2);border:1px solid var(--border);
     color:var(--muted);font-weight:700;font-size:13px;cursor:pointer;
@@ -633,7 +632,7 @@
         <select id="fFormat">
           <option value="virtual">🌐 Virtual Stream</option>
           <option value="inperson">📍 In-Person Venue</option>
-          <option value="both">🌐📍 Both</option>
+          <option value="both">🌐📍 Hybrid</option>
         </select>
       </div>
     </div>
@@ -799,9 +798,6 @@
     <div class="field">
       <label>Tags</label>
       <div id="dTagsList" style="color:var(--muted);font-size:13px;"></div>
-    </div>
-    <div class="modal-actions">
-      <button class="btn-cancel" id="detailsCloseBtn2" style="flex:none;width:100%;">Close</button>
     </div>
   </div>
 </div>
@@ -1058,8 +1054,8 @@ function renderEvents(){
         <div class="event-actions">
           <button class="btn-action btn-attendees" data-id="${e.id}">👥 Attendees</button>
           <button class="btn-action btn-details" data-id="${e.id}">ℹ Details</button>
-          <button class="btn-action btn-edit" data-id="${e.id}">✎ Edit</button>
-          <button class="btn-action btn-remove" data-id="${e.id}">🗑 Remove</button>
+          <button class="btn-action btn-edit" data-id="${e.id}">✍ Edit</button>
+          <button class="btn-action btn-remove" data-id="${e.id}">❌ Remove</button>
         </div>
       </div>
     `;
@@ -1409,7 +1405,7 @@ function openEventModal(id = null){
 
 document.getElementById('viewUserPortalBtn').addEventListener('click', () => {
   alert('You are being logged out of the admin console.');
-  window.location.href = 'user.html';
+  window.location.href = 'index.html';
 });
 
 document.getElementById('addEventBtn').addEventListener('click', () => openEventModal());
@@ -1653,7 +1649,6 @@ function openDetailsModal(id) {
   detailsOverlay.classList.add('open');
 }
 document.getElementById('closeDetailsModal').addEventListener('click', () => detailsOverlay.classList.remove('open'));
-document.getElementById('detailsCloseBtn2').addEventListener('click', () => detailsOverlay.classList.remove('open'));
 
 // CSV Export
 document.getElementById('exportCsvBtn').addEventListener('click', () => {
