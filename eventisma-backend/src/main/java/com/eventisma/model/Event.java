@@ -136,9 +136,6 @@ public class Event {
     public String getPlatform() { return platform; }
     public void setPlatform(String platform) { this.platform = platform; }
 
-    public String getPlatform() { return platform; }
-    public void setPlatform(String platform) { this.platform = platform; }
-
     public String getImageUrl() { return imageUrl; }
     public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
 }
