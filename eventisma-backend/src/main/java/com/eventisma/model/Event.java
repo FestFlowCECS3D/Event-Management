@@ -33,7 +33,7 @@ public class Event {
     // Admin console fields (previously only kept client-side; now persisted)
     private String status;        // DRAFT, PUBLISHED, COMPLETED
 
-    private Long organizerId;     // Club/organizer id (organizers are managed client-side, id is a stable reference)
+    private String organizerId;   // Organizer id (references Organizer entity, persisted in DB)
     private String organizerName; // Snapshot of the organizer/club name at save time, for display without a join
 
     private String format;        // virtual, inperson, both
@@ -120,8 +120,8 @@ public class Event {
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
 
-    public Long getOrganizerId() { return organizerId; }
-    public void setOrganizerId(Long organizerId) { this.organizerId = organizerId; }
+    public String getOrganizerId() { return organizerId; }
+    public void setOrganizerId(String organizerId) { this.organizerId = organizerId; }
 
     public String getOrganizerName() { return organizerName; }
     public void setOrganizerName(String organizerName) { this.organizerName = organizerName; }
