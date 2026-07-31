@@ -810,6 +810,8 @@
 // Address of your Spring Boot backend.
 // IMPORTANT: update this if your Codespace URL ever changes.
 const API_URL = "/api/events";
+const ORGANIZERS_URL = "/api/organizers";
+const CUSTOM_CATEGORIES_URL = "/api/custom-categories";
 
 // Mock Login Logic
 const loginPassInput = document.getElementById('loginPass');
@@ -873,21 +875,16 @@ document.getElementById('loginUser').addEventListener('input', () => {
   }
 });
 
-// Updated Relational Mock Data
-let clubs = [
-  {id: 1, name: "IEEE (Institute of Electrical and Electronics Engineers)"},
-  {id: 2, name: "GDG (Google Developers Group)"},
-  {id: 3, name: "FOCES"},
-  {id: 4, name: "TinkerHub"},
-  {id: 5, name: "IEDC"},
-  {id: 6, name: "MuLearn"}
-];
-let nextClubId = 7;
+// Organizers/clubs and custom categories are DB-backed. They start empty and
+// are populated by loadOrganizers()/loadCustomCategories() below — no mock
+// or hardcoded data is used here.
+let clubs = [];
+let customCategories = []; // array of {id, name} loaded from /api/custom-categories
 
 // Statuses: DRAFT, PUBLISHED, COMPLETED
 // events[] is populated from the backend by loadEvents() below — this starts empty.
-// NOTE: Event ids are server-generated UUID strings (see Event.java,
-// GenerationType.UUID), not numbers — they must be compared/passed as strings.
+// NOTE: Event ids, Organizer ids, and CustomCategory ids are server-generated
+// UUID strings (GenerationType.UUID) — they must be compared/passed as strings.
 let events = [];
 
 // Every field the admin UI needs is now persisted server-side on the Event
@@ -946,6 +943,33 @@ async function loadEvents() {
   if (typeof renderCalendar === 'function') renderCalendar();
 }
 
+// Fetch the live organizer/club list from the backend and re-render.
+async function loadOrganizers() {
+  try {
+    const response = await fetch(ORGANIZERS_URL);
+    if (!response.ok) throw new Error('Server responded with an error');
+    clubs = await response.json();
+  } catch (err) {
+    console.error(`❌ Backend NOT connected (${ORGANIZERS_URL}) — is the Spring Boot server running?`, err);
+  }
+  renderOrgFilter();
+  populateOrgSelect();
+  updateDashboardStats();
+}
+
+// Fetch the live custom-category list from the backend and re-render.
+async function loadCustomCategories() {
+  try {
+    const response = await fetch(CUSTOM_CATEGORIES_URL);
+    if (!response.ok) throw new Error('Server responded with an error');
+    customCategories = await response.json();
+  } catch (err) {
+    console.error(`❌ Backend NOT connected (${CUSTOM_CATEGORIES_URL}) — is the Spring Boot server running?`, err);
+  }
+  renderCatFilter();
+  populateCatSelect();
+}
+
 let attendees = [];
 
 const catColors = {
@@ -957,14 +981,11 @@ const catColors = {
 const defaultCatGradient = "radial-gradient(circle at 40% 60%, #67e8f9, #0f172a)";
 function getCatBg(cat){ return catColors[cat] || defaultCatGradient; }
 
-// Custom (user-created) categories, on top of the preset Tech/Workshop/Hackathon
-let customCategories = [];
-
 function populateCatSelect(){
   const preset = ['Tech','Workshop','Hackathon'];
   const current = fCat.value;
   fCat.innerHTML = preset.map(c => `<option>${c}</option>`).join('')
-    + customCategories.map(c => `<option>${c}</option>`).join('')
+    + customCategories.map(c => `<option>${c.name}</option>`).join('')
     + `<option value="__custom__">Custom Category…</option>`;
   if([...fCat.options].some(o => o.value === current)) fCat.value = current;
 }
@@ -981,12 +1002,11 @@ let editingId = null;
 let currentEventForAttendees = null;
 
 // Helpers
-const getClubName = (id) => clubs.find(c => c.id == id)?.name || 'Unknown Organizer';
+const getClubName = (id) => clubs.find(c => c.id === id)?.name || 'Unknown Organizer';
 const getEventAttendees = (id) => attendees.filter(a => a.eventId === id);
 
 function updateDashboardStats() {
   const published = events.filter(e => e.status === 'PUBLISHED').length;
-  const validGuests = attendees.filter(a => a.status === 'PAID' || a.eventId === 2 /* free demo */).length;
 
   document.getElementById('statEvents').textContent = published;
   document.getElementById('statGuests').textContent = attendees.length;
@@ -1212,25 +1232,37 @@ const presetCats = [
   {cat:'Hackathon', icon:'&gt;_'}
 ];
 function renderCatFilter(){
+  const customNames = customCategories.map(c => c.name);
   // If the previously active category was removed, fall back to "All"
-  if(activeCat !== 'All' && !presetCats.some(p=>p.cat===activeCat) && !customCategories.includes(activeCat)){
+  if(activeCat !== 'All' && !presetCats.some(p=>p.cat===activeCat) && !customNames.includes(activeCat)){
     activeCat = 'All';
   }
   catRow.innerHTML = presetCats.map(p =>
     `<div class="cat-btn${activeCat===p.cat?' active':''}" data-cat="${p.cat}">${p.icon} ${p.cat}</div>`
   ).join('') + customCategories.map(c =>
-    `<div class="cat-btn${activeCat===c?' active':''}" data-cat="${c}">✦ ${c}<span class="cat-btn-remove" data-remove-cat="${c}" title="Remove category">✕</span></div>`
+    `<div class="cat-btn${activeCat===c.name?' active':''}" data-cat="${c.name}">✦ ${c.name}<span class="cat-btn-remove" data-remove-cat="${c.id}" title="Remove category">✕</span></div>`
   ).join('');
 }
 catRow.addEventListener('click', e=>{
   const removeBtn = e.target.closest('.cat-btn-remove');
   if(removeBtn){
-    const cat = removeBtn.dataset.removeCat;
-    customCategories = customCategories.filter(c => c !== cat);
-    if(activeCat === cat) activeCat = 'All';
-    renderCatFilter();
-    populateCatSelect();
-    renderEvents();
+    const id = removeBtn.dataset.removeCat;
+    const cat = customCategories.find(c => c.id === id);
+    (async () => {
+      try {
+        const response = await fetch(`${CUSTOM_CATEGORIES_URL}/${id}`, { method: 'DELETE' });
+        if (!response.ok) throw new Error('Server responded with an error');
+      } catch (err) {
+        console.error('Failed to delete custom category on backend:', err);
+        alert('Could not delete the category on the backend. Check that it is running.');
+        return;
+      }
+      customCategories = customCategories.filter(c => c.id !== id);
+      if(cat && activeCat === cat.name) activeCat = 'All';
+      renderCatFilter();
+      populateCatSelect();
+      renderEvents();
+    })();
     return;
   }
   const btn = e.target.closest('.cat-btn');
@@ -1389,13 +1421,13 @@ document.getElementById('eventModalSave').addEventListener('click', ()=>{
   if(!title){ alert('Please enter an event title.'); return; }
 
   let category = fCat.value;
+  let needsCustomCategoryCreate = false;
   if(category === '__custom__'){
     category = fCatCustom.value.trim();
     if(!category){ alert('Please enter a custom category name.'); return; }
     const preset = ['Tech','Workshop','Hackathon'];
-    if(!preset.includes(category) && !customCategories.includes(category)){
-      customCategories.push(category);
-      renderCatFilter();
+    if(!preset.includes(category) && !customCategories.some(c => c.name === category)){
+      needsCustomCategoryCreate = true;
     }
   }
 
@@ -1407,7 +1439,7 @@ document.getElementById('eventModalSave').addEventListener('click', ()=>{
   const streamLink = wantsStream ? fLocation.value.trim() : '';
   const timeLabel = fTime.value || '';
 
-  const organizerId = fOrgSelect.value ? Number(fOrgSelect.value) : null;
+  const organizerId = fOrgSelect.value || null;
   const organizerName = organizerId ? getClubName(organizerId) : '';
 
   // Full payload — every field in the Add/Edit form is persisted to the DB.
@@ -1432,6 +1464,24 @@ document.getElementById('eventModalSave').addEventListener('click', ()=>{
   };
 
   (async () => {
+    if(needsCustomCategoryCreate){
+      try {
+        const catResponse = await fetch(CUSTOM_CATEGORIES_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name: category })
+        });
+        if (!catResponse.ok) throw new Error('Server responded with an error');
+        const savedCat = await catResponse.json();
+        customCategories.push(savedCat);
+        renderCatFilter();
+      } catch (err) {
+        console.error('Failed to save custom category to backend:', err);
+        alert('Could not save the custom category to the backend. Check that it is running.');
+        return;
+      }
+    }
+
     try {
       const response = await fetch(
         editingId ? `${API_URL}/${editingId}` : API_URL,
@@ -1458,22 +1508,93 @@ const clubOverlay = document.getElementById('clubModalOverlay');
 function renderClubsTable() {
   const tbody = document.querySelector('#clubsTable tbody');
   tbody.innerHTML = clubs.map(c => {
-    const hostedCount = events.filter(e => e.organizerId === c.id).length;
-    return `<tr><td>#${c.id}</td><td>${c.name}</td><td>${hostedCount}</td>
-            <td><button class="btn-cancel btn-sm rm-club" data-id="${c.id}">Delete</button></td></tr>`;
+    const hostedCount = events.filter(e => String(e.organizerId) === String(c.id)).length;
+    const shortId = c.id ? String(c.id).slice(0, 8) : '';
+    return `<tr><td>#${shortId}</td><td>${c.name}</td><td>${hostedCount}</td>
+            <td>
+              <button class="btn-cancel btn-sm edit-club" data-id="${c.id}">Edit</button>
+              <button class="btn-cancel btn-sm rm-club" data-id="${c.id}">Delete</button>
+            </td></tr>`;
   }).join('');
 }
 document.getElementById('manageClubsBtn').addEventListener('click', () => { renderClubsTable(); clubOverlay.classList.add('open'); });
 document.getElementById('closeClubModal').addEventListener('click', () => clubOverlay.classList.remove('open'));
 document.getElementById('addClubBtn').addEventListener('click', () => {
   const name = document.getElementById('cName').value.trim();
-  if(name) { clubs.push({id: nextClubId++, name}); document.getElementById('cName').value=''; renderClubsTable(); populateOrgSelect(); renderOrgFilter(); renderEvents(); }
+  if(!name) return;
+  (async () => {
+    try {
+      const response = await fetch(ORGANIZERS_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name })
+      });
+      if (!response.ok) throw new Error('Server responded with an error');
+      const saved = await response.json();
+      clubs.push(saved);
+    } catch (err) {
+      console.error('Failed to add organizer to backend:', err);
+      alert('Could not add the organizer to the backend. Check that it is running.');
+      return;
+    }
+    document.getElementById('cName').value = '';
+    renderClubsTable(); populateOrgSelect(); renderOrgFilter(); renderEvents();
+  })();
 });
 document.getElementById('clubsTable').addEventListener('click', e => {
-  if(e.target.classList.contains('rm-club')) {
-    const id = Number(e.target.dataset.id);
-    if(events.some(ev => Number(ev.organizerId) === id)) { alert("Cannot delete club: Currently hosting active events."); return; }
-    clubs = clubs.filter(c => c.id !== id); renderClubsTable(); populateOrgSelect(); renderOrgFilter(); renderEvents();
+  const editBtn = e.target.closest('.edit-club');
+  const rmBtn = e.target.closest('.rm-club');
+
+  if(editBtn){
+    const id = editBtn.dataset.id;
+    const club = clubs.find(c => c.id === id);
+    const newName = prompt('Edit organizer name:', club ? club.name : '');
+    if(newName === null) return;
+    const trimmed = newName.trim();
+    if(!trimmed) return;
+    (async () => {
+      try {
+        const response = await fetch(`${ORGANIZERS_URL}/${id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name: trimmed })
+        });
+        if (!response.ok) throw new Error('Server responded with an error');
+        const saved = await response.json();
+        clubs = clubs.map(c => c.id === id ? saved : c);
+      } catch (err) {
+        console.error('Failed to update organizer on backend:', err);
+        alert('Could not update the organizer on the backend. Check that it is running.');
+        return;
+      }
+      renderClubsTable(); populateOrgSelect(); renderOrgFilter(); renderEvents();
+    })();
+    return;
+  }
+
+  if(rmBtn){
+    const id = rmBtn.dataset.id;
+    (async () => {
+      let response;
+      try {
+        response = await fetch(`${ORGANIZERS_URL}/${id}`, { method: 'DELETE' });
+      } catch (err) {
+        console.error('Failed to delete organizer on backend:', err);
+        alert('Could not delete the organizer on the backend. Check that it is running.');
+        return;
+      }
+      if(response.status === 409){
+        const msg = await response.text();
+        alert(msg || 'Cannot delete organizer: currently hosting active events.');
+        return;
+      }
+      if(!response.ok){
+        alert('Could not delete the organizer on the backend.');
+        return;
+      }
+      clubs = clubs.filter(c => c.id !== id);
+      renderClubsTable(); populateOrgSelect(); renderOrgFilter(); renderEvents();
+    })();
   }
 });
 
@@ -1584,6 +1705,8 @@ document.querySelectorAll('.modal-overlay').forEach(ov => {
 
 renderCatFilter();
 renderOrgFilter();
+loadOrganizers();
+loadCustomCategories();
 loadEvents();
 </script>
 </body>
