@@ -654,10 +654,15 @@
         </select>
         <input type="text" id="fVenueCustom" placeholder="Enter custom venue name..." style="display:none; margin-top:8px;">
       </div>
-      <div class="field" id="fLocationWrap">
-        <label id="fLocationLabel">Stream Link</label>
-        <input type="text" id="fLocation" placeholder="e.g. Discord & YouTube Stream link">
+      <div class="field" id="fPlatformWrap">
+        <label id="fPlatformLabel">Platform</label>
+        <input type="text" id="fPlatform" placeholder="e.g. YouTube, Google Meet, Zoom">
       </div>
+    </div>
+
+    <div class="field" id="fLocationWrap">
+      <label id="fLocationLabel">Stream Link</label>
+      <input type="text" id="fLocation" placeholder="e.g. Discord & YouTube Stream link">
     </div>
 
     <div class="field">
@@ -738,10 +743,11 @@
       <thead>
         <tr>
           <th>Name</th>
-          <th>Roll No.</th>
-          <th>Dept</th>
-          <th>Ticket Hash</th>
-          <th>Payment</th>
+          <th>Class</th>
+          <th>Phone Number</th>
+          <th>Email ID</th>
+          <th>Transaction ID</th>
+          <th>Registration Date</th>
         </tr>
       </thead>
       <tbody id="attendeesTableBody"></tbody>
@@ -810,6 +816,7 @@
 const API_URL = "/api/events";
 const ORGANIZERS_URL = "/api/organizers";
 const CUSTOM_CATEGORIES_URL = "/api/custom-categories";
+const ATTENDEES_URL = "/api/attendees";
 
 // Mock Login Logic
 const loginPassInput = document.getElementById('loginPass');
@@ -918,6 +925,7 @@ function mapServerEventToAdmin(serverEv) {
     format,
     venue,
     streamLink: serverEv.streamLink || '',
+    platform: serverEv.platform || '',
     location: locationText,
     description: serverEv.description || '',
     agenda: []
@@ -969,6 +977,7 @@ async function loadCustomCategories() {
 }
 
 let attendees = [];
+let currentModalAttendees = [];
 
 const catColors = {
   Tech:"radial-gradient(circle at 30% 30%, #22d3ee, #0a1930)",
@@ -1304,6 +1313,7 @@ const fFeatured = document.getElementById('fFeatured');
 const fDate = document.getElementById('fDate'), fTime = document.getElementById('fTime');
 const fFormat = document.getElementById('fFormat'), fVenue = document.getElementById('fVenue');
 const fLocation = document.getElementById('fLocation'), fLocationLabel = document.getElementById('fLocationLabel');
+const fPlatform = document.getElementById('fPlatform'), fLocationWrap = document.getElementById('fLocationWrap'), fPlatformWrap = document.getElementById('fPlatformWrap');
 const fDescription = document.getElementById('fDescription');
 const fImgFile = document.getElementById('fImgFile'), fImgBrowseBtn = document.getElementById('fImgBrowseBtn'), fImgFileName = document.getElementById('fImgFileName');
 
@@ -1314,9 +1324,13 @@ function applyFormatState(){
 
   fVenue.disabled = !wantsVenue;
   fLocation.disabled = !wantsStream;
+  fPlatform.disabled = !wantsStream;
+
+  fLocationWrap.style.display = wantsStream ? '' : 'none';
+  fPlatformWrap.style.display = wantsStream ? '' : 'none';
 
   if(!wantsVenue){ fVenue.value = ''; document.getElementById('fVenueCustom').style.display = 'none'; document.getElementById('fVenueCustom').value=''; }
-  if(!wantsStream){ fLocation.value = ''; }
+  if(!wantsStream){ fLocation.value = ''; fPlatform.value = ''; }
 
   fLocationLabel.textContent = 'Stream Link';
 }
@@ -1388,6 +1402,7 @@ function openEventModal(id = null){
     }
     if(fFormat.value === 'virtual' || fFormat.value === 'both'){
       fLocation.value = ev.streamLink || (ev.isVirtual ? ev.location : '') || '';
+      fPlatform.value = ev.platform || '';
     }
     fDescription.value = ev.description || '';
   } else {
@@ -1399,7 +1414,7 @@ function openEventModal(id = null){
     fTags.value = ''; fFeatured.checked = false;
     fDate.value = ''; fTime.value = '18:00'; fFormat.value = 'virtual';
     fVenue.value = ''; fVenueCustom.style.display = 'none'; fVenueCustom.value = '';
-    fLocation.value = ''; fDescription.value = '';
+    fLocation.value = ''; fPlatform.value = ''; fDescription.value = '';
     applyFormatState();
   }
   eventOverlay.classList.add('open');
@@ -1435,6 +1450,8 @@ document.getElementById('eventModalSave').addEventListener('click', ()=>{
 
   const venueName = wantsVenue ? (fVenue.value === '__custom__' ? fVenueCustom.value.trim() : fVenue.value) : '';
   const streamLink = wantsStream ? fLocation.value.trim() : '';
+  const platform = wantsStream ? fPlatform.value.trim() : '';
+  if(wantsStream && (!streamLink || !platform)){ alert('Please provide both Stream Link and Platform for virtual/hybrid events.'); return; }
   const timeLabel = fTime.value || '';
 
   const organizerId = fOrgSelect.value || null;
@@ -1455,6 +1472,7 @@ document.getElementById('eventModalSave').addEventListener('click', ()=>{
     format,
     venue: venueName,
     streamLink,
+    platform,
     imageUrl: fImgUrl.value.trim(),
     description: fDescription.value.trim(),
     featured: fFeatured.checked,
@@ -1598,27 +1616,51 @@ document.getElementById('clubsTable').addEventListener('click', e => {
 
 // ---- Attendees Modal ----
 const attOverlay = document.getElementById('attendeesModalOverlay');
-function openAttendeesModal(eventId) {
+function formatRegDate(value) {
+  if (!value) return '—';
+  const d = new Date(value);
+  if (isNaN(d.getTime())) return '—';
+  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) +
+    ' ' + d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+}
+
+async function openAttendeesModal(eventId) {
   currentEventForAttendees = events.find(e => e.id === eventId);
-  const evAtts = getEventAttendees(eventId);
-  
+  if (!currentEventForAttendees) return;
+
   document.getElementById('regEventTitle').textContent = currentEventForAttendees.title;
-  document.getElementById('regTotal').textContent = evAtts.length;
-  document.getElementById('regSlots').textContent = Math.max(0, currentEventForAttendees.capacity - evAtts.length);
-  
   const tbody = document.getElementById('attendeesTableBody');
-  tbody.innerHTML = evAtts.length === 0 ? `<tr><td colspan="5" style="text-align:center; color:var(--muted);">No registrations yet.</td></tr>` 
-  : evAtts.map(a => `
+  tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:var(--muted);">Loading attendees…</td></tr>`;
+  attOverlay.classList.add('open');
+
+  currentModalAttendees = [];
+  try {
+    const response = await fetch(`${ATTENDEES_URL}/event/${encodeURIComponent(eventId)}`);
+    if (!response.ok) throw new Error('Server responded with an error');
+    currentModalAttendees = await response.json();
+  } catch (err) {
+    console.error(`❌ Backend NOT connected (${ATTENDEES_URL}) — is the Spring Boot server running?`, err);
+    tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:var(--muted);">Unable to load attendees.</td></tr>`;
+    document.getElementById('regTotal').textContent = 0;
+    document.getElementById('regSlots').textContent = currentEventForAttendees.capacity ?? 0;
+    return;
+  }
+
+  document.getElementById('regTotal').textContent = currentModalAttendees.length;
+  document.getElementById('regSlots').textContent = Math.max(0, (currentEventForAttendees.capacity ?? 0) - currentModalAttendees.length);
+
+  tbody.innerHTML = currentModalAttendees.length === 0
+    ? `<tr><td colspan="6" style="text-align:center; color:var(--muted);">No attendees registered</td></tr>`
+    : currentModalAttendees.map(a => `
     <tr>
-      <td style="font-weight:600">${a.name}</td>
-      <td>${a.roll}</td>
-      <td>${a.dept}</td>
-      <td style="font-family:monospace; color:var(--cyan)">${a.hash}</td>
-      <td><span class="status-dot ${a.status.toLowerCase()}"></span>${a.status}</td>
+      <td style="font-weight:600">${a.name ?? ''}</td>
+      <td>${a.className ?? ''}</td>
+      <td>${a.phoneNumber ?? ''}</td>
+      <td>${a.email ?? ''}</td>
+      <td style="font-family:monospace; color:var(--cyan)">${a.transactionId ?? ''}</td>
+      <td>${formatRegDate(a.registeredAt)}</td>
     </tr>
   `).join('');
-  
-  attOverlay.classList.add('open');
 }
 document.getElementById('closeAttendeesModal').addEventListener('click', () => attOverlay.classList.remove('open'));
 
@@ -1653,16 +1695,35 @@ function openDetailsModal(id) {
 document.getElementById('closeDetailsModal').addEventListener('click', () => detailsOverlay.classList.remove('open'));
 
 // CSV Export
+function csvEscape(value) {
+  const str = value === null || value === undefined ? '' : String(value);
+  return `"${str.replace(/"/g, '""')}"`;
+}
+
+function slugify(str) {
+  return String(str || 'event')
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '') || 'event';
+}
+
 document.getElementById('exportCsvBtn').addEventListener('click', () => {
   if(!currentEventForAttendees) return;
-  const evAtts = getEventAttendees(currentEventForAttendees.id);
-  let csv = "Name,Roll No,Department,Ticket Hash,Payment Status\n";
-  evAtts.forEach(a => { csv += `"${a.name}","${a.roll}","${a.dept}","${a.hash}","${a.status}"\n`; });
-  
-  const blob = new Blob([csv], { type: 'text/csv' });
+  if(!currentModalAttendees.length) return;
+
+  const headers = ['Name', 'Class', 'Phone Number', 'Email ID', 'Transaction ID', 'Registration Date'];
+  const rows = currentModalAttendees.map(a => [
+    a.name, a.className, a.phoneNumber, a.email, a.transactionId, formatRegDate(a.registeredAt)
+  ]);
+
+  let csv = headers.map(csvEscape).join(',') + '\r\n';
+  rows.forEach(row => { csv += row.map(csvEscape).join(',') + '\r\n'; });
+
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
   const url = window.URL.createObjectURL(blob);
   const a = document.createElement('a');
-  a.href = url; a.download = `Attendees_${currentEventForAttendees.id}.csv`;
+  a.href = url; a.download = `${slugify(currentEventForAttendees.title)}-attendees.csv`;
   a.click(); window.URL.revokeObjectURL(url);
 });
 
