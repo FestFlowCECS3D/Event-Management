@@ -242,7 +242,7 @@
 
   /* Grid View (Default) */
   .events-grid{
-    display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:22px;
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:22px;
     transition: opacity 0.25s ease-in-out;
     width: 100%;
     margin: 0 auto;
@@ -367,6 +367,7 @@
   .checkbox-row{display:flex;align-items:center;gap:8px;margin-bottom:14px;}
   .checkbox-row input{width:auto;}
   .checkbox-row label{margin:0;font-size:13px;color:var(--text);font-weight:600;}
+  .modal-actions{display:flex;gap:10px;width:100%;margin-top:16px;}
   
   /* Tables */
   .data-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; text-align: left; }
@@ -729,13 +730,13 @@
     </div>
     
     <div class="stats-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 100%; margin-bottom: 20px;">
-      <div class="stat-card" style="padding: 12px;">
+      <div class="stat-card" style="padding: 12px; height:auto; box-sizing:border-box; overflow:visible;">
         <div class="stat-label">Total Registrations</div>
-        <div class="stat-num" id="regTotal" style="font-size: 18px;">0</div>
+        <div class="stat-num" id="regTotal" style="font-size: 18px; overflow:visible; white-space:nowrap;">0</div>
       </div>
-      <div class="stat-card" style="padding: 12px;">
+      <div class="stat-card" style="padding: 12px; height:auto; box-sizing:border-box; overflow:visible;">
         <div class="stat-label">Available Slots</div>
-        <div class="stat-num" id="regSlots" style="font-size: 18px;">0</div>
+        <div class="stat-num" id="regSlots" style="font-size: 18px; overflow:visible; white-space:nowrap;">0</div>
       </div>
     </div>
 
@@ -905,7 +906,10 @@ function mapServerEventToAdmin(serverEv) {
   const format = serverEv.format || 'inperson';
   const dateLabel = date ? new Date(date + 'T00:00:00').toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }) : 'TBD';
   const metaIcon = format === 'virtual' ? '🌐' : (format === 'both' ? '🌐📍' : '📍');
-  const locationText = format === 'virtual' ? (serverEv.streamLink || 'TBD') : (venue || 'TBD');
+  const platform = serverEv.platform || '';
+  const locationText = format === 'virtual' ? (platform || 'TBD')
+    : format === 'both' ? `${venue || 'TBD'} · ${platform || 'TBD'}`
+    : (venue || 'TBD');
   return {
     id: serverEv.id,
     title: serverEv.title || 'Untitled event',
@@ -1013,10 +1017,12 @@ const getClubName = (id) => clubs.find(c => c.id === id)?.name || 'Unknown Organ
 const getEventAttendees = (id) => attendees.filter(a => a.eventId === id);
 
 function updateDashboardStats() {
-  const published = events.filter(e => e.status === 'PUBLISHED').length;
+  const publishedEvents = events.filter(e => e.status === 'PUBLISHED');
+  const publishedIds = new Set(publishedEvents.map(e => e.id));
+  const publishedGuests = attendees.filter(a => publishedIds.has(a.eventId)).length;
 
-  document.getElementById('statEvents').textContent = published;
-  document.getElementById('statGuests').textContent = attendees.length;
+  document.getElementById('statEvents').textContent = publishedEvents.length;
+  document.getElementById('statGuests').textContent = publishedGuests;
   document.getElementById('statClubs').textContent = clubs.length;
 }
 
@@ -1056,7 +1062,7 @@ function renderEvents(){
       </div>
       <div class="event-body">
         <div class="event-title">${e.title}</div>
-        <div class="event-org">Hosted by: ${e.organizerName || getClubName(e.organizerId)}</div>
+        <div class="event-org">Hosted by: ${getClubName(e.organizerId) !== 'Unknown Organizer' ? getClubName(e.organizerId) : (e.organizerName || 'Unknown Organizer')}</div>
         <div class="event-meta">${e.meta}</div>
         <div class="event-stats">
           <span>Registered: ${e.registeredSlots} / ${e.capacity}</span>
@@ -1187,13 +1193,14 @@ function renderCalendar(){
     cellDate.setHours(0,0,0,0);
     const isPast = cellDate.getTime() < todayMidnight.getTime();
     const isToday = cellDate.getTime() === todayMidnight.getTime();
+    const isBlocked = dateStr < minAllowedDateStr();
     const cell = document.createElement('div');
     cell.className = 'cal-cell'
       + (dayEvents.length ? ' has-events' : '')
       + (isPast ? ' past' : '')
       + (isToday ? ' today' : '');
     cell.dataset.date = dateStr;
-    if (isPast) cell.dataset.past = 'true';
+    if (isBlocked) cell.dataset.past = 'true';
     cell.innerHTML = `
       <div class="cal-daynum"><span>${day}</span>${dayEvents.length ? '<span class="cal-dot"></span>' : ''}</div>
       <div class="cal-events">
@@ -1311,6 +1318,12 @@ const fCapacity = document.getElementById('fCapacity');
 const fImgUrl = document.getElementById('fImgUrl'), fTags = document.getElementById('fTags');
 const fFeatured = document.getElementById('fFeatured');
 const fDate = document.getElementById('fDate'), fTime = document.getElementById('fTime');
+function minAllowedDateStr(){
+  const d = new Date();
+  d.setDate(d.getDate() + 2);
+  return d.toISOString().slice(0, 10);
+}
+fDate.min = minAllowedDateStr();
 const fFormat = document.getElementById('fFormat'), fVenue = document.getElementById('fVenue');
 const fLocation = document.getElementById('fLocation'), fLocationLabel = document.getElementById('fLocationLabel');
 const fPlatform = document.getElementById('fPlatform'), fLocationWrap = document.getElementById('fLocationWrap'), fPlatformWrap = document.getElementById('fPlatformWrap');
@@ -1444,6 +1457,11 @@ document.getElementById('eventModalSave').addEventListener('click', ()=>{
     }
   }
 
+  if(!fDate.value || fDate.value < minAllowedDateStr()){
+    alert('Please select a valid event date. The earliest allowed date is the day after tomorrow.');
+    return;
+  }
+
   const format = fFormat.value;
   const wantsVenue = format === 'inperson' || format === 'both';
   const wantsStream = format === 'virtual' || format === 'both';
@@ -1528,8 +1546,10 @@ function renderClubsTable() {
     const shortId = c.id ? String(c.id).slice(0, 8) : '';
     return `<tr><td>#${shortId}</td><td>${c.name}</td><td>${hostedCount}</td>
             <td>
-              <button class="btn-cancel btn-sm edit-club" data-id="${c.id}">Edit</button>
-              <button class="btn-cancel btn-sm rm-club" data-id="${c.id}">Delete</button>
+              <div style="display:flex; flex-wrap:nowrap; gap:8px; white-space:nowrap;">
+                <button class="btn-cancel btn-sm edit-club" data-id="${c.id}">Edit</button>
+                <button class="btn-cancel btn-sm rm-club" data-id="${c.id}">Delete</button>
+              </div>
             </td></tr>`;
   }).join('');
 }
@@ -1680,11 +1700,13 @@ function openDetailsModal(id) {
   document.getElementById('detailsTags').innerHTML = tagsHtml;
 
   document.getElementById('dTitle').textContent = e.title;
-  document.getElementById('dOrganizer').textContent = e.organizerName || getClubName(e.organizerId);
+  document.getElementById('dOrganizer').textContent = getClubName(e.organizerId) !== 'Unknown Organizer' ? getClubName(e.organizerId) : (e.organizerName || 'Unknown Organizer');
   document.getElementById('dDescription').textContent = e.description || '— No description provided —';
   document.getElementById('dDate').textContent = e.date ? new Date(e.date + 'T00:00:00').toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) : 'TBD';
   document.getElementById('dTime').textContent = e.time || 'TBD';
-  document.getElementById('dVenue').textContent = e.isVirtual ? (e.streamLink || 'TBD') + ' (Virtual)' : (e.venue || 'TBD');
+  const venuePart = e.venue ? `Venue: ${e.venue}` : '';
+  const streamPart = e.isVirtual ? `Platform: ${e.platform || 'TBD'} | Link: ${e.streamLink || 'TBD'}` : '';
+  document.getElementById('dVenue').textContent = [venuePart, streamPart].filter(Boolean).join(' — ') || 'TBD';
   document.getElementById('dPrice').textContent = e.price === 0 ? 'FREE' : `₹${Number(e.price).toFixed(2)}`;
   document.getElementById('dRegistration').textContent = `${e.registeredSlots} / ${e.capacity}`;
   document.getElementById('dFeatured').textContent = e.featured ? 'Yes' : 'No';
