@@ -315,40 +315,97 @@
     .btn-cancel:hover{color:var(--text);}
     .btn-sm { padding: 6px 12px; font-size: 12px; border-radius: 6px; flex: none; width: auto; }
 
-    /* TICKET STYLES */
+    /* TICKET STYLES — torn edges both sides */
     .ticket {
       background: #0c1220;
       border: 1px solid var(--gold);
       border-radius: 20px;
-      padding: 24px;
+      padding: 24px 30px;
       position: relative;
       margin: 12px 0;
       background: linear-gradient(145deg, #0e1526, #0a1220);
       box-shadow: 0 0 30px rgba(251,191,36,0.15);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-    .ticket::before, .ticket::after {
+    .ticket::before,
+    .ticket::after {
       content: '';
       position: absolute;
       top: 20px;
       bottom: 20px;
-      width: 14px;
-      background: radial-gradient(circle at center, var(--bg) 60%, transparent 70%);
-      background-size: 14px 14px;
+      width: 18px;
+      background-image: radial-gradient(circle at center, var(--bg) 55%, transparent 65%);
+      background-size: 18px 18px;
       background-repeat: repeat-y;
     }
-    .ticket::before { left: -7px; background-position: 0 0; }
-    .ticket::after { right: -7px; background-position: 0 0; }
+    .ticket::before {
+      left: -9px;
+      background-position: 0 0;
+    }
+    .ticket::after {
+      right: -9px;
+      background-position: 0 0;
+    }
     .ticket-inner {
       border: 1px dashed rgba(251,191,36,0.3);
       border-radius: 14px;
-      padding: 20px;
+      padding: 20px 26px;
       text-align: center;
+      width: 100%;
+      background: rgba(0,0,0,0.2);
     }
-    .ticket .event-name { font-size: 22px; font-weight: 800; background: linear-gradient(90deg, var(--gold), var(--pink)); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 6px; }
-    .ticket .attendee-name { font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
-    .ticket .ticket-meta { font-size: 13px; color: var(--muted); margin-bottom: 12px; }
-    .ticket .stream-link { font-size: 13px; color: var(--cyan); word-break: break-all; background: rgba(34,211,238,0.08); padding: 8px; border-radius: 8px; border: 1px solid rgba(34,211,238,0.2); }
-    .ticket .ticket-footer { margin-top: 14px; font-size: 11px; color: var(--muted); border-top: 1px solid var(--border-soft); padding-top: 12px; }
+    .ticket .event-name {
+      font-size: 22px;
+      font-weight: 800;
+      background: linear-gradient(90deg, var(--gold), var(--pink));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 6px;
+    }
+    .ticket .attendee-name {
+      font-size: 18px;
+      font-weight: 700;
+      color: #eef2ff;
+      margin-bottom: 4px;
+      letter-spacing: 0.5px;
+    }
+    .ticket .ticket-meta {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .ticket .stream-link {
+      font-size: 13px;
+      color: var(--cyan);
+      word-break: break-all;
+      background: rgba(34,211,238,0.08);
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(34,211,238,0.2);
+      display: inline-block;
+      max-width: 100%;
+    }
+    .ticket .ticket-footer {
+      margin-top: 14px;
+      font-size: 11px;
+      color: var(--muted);
+      border-top: 1px solid var(--border-soft);
+      padding-top: 12px;
+    }
+    .ticket .ticket-badge {
+      background: var(--gold);
+      color: #0c0620;
+      font-weight: 800;
+      font-size: 11px;
+      padding: 2px 14px;
+      border-radius: 30px;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      display: inline-block;
+    }
 
     .reg-form .field input, .reg-form .field select {
       width:100%; background:var(--panel-2); border:1px solid var(--border); color:var(--text);
@@ -972,20 +1029,30 @@ document.getElementById('regSubmit').addEventListener('click', async function() 
   }
 });
 
-// ---- Ticket Generation ----
+// ---- Ticket Generation (torn edges on both sides) ----
 function showTicket(eventId, attendeeName, classDiv) {
   const e = events.find(ev => ev.id === eventId);
   if (!e) return;
   const container = document.getElementById('ticketContainer');
-  const streamOrVenue = e.streamLink || e.venue || 'Check event details';
+
+  // Decide which link to show: streamLink if online/hybrid, else venue if in-person
+  let linkDisplay = '';
+  if (e.streamLink) {
+    linkDisplay = `🔗 ${e.streamLink}`;
+  } else if (e.venue) {
+    linkDisplay = `📍 ${e.venue}`;
+  } else {
+    linkDisplay = 'Check event details';
+  }
+
   container.innerHTML = `
     <div class="ticket" id="ticketToDownload">
       <div class="ticket-inner">
-        <div style="font-size:12px; color:var(--gold); letter-spacing:2px; margin-bottom:6px;">✦ EVENTNEST ✦</div>
+        <div class="ticket-badge">✦ EVENTNEST ✦</div>
         <div class="event-name">${e.title}</div>
         <div class="attendee-name">${attendeeName}</div>
         <div class="ticket-meta">${classDiv} · ${e.dateLabel || ''}</div>
-        <div class="stream-link">${e.streamLink ? '🔗 ' + e.streamLink : '📍 ' + (e.venue || 'Venue info')}</div>
+        <div class="stream-link">${linkDisplay}</div>
         <div class="ticket-footer">#${e.id.slice(0,8)} · ${e.organizerName}</div>
       </div>
     </div>
