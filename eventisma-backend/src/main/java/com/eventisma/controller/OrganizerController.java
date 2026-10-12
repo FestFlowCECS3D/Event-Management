@@ -35,16 +35,30 @@ public class OrganizerController {
     }
 
     @PostMapping
-    public ResponseEntity<Organizer> createOrganizer(@RequestBody Organizer organizer) {
+    public ResponseEntity<?> createOrganizer(@RequestBody Organizer organizer) {
+        String wanted = normalize(organizer.getName());
+        boolean exists = organizerRepository.findAll().stream()
+                .anyMatch(o -> normalize(o.getName()).equals(wanted));
+        if (exists) {
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body("Organizer/Club \"" + organizer.getName().trim() + "\" already exists.");
+        }
         organizer.setId(null);
         Organizer saved = organizerRepository.save(organizer);
         return ResponseEntity.ok(saved);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Organizer> updateOrganizer(@PathVariable String id, @RequestBody Organizer updatedOrganizer) {
+    public ResponseEntity<?> updateOrganizer(@PathVariable String id, @RequestBody Organizer updatedOrganizer) {
         return organizerRepository.findById(id)
-                .map(existing -> {
+                .<ResponseEntity<?>>map(existing -> {
+                    String wanted = normalize(updatedOrganizer.getName());
+                    boolean exists = organizerRepository.findAll().stream()
+                            .anyMatch(o -> !o.getId().equals(id) && normalize(o.getName()).equals(wanted));
+                    if (exists) {
+                        return ResponseEntity.status(HttpStatus.CONFLICT)
+                                .body("Organizer/Club \"" + updatedOrganizer.getName().trim() + "\" already exists.");
+                    }
                     existing.setName(updatedOrganizer.getName());
                     Organizer saved = organizerRepository.save(existing);
                     return ResponseEntity.ok(saved);
@@ -65,5 +79,9 @@ public class OrganizerController {
         }
         organizerRepository.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    private static String normalize(String s) {
+        return s == null ? "" : s.trim().replaceAll("\\s+", " ").toLowerCase();
     }
 }
