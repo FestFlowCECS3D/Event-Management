@@ -1,44 +1,132 @@
-package com.eventnest.controller;
+package com.eventisma.controller;
 
-import com.eventnest.model.Event;
-import com.eventnest.repository.EventRepository;
+import com.eventisma.model.Event;
+import com.eventisma.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.time.LocalDate;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/events")
+@CrossOrigin(origins = "*")
 public class EventController {
 
     @Autowired
     private EventRepository eventRepository;
 
-    // GET /api/events?status=PUBLISHED&club={clubId}&page=0&size=10
     @GetMapping
-    public Page<Event> getEvents(
-            @RequestParam(required = false, defaultValue = "PUBLISHED") String status,
-            @RequestParam(required = false) String club,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
-        
-        Pageable pageable = PageRequest.of(page, size);
-        
-        if (club != null && !club.isEmpty()) {
-            return eventRepository.findByStatusAndClubId(status, club, pageable);
+    public ResponseEntity<List<Event>> getAllEvents(
+            @RequestParam(required = false) String category,
+            @RequestParam(required = false) Boolean workshopOnly) {
+
+        List<Event> events;
+        if (workshopOnly != null && workshopOnly) {
+            events = eventRepository.findByIsWorkshopTrue();
+        } else if (category != null && !category.equals("all")) {
+            events = eventRepository.findByCategoryIgnoreCase(category);
+        } else {
+            events = eventRepository.findAll();
         }
-        return eventRepository.findByStatus(status, pageable);
+        return ResponseEntity.ok(events);
     }
 
-    // GET /api/events/calendar?startDate=2026-08-01&endDate=2026-08-31 (Returns lightweight date array)
-    @GetMapping("/calendar")
-    public List<LocalDate> getCalendarEvents(
-            @RequestParam LocalDate startDate, 
-            @RequestParam LocalDate endDate) {
-        return eventRepository.findDistinctEventDatesBetween(startDate, endDate);
+    @GetMapping("/{id}")
+    public ResponseEntity<Event> getEventById(@PathVariable String id) {
+        return eventRepository.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PostMapping
+    public ResponseEntity<?> createEvent(@RequestBody Event event) {
+        Event dup = findDuplicate(event, null);
+        if (dup != null) {
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body("Event \"" + dup.getTitle() + "\" by this organizer/club already exists.");
+        }
+        // Ensure a create always generates a fresh id, even if the client accidentally sent one.
+        event.setId(null);
+        Event saved = eventRepository.save(event);
+        return ResponseEntity.ok(saved);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateEvent(@PathVariable String id, @RequestBody Event updatedEvent) {
+        return eventRepository.findById(id)
+                .<ResponseEntity<?>>map(existing -> {
+                    Event dup = findDuplicate(updatedEvent, id);
+                    if (dup != null) {
+                        return ResponseEntity.status(HttpStatus.CONFLICT)
+                                .body("Event \"" + dup.getTitle() + "\" by this organizer/club already exists.");
+                    }
+                    existing.setTitle(updatedEvent.getTitle());
+                    existing.setSubtitle(updatedEvent.getSubtitle());
+                    existing.setType(updatedEvent.getType());
+                    existing.setCategory(updatedEvent.getCategory());
+                    existing.setDescription(updatedEvent.getDescription());
+                    existing.setDate(updatedEvent.getDate());
+                    existing.setStartTime(updatedEvent.getStartTime());
+                    existing.setEndTime(updatedEvent.getEndTime());
+                    existing.setDayNumber(updatedEvent.getDayNumber());
+                    existing.setVenue(updatedEvent.getVenue());
+                    existing.setPrice(updatedEvent.getPrice());
+                    existing.setTotalSlots(updatedEvent.getTotalSlots());
+                    existing.setRegisteredSlots(updatedEvent.getRegisteredSlots());
+                    existing.setWorkshop(updatedEvent.isWorkshop());
+                    existing.setFeatured(updatedEvent.isFeatured());
+                    existing.setTags(updatedEvent.getTags());
+                    existing.setPerks(updatedEvent.getPerks());
+                    existing.setStatus(updatedEvent.getStatus());
+                    existing.setOrganizerId(updatedEvent.getOrganizerId());
+                    existing.setOrganizerName(updatedEvent.getOrganizerName());
+                    existing.setFormat(updatedEvent.getFormat());
+                    existing.setStreamLink(updatedEvent.getStreamLink());
+                    existing.setPlatform(updatedEvent.getPlatform());
+                    existing.setImageUrl(updatedEvent.getImageUrl());
+                    Event saved = eventRepository.save(existing);
+                    return ResponseEntity.ok(saved);
+                })
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteEvent(@PathVariable String id) {
+        if (!eventRepository.existsById(id)) {
+            return ResponseEntity.notFound().build();
+        }
+        eventRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    // ---- duplicate detection (title similar + same organizer/club) ----
+    private Event findDuplicate(Event incoming, String excludeId) {
+        return eventRepository.findAll().stream()
+                .filter(e -> (excludeId == null || !excludeId.equals(e.getId())) && sameOrganizer(e, incoming) && similarTitle(e.getTitle(), incoming.getTitle()))
+                .findFirst().orElse(null);
+    }
+
+    private static boolean sameOrganizer(Event a, Event b) {
+        String idA = a.getOrganizerId(), idB = b.getOrganizerId();
+        if (idA != null && !idA.isBlank() && idB != null && !idB.isBlank()) {
+            return idA.equals(idB);
+        }
+        String nA = norm(a.getOrganizerName()), nB = norm(b.getOrganizerName());
+        return nA.equals(nB); // both blank counts as same "no organizer"
+    }
+
+    private static boolean similarTitle(String a, String b) {
+        String x = norm(a), y = norm(b);
+        if (x.isEmpty() || y.isEmpty()) return false;
+        if (x.equals(y)) return true;
+        String shorter = x.length() <= y.length() ? x : y;
+        String longer = shorter == x ? y : x;
+        return shorter.length() >= 4 && longer.contains(shorter);
+    }
+
+    // lowercase, strip punctuation, collapse spaces
+    private static String norm(String s) {
+        return s == null ? "" : s.toLowerCase().replaceAll("[^a-z0-9\\s]", " ").replaceAll("\\s+", " ").trim();
     }
 }

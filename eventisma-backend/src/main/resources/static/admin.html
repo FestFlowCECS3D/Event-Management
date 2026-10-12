@@ -242,7 +242,7 @@
 
   /* Grid View (Default) */
   .events-grid{
-    display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:22px;
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:22px;
     transition: opacity 0.25s ease-in-out;
     width: 100%;
     margin: 0 auto;
@@ -313,6 +313,8 @@
   .btn-edit:hover{background:rgba(96,165,250,0.2);}
   .btn-attendees{background:rgba(167,139,250,0.12);color:var(--purple);border:1px solid rgba(167,139,250,0.4);}
   .btn-attendees:hover{background:rgba(167,139,250,0.2);}
+  .btn-details{background:rgba(255, 255, 255, 0.12);color:var(--purple);border:1px solid rgba(167,139,250,0.4);}
+  .btn-details:hover{background:rgba(255, 255, 255, 0.2);}
   .btn-remove{background:rgba(248,113,113,0.12);color:var(--red);border:1px solid rgba(248,113,113,0.4);}
   .btn-remove:hover{background:rgba(248,113,113,0.2);}
 
@@ -353,7 +355,6 @@
   .field select:disabled, .field input:disabled{opacity:0.45; cursor:not-allowed;}
   .field-row{display:flex;gap:10px;}
   .field-row .field{flex:1;}
-  .modal-actions{display:flex;gap:10px;margin-top:20px;}
   .btn-cancel{
     flex:1;padding:11px;border-radius:9px;background:var(--panel-2);border:1px solid var(--border);
     color:var(--muted);font-weight:700;font-size:13px;cursor:pointer;
@@ -366,6 +367,7 @@
   .checkbox-row{display:flex;align-items:center;gap:8px;margin-bottom:14px;}
   .checkbox-row input{width:auto;}
   .checkbox-row label{margin:0;font-size:13px;color:var(--text);font-weight:600;}
+  .modal-actions{display:flex;gap:10px;width:100%;margin-top:16px;}
   
   /* Tables */
   .data-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; text-align: left; }
@@ -497,7 +499,7 @@
       <button id="btnList" class="btn-toggle" title="List View">☰ List</button>
       <button id="btnCalendar" class="btn-toggle" title="Calendar View">📅 Calendar</button>
     </div>
-    <button class="btn-user-link">⧉ View User Portal</button>
+    <button class="btn-user-link" id="viewUserPortalBtn">⧉ View User Portal</button>
     <button class="btn-manage-clubs" id="manageClubsBtn">⚙ Organizers</button>
     <button class="btn-add" id="addEventBtn"><span class="btn-icon">+</span> Add Event</button>
   </div>
@@ -633,7 +635,7 @@
         <select id="fFormat">
           <option value="virtual">🌐 Virtual Stream</option>
           <option value="inperson">📍 In-Person Venue</option>
-          <option value="both">🌐📍 Both</option>
+          <option value="both">🌐📍 Hybrid</option>
         </select>
       </div>
     </div>
@@ -653,10 +655,15 @@
         </select>
         <input type="text" id="fVenueCustom" placeholder="Enter custom venue name..." style="display:none; margin-top:8px;">
       </div>
-      <div class="field" id="fLocationWrap">
-        <label id="fLocationLabel">Stream Link</label>
-        <input type="text" id="fLocation" placeholder="e.g. Discord & YouTube Stream link">
+      <div class="field" id="fPlatformWrap">
+        <label id="fPlatformLabel">Platform</label>
+        <input type="text" id="fPlatform" placeholder="e.g. YouTube, Google Meet, Zoom">
       </div>
+    </div>
+
+    <div class="field" id="fLocationWrap">
+      <label id="fLocationLabel">Stream Link</label>
+      <input type="text" id="fLocation" placeholder="e.g. Discord & YouTube Stream link">
     </div>
 
     <div class="field">
@@ -723,13 +730,13 @@
     </div>
     
     <div class="stats-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 100%; margin-bottom: 20px;">
-      <div class="stat-card" style="padding: 12px;">
+      <div class="stat-card" style="padding: 12px; height:auto; box-sizing:border-box; overflow:visible;">
         <div class="stat-label">Total Registrations</div>
-        <div class="stat-num" id="regTotal" style="font-size: 18px;">0</div>
+        <div class="stat-num" id="regTotal" style="font-size: 18px; overflow:visible; white-space:nowrap;">0</div>
       </div>
-      <div class="stat-card" style="padding: 12px;">
+      <div class="stat-card" style="padding: 12px; height:auto; box-sizing:border-box; overflow:visible;">
         <div class="stat-label">Available Slots</div>
-        <div class="stat-num" id="regSlots" style="font-size: 18px;">0</div>
+        <div class="stat-num" id="regSlots" style="font-size: 18px; overflow:visible; white-space:nowrap;">0</div>
       </div>
     </div>
 
@@ -737,10 +744,11 @@
       <thead>
         <tr>
           <th>Name</th>
-          <th>Roll No.</th>
-          <th>Dept</th>
-          <th>Ticket Hash</th>
-          <th>Payment</th>
+          <th>Class</th>
+          <th>Phone Number</th>
+          <th>Email ID</th>
+          <th>Transaction ID</th>
+          <th>Registration Date</th>
         </tr>
       </thead>
       <tbody id="attendeesTableBody"></tbody>
@@ -748,7 +756,69 @@
   </div>
 </div>
 
+<!-- EVENT DETAILS MODAL (read-only) -->
+<div class="modal-overlay" id="detailsModalOverlay">
+  <div class="modal large">
+    <h3>Event Details <button class="btn-cancel btn-sm" id="closeDetailsModal" style="width:auto; padding: 4px 10px;">Close</button></h3>
+    <div id="detailsBanner" style="height:160px;border-radius:12px;background-size:cover;background-position:center;margin-bottom:18px;border:1px solid var(--border);"></div>
+    <div class="tag-row" id="detailsTags" style="margin-bottom:16px;"></div>
+    <div class="field-row">
+      <div class="field">
+        <label>Event Title</label>
+        <div id="dTitle" style="font-weight:700;font-size:15px;"></div>
+      </div>
+      <div class="field">
+        <label>Organizer / Club</label>
+        <div id="dOrganizer"></div>
+      </div>
+    </div>
+    <div class="field">
+      <label>Description</label>
+      <div id="dDescription" style="color:var(--muted);font-size:13px;line-height:1.5;"></div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>Date</label>
+        <div id="dDate"></div>
+      </div>
+      <div class="field">
+        <label>Time</label>
+        <div id="dTime"></div>
+      </div>
+      <div class="field">
+        <label>Venue / Stream</label>
+        <div id="dVenue"></div>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>Price</label>
+        <div id="dPrice"></div>
+      </div>
+      <div class="field">
+        <label>Registered / Capacity</label>
+        <div id="dRegistration"></div>
+      </div>
+      <div class="field">
+        <label>Featured</label>
+        <div id="dFeatured"></div>
+      </div>
+    </div>
+    <div class="field">
+      <label>Tags</label>
+      <div id="dTagsList" style="color:var(--muted);font-size:13px;"></div>
+    </div>
+  </div>
+</div>
+
 <script>
+// Address of your Spring Boot backend.
+// IMPORTANT: update this if your Codespace URL ever changes.
+const API_URL = "/api/events";
+const ORGANIZERS_URL = "/api/organizers";
+const CUSTOM_CATEGORIES_URL = "/api/custom-categories";
+const ATTENDEES_URL = "/api/attendees";
+
 // Mock Login Logic
 const loginPassInput = document.getElementById('loginPass');
 const loginErrorEl = document.getElementById('loginError');
@@ -811,31 +881,107 @@ document.getElementById('loginUser').addEventListener('input', () => {
   }
 });
 
-// Updated Relational Mock Data
-let clubs = [
-  {id: 1, name: "IEEE (Institute of Electrical and Electronics Engineers)"},
-  {id: 2, name: "GDG (Google Developers Group)"},
-  {id: 3, name: "FOCES"},
-  {id: 4, name: "TinkerHub"},
-  {id: 5, name: "IEDC"},
-  {id: 6, name: "MuLearn"}
-];
-let nextClubId = 7;
+// Organizers/clubs and custom categories are DB-backed. They start empty and
+// are populated by loadOrganizers()/loadCustomCategories() below — no mock
+// or hardcoded data is used here.
+let clubs = [];
+let customCategories = []; // array of {id, name} loaded from /api/custom-categories
 
 // Statuses: DRAFT, PUBLISHED, COMPLETED
-let events = [
-  {id:1, title:"IEEE Tech Summit 2024", cat:"Tech", featured:true, price:10, status:"PUBLISHED", organizerId:1, capacity: 150, tags:['Workshop', 'Certification'], img:"", meta:"🕐 Fri · 9:00 AM · Main Auditorium", date:"2026-08-07", time:"09:00", isVirtual:false, venue:"Main Auditorium", location:"Main Auditorium", description:"", agenda:[]},
-  {id:2, title:"GDG Cloud DevFest", cat:"Hackathon", featured:true, price:0, status:"DRAFT", organizerId:2, capacity: 50, tags:['Google Cloud', 'Free Swag'], img:"", meta:"🕐 Sat · 10:00 AM · CS Dept", date:"2026-08-15", time:"10:00", isVirtual:false, venue:"CS Dept Seminar Hall", location:"CS Dept Seminar Hall", description:"", agenda:[]},
-  {id:3, title:"TinkerHub CodeJam", cat:"Gaming", featured:false, price:15, status:"PUBLISHED", organizerId:4, capacity: 300, tags:['Tournament', 'Prizes'], img:"", meta:"🕐 Sun · 6:00 PM · Online Arena", date:"2026-08-23", time:"18:00", isVirtual:true, venue:"Online Arena (Discord/YouTube)", location:"Online Arena (Discord/YouTube)", description:"", agenda:[]}
-];
-let nextEventId = 4;
+// events[] is populated from the backend by loadEvents() below — this starts empty.
+// NOTE: Event ids, Organizer ids, and CustomCategory ids are server-generated
+// UUID strings (GenerationType.UUID) — they must be compared/passed as strings.
+let events = [];
 
-let attendees = [
-  {eventId: 1, name: "Alex Chen", roll: "22CS101", dept: "CompSci", hash: "TX-998A2", status: "PAID"},
-  {eventId: 1, name: "Sarah Miller", roll: "22EC045", dept: "Electronics", hash: "TX-771B4", status: "PENDING"},
-  {eventId: 3, name: "Jordan Lee", roll: "23ME201", dept: "Mechanical", hash: "TX-112C9", status: "PAID"},
-  {eventId: 3, name: "Emma Watson", roll: "21CS099", dept: "CompSci", hash: "TX-445D1", status: "FAILED"}
-];
+// Every field the admin UI needs is now persisted server-side on the Event
+// entity (title, category, venue, date, startTime, price, totalSlots,
+// registeredSlots, status, organizerId/organizerName, format, streamLink,
+// imageUrl, tags, description, featured). This maps the backend shape
+// straight onto the shape the admin UI renders — no local-only state.
+function mapServerEventToAdmin(serverEv) {
+  const cat = serverEv.category || 'Tech';
+  const venue = serverEv.venue || '';
+  const date = serverEv.date || '';
+  const time = serverEv.startTime || '18:00';
+  const format = serverEv.format || 'inperson';
+  const dateLabel = date ? new Date(date + 'T00:00:00').toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }) : 'TBD';
+  const metaIcon = format === 'virtual' ? '🌐' : (format === 'both' ? '🌐📍' : '📍');
+  const platform = serverEv.platform || '';
+  const locationText = format === 'virtual' ? (platform || 'TBD')
+    : format === 'both' ? `${venue || 'TBD'} · ${platform || 'TBD'}`
+    : (venue || 'TBD');
+  return {
+    id: serverEv.id,
+    title: serverEv.title || 'Untitled event',
+    cat,
+    featured: !!serverEv.featured,
+    price: serverEv.price || 0,
+    status: serverEv.status || 'PUBLISHED',
+    organizerId: serverEv.organizerId ?? null,
+    organizerName: serverEv.organizerName || '',
+    capacity: serverEv.totalSlots ?? 10,
+    registeredSlots: serverEv.registeredSlots ?? 0,
+    tags: serverEv.tags || [],
+    img: serverEv.imageUrl || '',
+    meta: `🕐 ${dateLabel}${time ? ' · ' + time : ''} · ${metaIcon} ${locationText}`,
+    date, time,
+    isVirtual: format === 'virtual' || format === 'both',
+    format,
+    venue,
+    streamLink: serverEv.streamLink || '',
+    platform: serverEv.platform || '',
+    location: locationText,
+    description: serverEv.description || '',
+    agenda: []
+  };
+}
+
+// Fetch the live event list from the backend and re-render.
+async function loadEvents() {
+  try {
+    const response = await fetch(API_URL);
+    if (!response.ok) throw new Error('Server responded with an error');
+    const serverEvents = await response.json();
+    console.log(`✅ Backend connected (${API_URL}) — ${serverEvents.length} event${serverEvents.length === 1 ? '' : 's'} loaded from database.`);
+    events = serverEvents.map(mapServerEventToAdmin);
+  } catch (err) {
+    console.error(`❌ Backend NOT connected (${API_URL}) — is the Spring Boot server running?`, err);
+    // Keep whatever was already in `events` (e.g. empty on first load) rather than crash the UI.
+  }
+  renderEvents();
+  updateDashboardStats();
+  if (typeof renderCalendar === 'function') renderCalendar();
+}
+
+// Fetch the live organizer/club list from the backend and re-render.
+async function loadOrganizers() {
+  try {
+    const response = await fetch(ORGANIZERS_URL);
+    if (!response.ok) throw new Error('Server responded with an error');
+    clubs = await response.json();
+  } catch (err) {
+    console.error(`❌ Backend NOT connected (${ORGANIZERS_URL}) — is the Spring Boot server running?`, err);
+  }
+  renderOrgFilter();
+  populateOrgSelect();
+  updateDashboardStats();
+}
+
+// Fetch the live custom-category list from the backend and re-render.
+async function loadCustomCategories() {
+  try {
+    const response = await fetch(CUSTOM_CATEGORIES_URL);
+    if (!response.ok) throw new Error('Server responded with an error');
+    customCategories = await response.json();
+  } catch (err) {
+    console.error(`❌ Backend NOT connected (${CUSTOM_CATEGORIES_URL}) — is the Spring Boot server running?`, err);
+  }
+  renderCatFilter();
+  populateCatSelect();
+}
+
+let attendees = [];
+let currentModalAttendees = [];
 
 const catColors = {
   Tech:"radial-gradient(circle at 30% 30%, #22d3ee, #0a1930)",
@@ -846,14 +992,11 @@ const catColors = {
 const defaultCatGradient = "radial-gradient(circle at 40% 60%, #67e8f9, #0f172a)";
 function getCatBg(cat){ return catColors[cat] || defaultCatGradient; }
 
-// Custom (user-created) categories, on top of the preset Tech/Workshop/Hackathon
-let customCategories = [];
-
 function populateCatSelect(){
   const preset = ['Tech','Workshop','Hackathon'];
   const current = fCat.value;
   fCat.innerHTML = preset.map(c => `<option>${c}</option>`).join('')
-    + customCategories.map(c => `<option>${c}</option>`).join('')
+    + customCategories.map(c => `<option>${c.name}</option>`).join('')
     + `<option value="__custom__">Custom Category…</option>`;
   if([...fCat.options].some(o => o.value === current)) fCat.value = current;
 }
@@ -870,15 +1013,16 @@ let editingId = null;
 let currentEventForAttendees = null;
 
 // Helpers
-const getClubName = (id) => clubs.find(c => c.id == id)?.name || 'Unknown Organizer';
+const getClubName = (id) => clubs.find(c => c.id === id)?.name || 'Unknown Organizer';
 const getEventAttendees = (id) => attendees.filter(a => a.eventId === id);
 
 function updateDashboardStats() {
-  const published = events.filter(e => e.status === 'PUBLISHED').length;
-  const validGuests = attendees.filter(a => a.status === 'PAID' || a.eventId === 2 /* free demo */).length;
+  const publishedEvents = events.filter(e => e.status === 'PUBLISHED');
+  const publishedIds = new Set(publishedEvents.map(e => e.id));
+  const publishedGuests = attendees.filter(a => publishedIds.has(a.eventId)).length;
 
-  document.getElementById('statEvents').textContent = published;
-  document.getElementById('statGuests').textContent = attendees.length;
+  document.getElementById('statEvents').textContent = publishedEvents.length;
+  document.getElementById('statGuests').textContent = publishedGuests;
   document.getElementById('statClubs').textContent = clubs.length;
 }
 
@@ -896,8 +1040,7 @@ function renderEvents(){
   }
   
   filtered.forEach(e=>{
-    const atts = getEventAttendees(e.id);
-    const slotsLeft = e.capacity - atts.length;
+    const regSlotsLeft = e.capacity - e.registeredSlots;
     const bgImg = e.img ? `url(${e.img}), ${getCatBg(e.cat)}` : getCatBg(e.cat);
     const statusClass = e.status === 'DRAFT' ? 'status-draft' : e.status === 'PUBLISHED' ? 'status-pub' : 'status-closed';
     
@@ -905,7 +1048,7 @@ function renderEvents(){
     let tagsHtml = `<span class="tag cat">${e.cat.toUpperCase()}</span>`;
     tagsHtml += `<span class="tag ${statusClass}">${e.status}</span>`;
     if(e.featured) tagsHtml += `<span class="tag featured">✦ FEATURED</span>`;
-    if(slotsLeft <= 0) tagsHtml += `<span class="tag" style="background:var(--red); color:#fff">SOLD OUT</span>`;
+    if(regSlotsLeft <= 0) tagsHtml += `<span class="tag" style="background:var(--red); color:#fff">SOLD OUT</span>`;
     e.tags?.forEach(t => { if(t.trim()) tagsHtml += `<span class="tag" style="border:1px solid var(--border)">${t.trim()}</span>`; });
 
     const card = document.createElement('div');
@@ -914,21 +1057,22 @@ function renderEvents(){
       <div class="event-media" style="background-image:${bgImg}">
         <div class="media-top">
           <div class="tag-row">${tagsHtml}</div>
-          <span class="price ${e.price===0?'free':''}">${e.price===0?'FREE':'$'+e.price.toFixed(2)}</span>
+          <span class="price ${e.price===0?'free':''}">${e.price===0?'FREE':'₹'+e.price.toFixed(2)}</span>
         </div>
       </div>
       <div class="event-body">
         <div class="event-title">${e.title}</div>
-        <div class="event-org">Hosted by: ${getClubName(e.organizerId)}</div>
+        <div class="event-org">Hosted by: ${getClubName(e.organizerId) !== 'Unknown Organizer' ? getClubName(e.organizerId) : (e.organizerName || 'Unknown Organizer')}</div>
         <div class="event-meta">${e.meta}</div>
         <div class="event-stats">
-          <span>Capacity: ${e.capacity}</span>
-          <span>Registered: ${atts.length} ${slotsLeft < 0 ? '(Waitlist)' : ''}</span>
+          <span>Registered: ${e.registeredSlots} / ${e.capacity}</span>
+          <span>${regSlotsLeft < 0 ? 'Waitlist' : regSlotsLeft + ' left'}</span>
         </div>
         <div class="event-actions">
           <button class="btn-action btn-attendees" data-id="${e.id}">👥 Attendees</button>
-          <button class="btn-action btn-edit" data-id="${e.id}">✎ Edit</button>
-          <button class="btn-action btn-remove" data-id="${e.id}">🗑</button>
+          <button class="btn-action btn-details" data-id="${e.id}">ℹ Details</button>
+          <button class="btn-action btn-edit" data-id="${e.id}">✍ Edit</button>
+          <button class="btn-action btn-remove" data-id="${e.id}">❌ Remove</button>
         </div>
       </div>
     `;
@@ -969,6 +1113,7 @@ function showGridOrList(active){
   eventsGrid.style.opacity = 0;
 
   setEventsHeading('manage');
+  renderEvents();
 
   setTimeout(() => {
     eventsGrid.classList.toggle('list-view', active === 'list');
@@ -1048,13 +1193,14 @@ function renderCalendar(){
     cellDate.setHours(0,0,0,0);
     const isPast = cellDate.getTime() < todayMidnight.getTime();
     const isToday = cellDate.getTime() === todayMidnight.getTime();
+    const isBlocked = dateStr < minAllowedDateStr();
     const cell = document.createElement('div');
     cell.className = 'cal-cell'
       + (dayEvents.length ? ' has-events' : '')
       + (isPast ? ' past' : '')
       + (isToday ? ' today' : '');
     cell.dataset.date = dateStr;
-    if (isPast) cell.dataset.past = 'true';
+    if (isBlocked) cell.dataset.past = 'true';
     cell.innerHTML = `
       <div class="cal-daynum"><span>${day}</span>${dayEvents.length ? '<span class="cal-dot"></span>' : ''}</div>
       <div class="cal-events">
@@ -1067,7 +1213,7 @@ function renderCalendar(){
 
 calGrid.addEventListener('click', e => {
   const chip = e.target.closest('.cal-event-chip');
-  if (chip) { openEventModal(Number(chip.dataset.id)); return; }
+  if (chip) { openEventModal(chip.dataset.id); return; }
 
   const cell = e.target.closest('.cal-cell');
   if (!cell || cell.classList.contains('empty') || !cell.dataset.date) return;
@@ -1100,25 +1246,37 @@ const presetCats = [
   {cat:'Hackathon', icon:'&gt;_'}
 ];
 function renderCatFilter(){
+  const customNames = customCategories.map(c => c.name);
   // If the previously active category was removed, fall back to "All"
-  if(activeCat !== 'All' && !presetCats.some(p=>p.cat===activeCat) && !customCategories.includes(activeCat)){
+  if(activeCat !== 'All' && !presetCats.some(p=>p.cat===activeCat) && !customNames.includes(activeCat)){
     activeCat = 'All';
   }
   catRow.innerHTML = presetCats.map(p =>
     `<div class="cat-btn${activeCat===p.cat?' active':''}" data-cat="${p.cat}">${p.icon} ${p.cat}</div>`
   ).join('') + customCategories.map(c =>
-    `<div class="cat-btn${activeCat===c?' active':''}" data-cat="${c}">✦ ${c}<span class="cat-btn-remove" data-remove-cat="${c}" title="Remove category">✕</span></div>`
+    `<div class="cat-btn${activeCat===c.name?' active':''}" data-cat="${c.name}">✦ ${c.name}<span class="cat-btn-remove" data-remove-cat="${c.id}" title="Remove category">✕</span></div>`
   ).join('');
 }
 catRow.addEventListener('click', e=>{
   const removeBtn = e.target.closest('.cat-btn-remove');
   if(removeBtn){
-    const cat = removeBtn.dataset.removeCat;
-    customCategories = customCategories.filter(c => c !== cat);
-    if(activeCat === cat) activeCat = 'All';
-    renderCatFilter();
-    populateCatSelect();
-    renderEvents();
+    const id = removeBtn.dataset.removeCat;
+    const cat = customCategories.find(c => c.id === id);
+    (async () => {
+      try {
+        const response = await fetch(`${CUSTOM_CATEGORIES_URL}/${id}`, { method: 'DELETE' });
+        if (!response.ok) throw new Error('Server responded with an error');
+      } catch (err) {
+        console.error('Failed to delete custom category on backend:', err);
+        alert('Could not delete the category on the backend. Check that it is running.');
+        return;
+      }
+      customCategories = customCategories.filter(c => c.id !== id);
+      if(cat && activeCat === cat.name) activeCat = 'All';
+      renderCatFilter();
+      populateCatSelect();
+      renderEvents();
+    })();
     return;
   }
   const btn = e.target.closest('.cat-btn');
@@ -1160,8 +1318,15 @@ const fCapacity = document.getElementById('fCapacity');
 const fImgUrl = document.getElementById('fImgUrl'), fTags = document.getElementById('fTags');
 const fFeatured = document.getElementById('fFeatured');
 const fDate = document.getElementById('fDate'), fTime = document.getElementById('fTime');
+function minAllowedDateStr(){
+  const d = new Date();
+  d.setDate(d.getDate() + 2);
+  return d.toISOString().slice(0, 10);
+}
+fDate.min = minAllowedDateStr();
 const fFormat = document.getElementById('fFormat'), fVenue = document.getElementById('fVenue');
 const fLocation = document.getElementById('fLocation'), fLocationLabel = document.getElementById('fLocationLabel');
+const fPlatform = document.getElementById('fPlatform'), fLocationWrap = document.getElementById('fLocationWrap'), fPlatformWrap = document.getElementById('fPlatformWrap');
 const fDescription = document.getElementById('fDescription');
 const fImgFile = document.getElementById('fImgFile'), fImgBrowseBtn = document.getElementById('fImgBrowseBtn'), fImgFileName = document.getElementById('fImgFileName');
 
@@ -1172,9 +1337,13 @@ function applyFormatState(){
 
   fVenue.disabled = !wantsVenue;
   fLocation.disabled = !wantsStream;
+  fPlatform.disabled = !wantsStream;
+
+  fLocationWrap.style.display = wantsStream ? '' : 'none';
+  fPlatformWrap.style.display = wantsStream ? '' : 'none';
 
   if(!wantsVenue){ fVenue.value = ''; document.getElementById('fVenueCustom').style.display = 'none'; document.getElementById('fVenueCustom').value=''; }
-  if(!wantsStream){ fLocation.value = ''; }
+  if(!wantsStream){ fLocation.value = ''; fPlatform.value = ''; }
 
   fLocationLabel.textContent = 'Stream Link';
 }
@@ -1246,6 +1415,7 @@ function openEventModal(id = null){
     }
     if(fFormat.value === 'virtual' || fFormat.value === 'both'){
       fLocation.value = ev.streamLink || (ev.isVirtual ? ev.location : '') || '';
+      fPlatform.value = ev.platform || '';
     }
     fDescription.value = ev.description || '';
   } else {
@@ -1257,11 +1427,16 @@ function openEventModal(id = null){
     fTags.value = ''; fFeatured.checked = false;
     fDate.value = ''; fTime.value = '18:00'; fFormat.value = 'virtual';
     fVenue.value = ''; fVenueCustom.style.display = 'none'; fVenueCustom.value = '';
-    fLocation.value = ''; fDescription.value = '';
+    fLocation.value = ''; fPlatform.value = ''; fDescription.value = '';
     applyFormatState();
   }
   eventOverlay.classList.add('open');
 }
+
+document.getElementById('viewUserPortalBtn').addEventListener('click', () => {
+  alert('You are being logged out of the admin console.');
+  window.location.href = 'index.html';
+});
 
 document.getElementById('addEventBtn').addEventListener('click', () => openEventModal());
 document.getElementById('createEventBtn').addEventListener('click', () => openEventModal());
@@ -1272,14 +1447,19 @@ document.getElementById('eventModalSave').addEventListener('click', ()=>{
   if(!title){ alert('Please enter an event title.'); return; }
 
   let category = fCat.value;
+  let needsCustomCategoryCreate = false;
   if(category === '__custom__'){
     category = fCatCustom.value.trim();
     if(!category){ alert('Please enter a custom category name.'); return; }
     const preset = ['Tech','Workshop','Hackathon'];
-    if(!preset.includes(category) && !customCategories.includes(category)){
-      customCategories.push(category);
-      renderCatFilter();
+    if(!preset.includes(category) && !customCategories.some(c => c.name === category)){
+      needsCustomCategoryCreate = true;
     }
+  }
+
+  if(!fDate.value || fDate.value < minAllowedDateStr()){
+    alert('Please select a valid event date. The earliest allowed date is the day after tomorrow.');
+    return;
   }
 
   const format = fFormat.value;
@@ -1288,30 +1468,77 @@ document.getElementById('eventModalSave').addEventListener('click', ()=>{
 
   const venueName = wantsVenue ? (fVenue.value === '__custom__' ? fVenueCustom.value.trim() : fVenue.value) : '';
   const streamLink = wantsStream ? fLocation.value.trim() : '';
-  const locationText = [venueName, streamLink].filter(Boolean).join(' / ') || 'TBD';
-  const isVirtual = format === 'virtual' || format === 'both';
-  const dateLabel = fDate.value ? new Date(fDate.value + 'T00:00:00').toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }) : 'TBD';
+  const platform = wantsStream ? fPlatform.value.trim() : '';
+  if(wantsStream && (!streamLink || !platform)){ alert('Please provide both Stream Link and Platform for virtual/hybrid events.'); return; }
   const timeLabel = fTime.value || '';
-  const metaIcon = format === 'virtual' ? '🌐' : (format === 'both' ? '🌐📍' : '📍');
 
-  const payload = {
-    title, status: fStatus.value, organizerId: fOrgSelect.value ? Number(fOrgSelect.value) : null,
-    cat: category, price: Math.max(0, Number(fPrice.value) || 0), capacity: Number(fCapacity.value) || 10,
-    date: fDate.value, time: timeLabel, format, isVirtual, venue: venueName, streamLink, location: locationText,
+  const organizerId = fOrgSelect.value || null;
+  const organizerName = organizerId ? getClubName(organizerId) : '';
+
+  // Full payload — every field in the Add/Edit form is persisted to the DB.
+  const serverPayload = {
+    title,
+    status: fStatus.value,
+    organizerId,
+    organizerName,
+    category,
+    price: Math.max(0, Number(fPrice.value) || 0),
+    totalSlots: Number(fCapacity.value) || 10,
+    registeredSlots: editingId ? (events.find(e => e.id === editingId)?.registeredSlots ?? 0) : 0,
+    date: fDate.value,
+    startTime: timeLabel,
+    format,
+    venue: venueName,
+    streamLink,
+    platform,
+    imageUrl: fImgUrl.value.trim(),
     description: fDescription.value.trim(),
-    meta: `🕐 ${dateLabel}${timeLabel ? ' · ' + timeLabel : ''} · ${metaIcon} ${locationText}`,
-    img: fImgUrl.value.trim(), featured: fFeatured.checked,
+    featured: fFeatured.checked,
     tags: fTags.value.split(',').map(t => t.trim()).filter(t=>t)
   };
 
-  if(editingId){
-    Object.assign(events.find(e=>e.id===editingId), payload);
-  } else {
-    events.push({id: nextEventId++, ...payload});
-  }
-  eventOverlay.classList.remove('open');
-  renderEvents();
-  if (typeof renderCalendar === 'function') renderCalendar();
+  (async () => {
+    if(needsCustomCategoryCreate){
+      try {
+        const catResponse = await fetch(CUSTOM_CATEGORIES_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name: category })
+        });
+        if (!catResponse.ok) throw new Error('Server responded with an error');
+        const savedCat = await catResponse.json();
+        customCategories.push(savedCat);
+        renderCatFilter();
+      } catch (err) {
+        console.error('Failed to save custom category to backend:', err);
+        alert('Could not save the custom category to the backend. Check that it is running.');
+        return;
+      }
+    }
+
+    try {
+      const response = await fetch(
+        editingId ? `${API_URL}/${editingId}` : API_URL,
+        {
+          method: editingId ? 'PUT' : 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(serverPayload)
+        }
+      );
+      if (response.status === 409) {
+        alert(await response.text() || 'This event already exists.');
+        return;
+      }
+      if (!response.ok) throw new Error('Server responded with an error');
+    } catch (err) {
+      console.error('Failed to save event to backend:', err);
+      alert('Could not save the event to the backend. Check that it is running.');
+      return;
+    }
+
+    eventOverlay.classList.remove('open');
+    await loadEvents(); // re-fetch from the DB so the list reflects exactly what was persisted
+  })();
 });
 
 // ---- Organizers Modal ----
@@ -1319,62 +1546,218 @@ const clubOverlay = document.getElementById('clubModalOverlay');
 function renderClubsTable() {
   const tbody = document.querySelector('#clubsTable tbody');
   tbody.innerHTML = clubs.map(c => {
-    const hostedCount = events.filter(e => e.organizerId === c.id).length;
-    return `<tr><td>#${c.id}</td><td>${c.name}</td><td>${hostedCount}</td>
-            <td><button class="btn-cancel btn-sm rm-club" data-id="${c.id}">Delete</button></td></tr>`;
+    const hostedCount = events.filter(e => String(e.organizerId) === String(c.id)).length;
+    const shortId = c.id ? String(c.id).slice(0, 8) : '';
+    return `<tr><td>#${shortId}</td><td>${c.name}</td><td>${hostedCount}</td>
+            <td>
+              <div style="display:flex; flex-wrap:nowrap; gap:8px; white-space:nowrap;">
+                <button class="btn-cancel btn-sm edit-club" data-id="${c.id}">Edit</button>
+                <button class="btn-cancel btn-sm rm-club" data-id="${c.id}">Delete</button>
+              </div>
+            </td></tr>`;
   }).join('');
 }
 document.getElementById('manageClubsBtn').addEventListener('click', () => { renderClubsTable(); clubOverlay.classList.add('open'); });
 document.getElementById('closeClubModal').addEventListener('click', () => clubOverlay.classList.remove('open'));
 document.getElementById('addClubBtn').addEventListener('click', () => {
   const name = document.getElementById('cName').value.trim();
-  if(name) { clubs.push({id: nextClubId++, name}); document.getElementById('cName').value=''; renderClubsTable(); populateOrgSelect(); renderOrgFilter(); renderEvents(); }
+  if(!name) return;
+  (async () => {
+    try {
+      const response = await fetch(ORGANIZERS_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name })
+      });
+      if (response.status === 409) {
+        alert(await response.text() || 'This organizer/club already exists.');
+        return;
+      }
+      if (!response.ok) throw new Error('Server responded with an error');
+      const saved = await response.json();
+      clubs.push(saved);
+    } catch (err) {
+      console.error('Failed to add organizer to backend:', err);
+      alert('Could not add the organizer to the backend. Check that it is running.');
+      return;
+    }
+    document.getElementById('cName').value = '';
+    renderClubsTable(); populateOrgSelect(); renderOrgFilter(); renderEvents();
+  })();
 });
 document.getElementById('clubsTable').addEventListener('click', e => {
-  if(e.target.classList.contains('rm-club')) {
-    const id = Number(e.target.dataset.id);
-    if(events.some(ev => ev.organizerId === id)) { alert("Cannot delete club: Currently hosting active events."); return; }
-    clubs = clubs.filter(c => c.id !== id); renderClubsTable(); populateOrgSelect(); renderOrgFilter(); renderEvents();
+  const editBtn = e.target.closest('.edit-club');
+  const rmBtn = e.target.closest('.rm-club');
+
+  if(editBtn){
+    const id = editBtn.dataset.id;
+    const club = clubs.find(c => c.id === id);
+    const newName = prompt('Edit organizer name:', club ? club.name : '');
+    if(newName === null) return;
+    const trimmed = newName.trim();
+    if(!trimmed) return;
+    (async () => {
+      try {
+        const response = await fetch(`${ORGANIZERS_URL}/${id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name: trimmed })
+        });
+        if (response.status === 409) {
+          alert(await response.text() || 'This organizer/club already exists.');
+          return;
+        }
+        if (!response.ok) throw new Error('Server responded with an error');
+        const saved = await response.json();
+        clubs = clubs.map(c => c.id === id ? saved : c);
+      } catch (err) {
+        console.error('Failed to update organizer on backend:', err);
+        alert('Could not update the organizer on the backend. Check that it is running.');
+        return;
+      }
+      renderClubsTable(); populateOrgSelect(); renderOrgFilter(); renderEvents();
+    })();
+    return;
+  }
+
+  if(rmBtn){
+    const id = rmBtn.dataset.id;
+    (async () => {
+      let response;
+      try {
+        response = await fetch(`${ORGANIZERS_URL}/${id}`, { method: 'DELETE' });
+      } catch (err) {
+        console.error('Failed to delete organizer on backend:', err);
+        alert('Could not delete the organizer on the backend. Check that it is running.');
+        return;
+      }
+      if(response.status === 409){
+        const msg = await response.text();
+        alert(msg || 'Cannot delete organizer: currently hosting active events.');
+        return;
+      }
+      if(!response.ok){
+        alert('Could not delete the organizer on the backend.');
+        return;
+      }
+      clubs = clubs.filter(c => c.id !== id);
+      renderClubsTable(); populateOrgSelect(); renderOrgFilter(); renderEvents();
+    })();
   }
 });
 
 // ---- Attendees Modal ----
 const attOverlay = document.getElementById('attendeesModalOverlay');
-function openAttendeesModal(eventId) {
+function formatRegDate(value) {
+  if (!value) return '—';
+  const d = new Date(value);
+  if (isNaN(d.getTime())) return '—';
+  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) +
+    ' ' + d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+}
+
+async function openAttendeesModal(eventId) {
   currentEventForAttendees = events.find(e => e.id === eventId);
-  const evAtts = getEventAttendees(eventId);
-  
+  if (!currentEventForAttendees) return;
+
   document.getElementById('regEventTitle').textContent = currentEventForAttendees.title;
-  document.getElementById('regTotal').textContent = evAtts.length;
-  document.getElementById('regSlots').textContent = Math.max(0, currentEventForAttendees.capacity - evAtts.length);
-  
   const tbody = document.getElementById('attendeesTableBody');
-  tbody.innerHTML = evAtts.length === 0 ? `<tr><td colspan="5" style="text-align:center; color:var(--muted);">No registrations yet.</td></tr>` 
-  : evAtts.map(a => `
+  tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:var(--muted);">Loading attendees…</td></tr>`;
+  attOverlay.classList.add('open');
+
+  currentModalAttendees = [];
+  try {
+    const response = await fetch(`${ATTENDEES_URL}/event/${encodeURIComponent(eventId)}`);
+    if (!response.ok) throw new Error('Server responded with an error');
+    currentModalAttendees = await response.json();
+  } catch (err) {
+    console.error(`❌ Backend NOT connected (${ATTENDEES_URL}) — is the Spring Boot server running?`, err);
+    tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:var(--muted);">Unable to load attendees.</td></tr>`;
+    document.getElementById('regTotal').textContent = 0;
+    document.getElementById('regSlots').textContent = currentEventForAttendees.capacity ?? 0;
+    return;
+  }
+
+  document.getElementById('regTotal').textContent = currentModalAttendees.length;
+  document.getElementById('regSlots').textContent = Math.max(0, (currentEventForAttendees.capacity ?? 0) - currentModalAttendees.length);
+
+  tbody.innerHTML = currentModalAttendees.length === 0
+    ? `<tr><td colspan="6" style="text-align:center; color:var(--muted);">No attendees registered</td></tr>`
+    : currentModalAttendees.map(a => `
     <tr>
-      <td style="font-weight:600">${a.name}</td>
-      <td>${a.roll}</td>
-      <td>${a.dept}</td>
-      <td style="font-family:monospace; color:var(--cyan)">${a.hash}</td>
-      <td><span class="status-dot ${a.status.toLowerCase()}"></span>${a.status}</td>
+      <td style="font-weight:600">${a.name ?? ''}</td>
+      <td>${a.className ?? ''}</td>
+      <td>${a.phoneNumber ?? ''}</td>
+      <td>${a.email ?? ''}</td>
+      <td style="font-family:monospace; color:var(--cyan)">${a.transactionId ?? ''}</td>
+      <td>${formatRegDate(a.registeredAt)}</td>
     </tr>
   `).join('');
-  
-  attOverlay.classList.add('open');
 }
 document.getElementById('closeAttendeesModal').addEventListener('click', () => attOverlay.classList.remove('open'));
 
+// ---- Event Details Modal (read-only) ----
+const detailsOverlay = document.getElementById('detailsModalOverlay');
+function openDetailsModal(id) {
+  const e = events.find(ev => ev.id === id);
+  if (!e) return;
+
+  const bgImg = e.img ? `url(${e.img}), ${getCatBg(e.cat)}` : getCatBg(e.cat);
+  document.getElementById('detailsBanner').style.backgroundImage = bgImg;
+
+  const statusClass = e.status === 'DRAFT' ? 'status-draft' : e.status === 'PUBLISHED' ? 'status-pub' : 'status-closed';
+  let tagsHtml = `<span class="tag cat">${e.cat.toUpperCase()}</span>`;
+  tagsHtml += `<span class="tag ${statusClass}">${e.status}</span>`;
+  if (e.featured) tagsHtml += `<span class="tag featured">✦ FEATURED</span>`;
+  document.getElementById('detailsTags').innerHTML = tagsHtml;
+
+  document.getElementById('dTitle').textContent = e.title;
+  document.getElementById('dOrganizer').textContent = getClubName(e.organizerId) !== 'Unknown Organizer' ? getClubName(e.organizerId) : (e.organizerName || 'Unknown Organizer');
+  document.getElementById('dDescription').textContent = e.description || '— No description provided —';
+  document.getElementById('dDate').textContent = e.date ? new Date(e.date + 'T00:00:00').toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) : 'TBD';
+  document.getElementById('dTime').textContent = e.time || 'TBD';
+  const venuePart = e.venue ? `Venue: ${e.venue}` : '';
+  const streamPart = e.isVirtual ? `Platform: ${e.platform || 'TBD'} | Link: ${e.streamLink || 'TBD'}` : '';
+  document.getElementById('dVenue').textContent = [venuePart, streamPart].filter(Boolean).join(' — ') || 'TBD';
+  document.getElementById('dPrice').textContent = e.price === 0 ? 'FREE' : `₹${Number(e.price).toFixed(2)}`;
+  document.getElementById('dRegistration').textContent = `${e.registeredSlots} / ${e.capacity}`;
+  document.getElementById('dFeatured').textContent = e.featured ? 'Yes' : 'No';
+  document.getElementById('dTagsList').textContent = (e.tags && e.tags.length) ? e.tags.join(', ') : '— None —';
+
+  detailsOverlay.classList.add('open');
+}
+document.getElementById('closeDetailsModal').addEventListener('click', () => detailsOverlay.classList.remove('open'));
+
 // CSV Export
+function csvEscape(value) {
+  const str = value === null || value === undefined ? '' : String(value);
+  return `"${str.replace(/"/g, '""')}"`;
+}
+
+function slugify(str) {
+  return String(str || 'event')
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '') || 'event';
+}
+
 document.getElementById('exportCsvBtn').addEventListener('click', () => {
   if(!currentEventForAttendees) return;
-  const evAtts = getEventAttendees(currentEventForAttendees.id);
-  let csv = "Name,Roll No,Department,Ticket Hash,Payment Status\n";
-  evAtts.forEach(a => { csv += `"${a.name}","${a.roll}","${a.dept}","${a.hash}","${a.status}"\n`; });
-  
-  const blob = new Blob([csv], { type: 'text/csv' });
+  if(!currentModalAttendees.length) return;
+
+  const headers = ['Name', 'Class', 'Phone Number', 'Email ID', 'Transaction ID', 'Registration Date'];
+  const rows = currentModalAttendees.map(a => [
+    a.name, a.className, a.phoneNumber, a.email, a.transactionId, formatRegDate(a.registeredAt)
+  ]);
+
+  let csv = headers.map(csvEscape).join(',') + '\r\n';
+  rows.forEach(row => { csv += row.map(csvEscape).join(',') + '\r\n'; });
+
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
   const url = window.URL.createObjectURL(blob);
   const a = document.createElement('a');
-  a.href = url; a.download = `Attendees_${currentEventForAttendees.id}.csv`;
+  a.href = url; a.download = `${slugify(currentEventForAttendees.title)}-attendees.csv`;
   a.click(); window.URL.revokeObjectURL(url);
 });
 
@@ -1383,15 +1766,26 @@ grid.addEventListener('click', e=>{
   const editBtn = e.target.closest('.btn-edit');
   const removeBtn = e.target.closest('.btn-remove');
   const attBtn = e.target.closest('.btn-attendees');
-  
-  if(editBtn) return openEventModal(Number(editBtn.dataset.id));
-  if(attBtn) return openAttendeesModal(Number(attBtn.dataset.id));
+  const detailsBtn = e.target.closest('.btn-details');
+
+  if(editBtn) return openEventModal(editBtn.dataset.id);
+  if(attBtn) return openAttendeesModal(attBtn.dataset.id);
+  if(detailsBtn) return openDetailsModal(detailsBtn.dataset.id);
   if(removeBtn){
-    const id = Number(removeBtn.dataset.id);
+    const id = removeBtn.dataset.id;
     const ev = events.find(e=>e.id===id);
     if(ev && confirm(`Remove "${ev.title}"? This cannot be undone.`)){
-      events = events.filter(e=>e.id!==id);
-      renderEvents();
+      (async () => {
+        try {
+          const response = await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
+          if (!response.ok) throw new Error('Server responded with an error');
+        } catch (err) {
+          console.error('Failed to delete event on backend:', err);
+          alert('Could not delete the event on the backend. Check that it is running.');
+          return;
+        }
+        await loadEvents(); // resync from DB so the UI reflects exactly what's persisted
+      })();
     }
   }
 });
@@ -1403,7 +1797,9 @@ document.querySelectorAll('.modal-overlay').forEach(ov => {
 
 renderCatFilter();
 renderOrgFilter();
-renderEvents();
+loadOrganizers();
+loadCustomCategories();
+loadEvents();
 </script>
 </body>
 </html>
