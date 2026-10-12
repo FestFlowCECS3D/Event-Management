@@ -1525,6 +1525,10 @@ document.getElementById('eventModalSave').addEventListener('click', ()=>{
           body: JSON.stringify(serverPayload)
         }
       );
+      if (response.status === 409) {
+        alert(await response.text() || 'This event already exists.');
+        return;
+      }
       if (!response.ok) throw new Error('Server responded with an error');
     } catch (err) {
       console.error('Failed to save event to backend:', err);
@@ -1565,6 +1569,10 @@ document.getElementById('addClubBtn').addEventListener('click', () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name })
       });
+      if (response.status === 409) {
+        alert(await response.text() || 'This organizer/club already exists.');
+        return;
+      }
       if (!response.ok) throw new Error('Server responded with an error');
       const saved = await response.json();
       clubs.push(saved);
@@ -1595,6 +1603,10 @@ document.getElementById('clubsTable').addEventListener('click', e => {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ name: trimmed })
         });
+        if (response.status === 409) {
+          alert(await response.text() || 'This organizer/club already exists.');
+          return;
+        }
         if (!response.ok) throw new Error('Server responded with an error');
         const saved = await response.json();
         clubs = clubs.map(c => c.id === id ? saved : c);

@@ -3,6 +3,7 @@ package com.eventisma.controller;
 import com.eventisma.model.Event;
 import com.eventisma.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -39,7 +40,12 @@ public class EventController {
     }
 
     @PostMapping
-    public ResponseEntity<Event> createEvent(@RequestBody Event event) {
+    public ResponseEntity<?> createEvent(@RequestBody Event event) {
+        Event dup = findDuplicate(event, null);
+        if (dup != null) {
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body("Event \"" + dup.getTitle() + "\" by this organizer/club already exists.");
+        }
         // Ensure a create always generates a fresh id, even if the client accidentally sent one.
         event.setId(null);
         Event saved = eventRepository.save(event);
@@ -47,9 +53,14 @@ public class EventController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Event> updateEvent(@PathVariable String id, @RequestBody Event updatedEvent) {
+    public ResponseEntity<?> updateEvent(@PathVariable String id, @RequestBody Event updatedEvent) {
         return eventRepository.findById(id)
-                .map(existing -> {
+                .<ResponseEntity<?>>map(existing -> {
+                    Event dup = findDuplicate(updatedEvent, id);
+                    if (dup != null) {
+                        return ResponseEntity.status(HttpStatus.CONFLICT)
+                                .body("Event \"" + dup.getTitle() + "\" by this organizer/club already exists.");
+                    }
                     existing.setTitle(updatedEvent.getTitle());
                     existing.setSubtitle(updatedEvent.getSubtitle());
                     existing.setType(updatedEvent.getType());
@@ -87,5 +98,35 @@ public class EventController {
         }
         eventRepository.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    // ---- duplicate detection (title similar + same organizer/club) ----
+    private Event findDuplicate(Event incoming, String excludeId) {
+        return eventRepository.findAll().stream()
+                .filter(e -> (excludeId == null || !excludeId.equals(e.getId())) && sameOrganizer(e, incoming) && similarTitle(e.getTitle(), incoming.getTitle()))
+                .findFirst().orElse(null);
+    }
+
+    private static boolean sameOrganizer(Event a, Event b) {
+        String idA = a.getOrganizerId(), idB = b.getOrganizerId();
+        if (idA != null && !idA.isBlank() && idB != null && !idB.isBlank()) {
+            return idA.equals(idB);
+        }
+        String nA = norm(a.getOrganizerName()), nB = norm(b.getOrganizerName());
+        return nA.equals(nB); // both blank counts as same "no organizer"
+    }
+
+    private static boolean similarTitle(String a, String b) {
+        String x = norm(a), y = norm(b);
+        if (x.isEmpty() || y.isEmpty()) return false;
+        if (x.equals(y)) return true;
+        String shorter = x.length() <= y.length() ? x : y;
+        String longer = shorter == x ? y : x;
+        return shorter.length() >= 4 && longer.contains(shorter);
+    }
+
+    // lowercase, strip punctuation, collapse spaces
+    private static String norm(String s) {
+        return s == null ? "" : s.toLowerCase().replaceAll("[^a-z0-9\\s]", " ").replaceAll("\\s+", " ").trim();
     }
 }
