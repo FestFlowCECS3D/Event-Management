@@ -2,7 +2,6 @@
 
 A Java-based Event/Fest Management System built with core Object-Oriented Programming principles — designed to handle event registration, participation tracking, and result generation for college tech fests and department events.
 
-> **Note:** "EventNest" is a placeholder name — swap it out below if you land on something else (FocesHub, FestFlow, etc.)
 
 ## 📖 About
 
