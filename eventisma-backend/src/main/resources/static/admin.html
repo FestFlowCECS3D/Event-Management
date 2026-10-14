@@ -2017,10 +2017,13 @@ catRow.addEventListener('click', e=>{
     (async () => {
       try {
         const response = await fetch(`${CUSTOM_CATEGORIES_URL}/${id}`, { method: 'DELETE' });
-        if (!response.ok) throw new Error('Server responded with an error');
+        if (!response.ok) {
+          const errText = await response.text().catch(() => '');
+          throw new Error(errText || 'Could not delete the category on the backend.');
+        }
       } catch (err) {
         console.error('Failed to delete custom category on backend:', err);
-        alert('Could not delete the category on the backend. Check that it is running.');
+        alert(err.message || 'Could not delete the category on the backend. Check that it is running.');
         return;
       }
       customCategories = customCategories.filter(c => c.id !== id);
@@ -2257,13 +2260,16 @@ document.getElementById('eventModalSave').addEventListener('click', ()=>{
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ name: category })
         });
-        if (!catResponse.ok) throw new Error('Server responded with an error');
+        if (!catResponse.ok) {
+          const errText = await catResponse.text().catch(() => '');
+          throw new Error(errText || 'Could not save the custom category to the backend.');
+        }
         const savedCat = await catResponse.json();
         customCategories.push(savedCat);
         renderCatFilter();
       } catch (err) {
         console.error('Failed to save custom category to backend:', err);
-        alert('Could not save the custom category to the backend. Check that it is running.');
+        alert(err.message || 'Could not save the custom category to the backend. Check that it is running.');
         return;
       }
     }
@@ -2277,10 +2283,13 @@ document.getElementById('eventModalSave').addEventListener('click', ()=>{
           body: JSON.stringify(serverPayload)
         }
       );
-      if (!response.ok) throw new Error('Server responded with an error');
+      if (!response.ok) {
+        const errText = await response.text().catch(() => '');
+        throw new Error(errText || 'Could not save the event to the backend.');
+      }
     } catch (err) {
       console.error('Failed to save event to backend:', err);
-      alert('Could not save the event to the backend. Check that it is running.');
+      alert(err.message || 'Could not save the event to the backend. Check that it is running.');
       return;
     }
 
@@ -2317,12 +2326,15 @@ document.getElementById('addClubBtn').addEventListener('click', () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name })
       });
-      if (!response.ok) throw new Error('Server responded with an error');
+      if (!response.ok) {
+        const errText = await response.text().catch(() => '');
+        throw new Error(errText || 'Could not add the organizer to the backend.');
+      }
       const saved = await response.json();
       clubs.push(saved);
     } catch (err) {
       console.error('Failed to add organizer to backend:', err);
-      alert('Could not add the organizer to the backend. Check that it is running.');
+      alert(err.message || 'Could not add the organizer to the backend. Check that it is running.');
       return;
     }
     document.getElementById('cName').value = '';
@@ -2347,12 +2359,15 @@ document.getElementById('clubsTable').addEventListener('click', e => {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ name: trimmed })
         });
-        if (!response.ok) throw new Error('Server responded with an error');
+        if (!response.ok) {
+          const errText = await response.text().catch(() => '');
+          throw new Error(errText || 'Could not update the organizer on the backend.');
+        }
         const saved = await response.json();
         clubs = clubs.map(c => c.id === id ? saved : c);
       } catch (err) {
         console.error('Failed to update organizer on backend:', err);
-        alert('Could not update the organizer on the backend. Check that it is running.');
+        alert(err.message || 'Could not update the organizer on the backend. Check that it is running.');
         return;
       }
       renderClubsTable(); populateOrgSelect(); renderOrgFilter(); renderEvents();
@@ -2518,10 +2533,13 @@ grid.addEventListener('click', e=>{
       (async () => {
         try {
           const response = await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
-          if (!response.ok) throw new Error('Server responded with an error');
+          if (!response.ok) {
+            const errText = await response.text().catch(() => '');
+            throw new Error(errText || 'Could not delete the event on the backend.');
+          }
         } catch (err) {
           console.error('Failed to delete event on backend:', err);
-          alert('Could not delete the event on the backend. Check that it is running.');
+          alert(err.message || 'Could not delete the event on the backend. Check that it is running.');
           return;
         }
         await loadEvents(); // resync from DB so the UI reflects exactly what's persisted

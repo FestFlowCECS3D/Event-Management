@@ -1428,6 +1428,7 @@ function mapServerEventToUser(serverEv) {
     id: serverEv.id,
     title: serverEv.title || 'Untitled event',
     cat: serverEv.category || 'General',
+    organizerId: serverEv.organizerId || null,
     organizerName: serverEv.organizerName || 'Unknown Organizer',
     date, time,
     dateLabel,
@@ -1679,7 +1680,7 @@ document.getElementById('regSubmit').addEventListener('click', async function() 
       const updatePayload = {
         title: eventToUpdate.title,
         status: 'PUBLISHED',
-        organizerId: null,
+        organizerId: eventToUpdate.organizerId || null,
         organizerName: eventToUpdate.organizerName,
         category: eventToUpdate.cat,
         price: eventToUpdate.price,

@@ -100,29 +100,43 @@ public class EventController {
         return ResponseEntity.noContent().build();
     }
 
-    // ---- duplicate detection (title similar + same organizer/club) ----
+    // ---- duplicate detection (exact title match + same organizer/club) ----
     private Event findDuplicate(Event incoming, String excludeId) {
+        if (incoming == null || incoming.getTitle() == null) return null;
         return eventRepository.findAll().stream()
-                .filter(e -> (excludeId == null || !excludeId.equals(e.getId())) && sameOrganizer(e, incoming) && similarTitle(e.getTitle(), incoming.getTitle()))
+                .filter(e -> (excludeId == null || !excludeId.trim().equalsIgnoreCase(e.getId() != null ? e.getId().trim() : ""))
+                        && sameOrganizer(e, incoming)
+                        && similarTitle(e.getTitle(), incoming.getTitle()))
                 .findFirst().orElse(null);
     }
 
     private static boolean sameOrganizer(Event a, Event b) {
         String idA = a.getOrganizerId(), idB = b.getOrganizerId();
-        if (idA != null && !idA.isBlank() && idB != null && !idB.isBlank()) {
-            return idA.equals(idB);
+        boolean hasIdA = idA != null && !idA.isBlank();
+        boolean hasIdB = idB != null && !idB.isBlank();
+        if (hasIdA && hasIdB) {
+            return idA.trim().equalsIgnoreCase(idB.trim());
+        }
+        if (hasIdA != hasIdB) {
+            return false;
         }
         String nA = norm(a.getOrganizerName()), nB = norm(b.getOrganizerName());
-        return nA.equals(nB); // both blank counts as same "no organizer"
+        boolean hasNameA = !nA.isEmpty();
+        boolean hasNameB = !nB.isEmpty();
+        if (hasNameA && hasNameB) {
+            return nA.equals(nB);
+        }
+        if (hasNameA != hasNameB) {
+            return false;
+        }
+        // Both have no organizerId and no organizerName
+        return true;
     }
 
     private static boolean similarTitle(String a, String b) {
         String x = norm(a), y = norm(b);
         if (x.isEmpty() || y.isEmpty()) return false;
-        if (x.equals(y)) return true;
-        String shorter = x.length() <= y.length() ? x : y;
-        String longer = shorter == x ? y : x;
-        return shorter.length() >= 4 && longer.contains(shorter);
+        return x.equals(y);
     }
 
     // lowercase, strip punctuation, collapse spaces
