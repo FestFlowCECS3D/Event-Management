@@ -36,6 +36,9 @@ public class OrganizerController {
 
     @PostMapping
     public ResponseEntity<?> createOrganizer(@RequestBody Organizer organizer) {
+        if (organizer == null || organizer.getName() == null || organizer.getName().isBlank()) {
+            return ResponseEntity.badRequest().body("Organizer/Club name cannot be blank.");
+        }
         String wanted = normalize(organizer.getName());
         boolean exists = organizerRepository.findAll().stream()
                 .anyMatch(o -> normalize(o.getName()).equals(wanted));
@@ -50,17 +53,30 @@ public class OrganizerController {
 
     @PutMapping("/{id}")
     public ResponseEntity<?> updateOrganizer(@PathVariable String id, @RequestBody Organizer updatedOrganizer) {
+        if (updatedOrganizer == null || updatedOrganizer.getName() == null || updatedOrganizer.getName().isBlank()) {
+            return ResponseEntity.badRequest().body("Organizer/Club name cannot be blank.");
+        }
         return organizerRepository.findById(id)
                 .<ResponseEntity<?>>map(existing -> {
                     String wanted = normalize(updatedOrganizer.getName());
                     boolean exists = organizerRepository.findAll().stream()
-                            .anyMatch(o -> !o.getId().equals(id) && normalize(o.getName()).equals(wanted));
+                            .anyMatch(o -> !o.getId().trim().equalsIgnoreCase(id.trim()) && normalize(o.getName()).equals(wanted));
                     if (exists) {
                         return ResponseEntity.status(HttpStatus.CONFLICT)
                                 .body("Organizer/Club \"" + updatedOrganizer.getName().trim() + "\" already exists.");
                     }
                     existing.setName(updatedOrganizer.getName());
                     Organizer saved = organizerRepository.save(existing);
+
+                    // Sync organizerName on any events hosted by this organizer
+                    List<Event> hosted = eventRepository.findAll().stream()
+                            .filter(e -> id.trim().equalsIgnoreCase(e.getOrganizerId() != null ? e.getOrganizerId().trim() : ""))
+                            .toList();
+                    for (Event e : hosted) {
+                        e.setOrganizerName(saved.getName());
+                        eventRepository.save(e);
+                    }
+
                     return ResponseEntity.ok(saved);
                 })
                 .orElse(ResponseEntity.notFound().build());

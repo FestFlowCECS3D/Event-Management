@@ -43,8 +43,12 @@ public class EventController {
     public ResponseEntity<?> createEvent(@RequestBody Event event) {
         Event dup = findDuplicate(event, null);
         if (dup != null) {
+            String orgName = event.getOrganizerName();
+            String orgLabel = (orgName != null && !orgName.isBlank())
+                    ? "organizer/club \"" + orgName.trim() + "\""
+                    : "this organizer/club";
             return ResponseEntity.status(HttpStatus.CONFLICT)
-                    .body("Event \"" + dup.getTitle() + "\" by this organizer/club already exists.");
+                    .body("Event \"" + dup.getTitle() + "\" by " + orgLabel + " already exists.");
         }
         // Ensure a create always generates a fresh id, even if the client accidentally sent one.
         event.setId(null);
@@ -58,8 +62,12 @@ public class EventController {
                 .<ResponseEntity<?>>map(existing -> {
                     Event dup = findDuplicate(updatedEvent, id);
                     if (dup != null) {
+                        String orgName = updatedEvent.getOrganizerName();
+                        String orgLabel = (orgName != null && !orgName.isBlank())
+                                ? "organizer/club \"" + orgName.trim() + "\""
+                                : "this organizer/club";
                         return ResponseEntity.status(HttpStatus.CONFLICT)
-                                .body("Event \"" + dup.getTitle() + "\" by this organizer/club already exists.");
+                                .body("Event \"" + dup.getTitle() + "\" by " + orgLabel + " already exists.");
                     }
                     existing.setTitle(updatedEvent.getTitle());
                     existing.setSubtitle(updatedEvent.getSubtitle());
@@ -117,17 +125,14 @@ public class EventController {
         if (hasIdA && hasIdB) {
             return idA.trim().equalsIgnoreCase(idB.trim());
         }
-        if (hasIdA != hasIdB) {
-            return false;
-        }
         String nA = norm(a.getOrganizerName()), nB = norm(b.getOrganizerName());
         boolean hasNameA = !nA.isEmpty();
         boolean hasNameB = !nB.isEmpty();
+        if ((hasNameA && !hasNameB) || (!hasNameA && hasNameB)) {
+            return false;
+        }
         if (hasNameA && hasNameB) {
             return nA.equals(nB);
-        }
-        if (hasNameA != hasNameB) {
-            return false;
         }
         // Both have no organizerId and no organizerName
         return true;

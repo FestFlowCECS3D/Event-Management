@@ -2230,6 +2230,40 @@ document.getElementById('eventModalSave').addEventListener('click', ()=>{
   const organizerId = fOrgSelect.value || null;
   const organizerName = organizerId ? getClubName(organizerId) : '';
 
+  const normStr = (s) => (s || '').toLowerCase().replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
+  const normalizedTitle = normStr(title);
+
+  // Validate duplicate event: same title and same club/organizer name
+  const isDuplicate = events.some(e => {
+    // During editing, exclude the current record from duplicate checks
+    if (editingId && String(e.id).trim().toLowerCase() === String(editingId).trim().toLowerCase()) {
+      return false;
+    }
+    const eTitle = normStr(e.title);
+    if (!eTitle || eTitle !== normalizedTitle) return false;
+
+    // Check organizer/club
+    if (organizerId && e.organizerId) {
+      return String(e.organizerId).trim().toLowerCase() === String(organizerId).trim().toLowerCase();
+    }
+    const eOrgName = normStr(e.organizerName || (e.organizerId ? getClubName(e.organizerId) : ''));
+    const curOrgName = normStr(organizerName);
+    if ((eOrgName && !curOrgName) || (!eOrgName && curOrgName)) {
+      return false;
+    }
+    if (eOrgName && curOrgName) {
+      return eOrgName === curOrgName;
+    }
+    // Both unassigned
+    return true;
+  });
+
+  if (isDuplicate) {
+    const orgLabel = organizerName ? `organizer/club "${organizerName}"` : 'this organizer/club';
+    alert(`Event "${title}" by ${orgLabel} already exists.`);
+    return;
+  }
+
   // Full payload — every field in the Add/Edit form is persisted to the DB.
   const serverPayload = {
     title,
@@ -2318,7 +2352,16 @@ document.getElementById('manageClubsBtn').addEventListener('click', () => { rend
 document.getElementById('closeClubModal').addEventListener('click', () => clubOverlay.classList.remove('open'));
 document.getElementById('addClubBtn').addEventListener('click', () => {
   const name = document.getElementById('cName').value.trim();
-  if(!name) return;
+  if(!name) {
+    alert('Please enter an organizer/club name.');
+    return;
+  }
+  const normName = name.replace(/\s+/g, ' ').toLowerCase();
+  const exists = clubs.some(c => c.name && c.name.trim().replace(/\s+/g, ' ').toLowerCase() === normName);
+  if (exists) {
+    alert(`Organizer/Club "${name}" already exists.`);
+    return;
+  }
   (async () => {
     try {
       const response = await fetch(ORGANIZERS_URL, {
@@ -2341,6 +2384,14 @@ document.getElementById('addClubBtn').addEventListener('click', () => {
     renderClubsTable(); populateOrgSelect(); renderOrgFilter(); renderEvents();
   })();
 });
+
+document.getElementById('cName').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    document.getElementById('addClubBtn').click();
+  }
+});
+
 document.getElementById('clubsTable').addEventListener('click', e => {
   const editBtn = e.target.closest('.edit-club');
   const rmBtn = e.target.closest('.rm-club');
@@ -2352,6 +2403,13 @@ document.getElementById('clubsTable').addEventListener('click', e => {
     if(newName === null) return;
     const trimmed = newName.trim();
     if(!trimmed) return;
+    const normName = trimmed.replace(/\s+/g, ' ').toLowerCase();
+    // During editing, exclude the current record from duplicate checks
+    const exists = clubs.some(c => String(c.id).trim().toLowerCase() !== String(id).trim().toLowerCase() && c.name && c.name.trim().replace(/\s+/g, ' ').toLowerCase() === normName);
+    if (exists) {
+      alert(`Organizer/Club "${trimmed}" already exists.`);
+      return;
+    }
     (async () => {
       try {
         const response = await fetch(`${ORGANIZERS_URL}/${id}`, {
@@ -2365,6 +2423,12 @@ document.getElementById('clubsTable').addEventListener('click', e => {
         }
         const saved = await response.json();
         clubs = clubs.map(c => c.id === id ? saved : c);
+        // Sync organizerName snapshot on any events in local state
+        events.forEach(ev => {
+          if (String(ev.organizerId) === String(id)) {
+            ev.organizerName = saved.name;
+          }
+        });
       } catch (err) {
         console.error('Failed to update organizer on backend:', err);
         alert(err.message || 'Could not update the organizer on the backend. Check that it is running.');
